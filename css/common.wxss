@@ -1,0 +1,19 @@
+.primary {
+  color: #333;
+  font-size:36rpx;
+  background:linear-gradient(to bottom, #FFED66, #FCE84C);
+  font-weight: bold;
+}
+
+button[plain]{
+  border:none;
+}
+
+.icon{
+  width:36rpx;
+  height:36rpx;
+}
+image {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,151 @@
+<!--pages/detail/index.wxml-->
+<view class='container'>
+  <image src='{{goods.imgs}}' class='detailBg' lazy-load='true'></image>
+  <view class='diss'>
+    <view class='buju'>
+      <view class='primary postage'>包邮</view>
+      <view class='tit'>{{goods.title}}</view>
+    </view>
+    <view class='only'>剩余{{goods.num}}件</view>
+  </view>
+  <view class='diss'>
+    <view class='buju'>
+      <view>
+        <image src='../../imgs/rlbSm.png' class='rb'></image>
+        <text class='price'>{{goods.currency}}</text>
+        <text class='price' style='padding-left:6rpx;'>热力币</text>
+      </view>
+      <view class='yprice'>原价￥{{goods.price}}</view>
+    </view>
+    <view wx:if="{{isHaveopenid}}">
+      <button open-type='share' plain='true' class='free'>
+        邀请好友免费兑换
+      </button>
+    </view>
+    <view wx:else>
+      <button open-type='getUserInfo' plain='true' class='free' bindgetuserinfo="authorizeNow">
+        邀请好友免费兑换
+      </button>
+    </view>
+  </view>
+  <view class='intro'>
+    <view class='title'>
+      <image src='../../imgs/fh.png' class='fhimg'></image>
+      <text class='fh'>发货说明</text>
+    </view>
+    <view class='display'>
+      <view class='yuan'></view>
+      <view class='cons'>该商品以下地区暂不发货：新疆、西藏、青海、宁夏、甘肃、内蒙古； </view>
+    </view>
+    <view class='display'>
+      <view class='yuan'></view>
+      <view class='cons'>兑换成功且提交订单信息后，3个工作日内发货（节假日顺延）；</view>
+    </view>
+    <view class='display'>
+      <view class='yuan'></view>
+      <view class='cons'>兑换商品前,请先确认收货信息无误,如因地址或手机号码填写错误，导致无法收到商品,走多多不会补寄商品，另免费兑换的商品不可退换货。
+      </view>
+    </view>
+  </view>
+  <view class='tab' bindtap='tabHandle'>
+    <view class='mgb' style='margin-left:12rpx'>
+      <image src='../../imgs/{{curIndex === 0? "dh": "ndh"}}.png' class='icon pos'></image>
+      <text class='tabBtn {{curIndex === 0? "": "choosed"}}' data-index='{{0}}'> 兑换记录</text>
+    </view>
+    <view class='jx'></view>
+    <view class='mgb' style='margin-right:12rpx;'>
+      <image src='../../imgs/{{curIndex === 1? "jl": "njl"}}.png' class='icon pos'></image>
+      <text class='tabBtn {{curIndex === 1? "": "choosed"}}' data-index='{{1}}'> 商品详情</text>
+    </view>
+  </view>
+  <view hidden='{{curIndex !== 0}}' style='margin-bottom:40rpx'>
+    <block wx:if='{{record}}'>
+      <view class='record' wx:for="{{record}}" wx:key='{{index}}' data-index='{{index}}'>
+        <view class='recoed_detail {{record.length-1===index?"border":""}}'>
+          <view>
+            <image src='{{item.avatarUrl}}' class='ava'></image>
+            <text class='name'>{{item.name}}</text>
+          </view>
+          <view class='timeline'>{{item.timeline}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='nojl'>暂无兑换记录</view>
+    </block>
+  </view>
+  <view hidden='{{curIndex !== 1}}' style='margin-bottom:40rpx'>
+    <view class=' {{index===0?"mgTop":""}}' wx:for="{{content}}" wx:key="{{index}}">
+      <image src='{{item}}' class='item' mode='widthFix' lazy-load='true'></image>
+    </view>
+  </view>
+
+  <view class='ditu'></view>
+  <block wx:if="{{button_state==0}}">
+    <button class='freeDh noEnough' open-type='share' plain='true' hover-class='none'>热力币不足，邀请好友得热力币</button>
+  </block>
+  <block wx:if="{{button_state==1}}">
+    <button class='primary freeDh' open-type='getUserInfo' plain='true' bindgetuserinfo='freExchange' hover-class='none'>免费兑换商品</button>
+  </block>
+  <block wx:if="{{button_state==2}}">
+    <view class='freeDh once'>每位用户仅可兑换1次</view>
+  </block>
+  <view class='dikuang {{addinfo_state==1?"animation":address==""?"smdi":"animation"}}' hidden='{{foot}}' catchtouchmove="ture">
+    <view class="mask" bindtap='hideFoot'></view>
+    <view class='header'>
+      <text class='line'></text>
+      <text class='center'>确认兑换商品</text>
+      <text class='line'></text>
+      <view class='kong'></view>
+    </view>
+    <view class='dis'>
+      <view>
+        <image src='{{goods.photo}}' class='img' lazy-load='true'></image>
+      </view>
+      <view>
+        <view class='introduce'>{{goods.title}}</view>
+        <view class='through'>原价￥{{goods.price}}</view>
+        <view>
+          <image src='../../imgs/rlbSm.png' class='rb'></image>
+          <text class='price'>{{goods.currency}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{addinfo_state==1}}" >
+      <view class='mg'>
+        <image src='../../imgs/name.png' class='icon left six'></image>
+        <text class='font cor pos'>{{addinfo.userName}}</text>
+        <image src='../../imgs/phone.png' class='icon long six'></image>
+        <text class='font cor pos'>{{addinfo.telNumber}}</text>
+      </view>
+      <view class='mgs'>
+        <image src='../../imgs/add.png' class='icon left six'></image>
+        <text class='font cor con pos'>{{addinfo.address}}</text>
+        <text class='font cor con new posi'>{{addinfo.detailInfo}}</text>
+         <text class='xiugai posi' bindtap='goAddress'>修改地址</text>
+      </view>
+    </view>
+    <view wx:elif="{{address}}" >
+      <view class='mg'>
+        <image src='../../imgs/name.png' class='icon left six'></image>
+        <text class='font cor pos'>{{address.userName}}</text>
+        <image src='../../imgs/phone.png' class='icon long six'></image>
+        <text class='font cor pos'>{{address.telNumber}}</text>
+      </view>
+      <view class='mgs'>
+        <image src='../../imgs/add.png' class='icon left six'></image>
+        <text class='font cor con pos'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}</text>
+        <text class='font cor con new posi'>{{address.detailInfo}}</text>
+        <text class='xiugai posi' bindtap='goAddress'>修改地址</text>
+      </view>
+    </view>
+    <view wx:else>
+      <view class='please' bindtap='editAddress'>您还没有填写收货地址，
+        <text class='xiugai'>请点击获取</text>
+      </view>
+    </view>
+    <form bindsubmit='affirm' report-submit='true'>
+      <button class='primary freeDh' hover-class='none' plain='true' form-type='submit' disabled='{{disabled}}'>立即兑换</button>
+    </form>
+  </view>
+</view>

@@ -1,0 +1,158 @@
+/* pages/order/index.wxss */
+
+.order {
+  margin-top: 30rpx;
+}
+
+.dis {
+  display: flex;
+}
+
+.yuan {
+  width: 24rpx;
+  height: 24rpx;
+  background: #fbe64d;
+  border-radius: 50%;
+  position: relative;
+  right: 36rpx;
+  top: 8rpx;
+}
+
+.pos {
+  position: absolute;
+}
+
+.date {
+  color: #999;
+  font-size: 28rpx;
+  margin-bottom: 12rpx;
+  position: relative;
+  right: 24rpx;
+}
+
+.orderDe {
+  width: 642rpx;
+  height: 282rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+}
+
+.temp {
+  position: relative;
+  z-index: 10;
+}
+
+.number {
+  color: #333;
+}
+
+.state {
+  color: #47a7fe;
+}
+
+.dispo {
+  width: 586rpx;
+  top: 16rpx;
+  display: flex;
+  left: 30rpx;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #e6e8f0;
+  padding-bottom: 16rpx;
+}
+
+.goods {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 30rpx;
+  bottom: 42rpx;
+}
+
+.rb {
+  width: 28rpx;
+  height: 36rpx;
+  margin-right: 10rpx;
+  position: relative;
+  top: 6rpx;
+}
+
+.price {
+  color: #47a7fe;
+  font-size: 32rpx;
+}
+.ppd{
+   padding:0 16rpx 0 6rpx;
+}
+
+.yprice {
+  color: #b3b3b3;
+  font-size: 24rpx;
+  text-decoration: line-through;
+}
+
+.tit {
+  color: #333;
+  font-size: 32rpx;
+  bottom: 176rpx;
+  left: 210rpx;
+}
+
+.jiage {
+  bottom: 82rpx;
+  left: 210rpx;
+}
+
+.kong {
+  width: 100%;
+  height: 50rpx;
+}
+
+.xian {
+  width: 2rpx;
+  height: 400rpx;
+  background: #fbe64d;
+  position: absolute;
+  left: 31rpx;
+}
+.xc{
+  height:480rpx;
+}
+
+.mgf {
+  margin-left: 100rpx;
+}
+
+.orderBg {
+  width: 100%;
+  height: 260rpx;
+  margin: 100rpx 0 30rpx 0;
+}
+
+.zan {
+  color: #999;
+
+}
+.cor {
+  color: #666;
+
+}
+.size{
+  font-size: 28rpx;
+}
+.copy {
+  width: 606rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+  margin-left:20rpx;
+  position: relative;
+  bottom:40rpx;
+}
+.company{
+  padding-left:30rpx;
+}
+.cop{
+  padding-left:20rpx;
+}

@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/index",
+    "pages/analysis/index",
+    "pages/my/index",
+    "pages/heatMoney/index",
+    "pages/friendList/index",
+    "pages/detail/index",
+    "pages/order/index",
+    "pages/address/index",
+    "pages/success/index",
+    "pages/rule/index",
+    "pages/set/index",
+    "pages/editAdd/index",
+    "pages/person/index",
+    "pages/record/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "走多多",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color":"#B2B2B2",
+    "selectedColor": "#333333",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./imgs/index.png",
+        "selectedIconPath": "./imgs/index_selected.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "./imgs/my.png",
+        "selectedIconPath": "./imgs/my_selected.png"
+      }
+    ]
+  }
+}

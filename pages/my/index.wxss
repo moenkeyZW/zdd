@@ -1,0 +1,132 @@
+/* pages/my/index.wxss */
+@import '../index/index.wxss';
+
+.headers {
+  width: 100%;
+  height: 342rpx;
+  position: relative;
+}
+
+.myBg {
+  width: 750rpx;
+  height: 342rpx;
+}
+
+.ava {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 8rpx solid #fff;
+  overflow: hidden;
+  top: 90rpx;
+}
+
+.nickname {
+  top: 190rpx;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.addUp {
+  color: #fff;
+  font-size: 28rpx;
+  bottom: 70rpx;
+}
+
+.manage {
+  width: 100%;
+  height: 478rpx;
+  background: #fff;
+  box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+}
+
+.temp {
+  width: calc(100% - 60rpx);
+  height: 138rpx;
+  margin-left: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10rpx;
+  box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+  position: relative;
+  bottom: 50rpx;
+  background: #fff;
+}
+
+.icon {
+  width: 60rpx;
+  height: 60rpx;
+  position: relative;
+  top: 30rpx;
+  padding: 0;
+}
+
+.xian {
+  width: 2rpx;
+  height: 60rpx;
+  background: #e6e6e6;
+  margin: 0;
+}
+
+.font {
+  color: #333;
+  font-size: 28rpx;
+}
+
+.seat {
+  position: relative;
+  bottom: 12rpx;
+}
+
+.btn[plain] {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.arrow {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 24rpx;
+}
+
+.icsm {
+  width: 48rpx;
+  height: 48rpx;
+  margin-left: 30rpx;
+}
+
+.content {
+  position: relative;
+  bottom: 20rpx;
+}
+
+.dis {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+}
+
+.wid {
+  border-top: 1rpx solid #e6e8f0;
+  width: 606rpx;
+  padding: 36rpx 0 36rpx 20rpx;
+}
+
+.border {
+  border-bottom: 1rpx solid #e6e8f0;
+}
+
+.btnAdd {
+  text-align: left;
+  height: 108rpx;
+  line-height: 35rpx;
+}
+
+.ad {
+  zoom: 0.92;
+  margin-top:36rpx;
+}

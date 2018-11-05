@@ -1,0 +1,58 @@
+/* pages/record/index.wxss */
+@import '../friendList/index.wxss';
+.container{
+  align-items: flex-start;
+  padding:30rpx 0 60rpx 0;
+}
+.xians{
+  width:2rpx;
+  height:194rpx;
+  margin-left:42rpx;
+  background:#FBE64D;
+}
+.round{
+  margin-left:30rpx;
+}
+.dc{
+  margin-top:12rpx;
+  width:646rpx;
+  height:108rpx;
+  box-shadow:0px 6rpx 10rpx 0px rgba(71,167,254,0.1);
+}
+.last{
+  display: none;
+}
+.timeline{
+  font-size:28rpx;
+  color:#999;
+}
+.record{
+  margin-left:20rpx;
+}
+.tu{
+  position: relative
+}
+.cor{
+  color:#4CA9FE;
+}
+.dw{
+  font-size:36rpx;
+}
+.weight{
+  position: absolute;
+  top:32rpx;
+  left:210rpx;
+  font-size:48rpx;
+}
+.height{
+  left:446rpx;
+}
+.norecord{
+  width:750rpx;
+  height:260rpx;
+  margin:100rpx 0 20rpx 0
+}
+.zw{
+  width:100%;
+  text-align: center;
+}

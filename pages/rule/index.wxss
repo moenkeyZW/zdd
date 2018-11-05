@@ -1,0 +1,85 @@
+/* pages/rule/index.wxss */
+.container{
+  align-items: flex-start;
+  color:#666;
+  font-size:28rpx;
+}
+image{
+  z-index: 10;
+}
+.ruleBg{
+  width:100%;
+  height:240rpx;
+}
+.head{
+  width:250rpx;
+  height:70rpx;
+  margin-left:30rpx;
+}
+.what{
+  width:648rpx;
+  margin:16rpx 0 36rpx 54rpx;
+}
+.tit{
+  color:#333;
+  margin:6rpx 0 4rpx 0;
+}
+.step{
+  width:602rpx;
+  margin-left:94rpx;
+}
+.detail{
+  width:610rpx;
+  margin-left:94rpx;
+}
+.dis{
+  display: flex;
+  align-items: center;
+}
+.round{
+  width:24rpx;
+  height:24rpx;
+  background:#FBE64D;
+  border-radius: 50%;
+  margin:1rpx 10rpx 0 61rpx;
+  z-index: 10;
+}
+.xianOne{
+  background:#E6E6E6;
+  width:1rpx;
+  height:394rpx;
+  position:absolute;
+  bottom:92rpx;
+  left:72rpx;
+}
+
+.item{
+  align-items: flex-start;
+}
+.mg{
+  margin:16rpx 0 0 -2rpx;
+}
+.mgs{
+  margin-top:10rpx;
+}
+.bom{
+  margin-top:22rpx;
+  margin-right:15rpx;
+}
+.star{
+  margin:9rpx 14rpx 70rpx 60rpx;
+  font-size:48rpx;
+}
+.foot{
+ color: #B3B3B3;
+}
+.last{
+  margin:32rpx 0 60rpx 0;
+}
+.rela{
+  position: relative;
+}
+.two{
+  height:288rpx;
+  bottom:16rpx;
+}

@@ -1,0 +1,79 @@
+/* pages/set/index.wxss */
+@import '../../css/common.wxss';
+.temp{
+  width:calc(100% - 60rpx);
+  height:230rpx;
+  background:#fff;
+  display: flex;
+  margin-top:30rpx;
+  align-items: center;
+  border-radius: 10rpx;
+  box-shadow:0px 6rpx 10rpx 0px rgba(126,191,252,0.1);
+}
+
+.cor{
+  color:#333;
+}
+.size{
+  font-size:28rpx;
+}
+.tit{
+  font-size:36rpx;
+  font-weight: bold;
+  margin:10rpx 0 ;
+}
+.icon{
+  width:80rpx;
+  height:80rpx;
+}
+.wid{
+  width:438rpx;
+}
+.xian{
+  display: inline-block;
+  width:6rpx;
+  height:30rpx;
+  background:#47A7FE;
+  border-radius: 3rpx;
+}
+.con{
+  margin:0 50rpx 0 30rpx;
+}
+.ico{
+  border-left:2rpx solid #E5E5E5 !important;
+  padding-left:46rpx;
+}
+.already{
+  color:#CCC;
+}
+.noready{
+  color:#47A7FE;
+}
+.btnShou{
+  position: relative;
+  bottom:50rpx;
+}
+.imgShou{
+  position: relative;
+  top:-5rpx;
+}
+.btn{
+  height:120rpx;
+}
+.btn[plain]{
+  border:none;
+  border-radius: 0;
+  margin:0;
+  padding:0
+}
+.open{
+  height:130rpx;
+}
+.open[plain]{
+  border-radius: 0;
+  margin:0;
+}
+.posi{
+  position: relative;
+  bottom:40rpx;
+}

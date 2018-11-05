@@ -1,0 +1,139 @@
+<!--pages/my/index.wxml-->
+<view class='container'>
+  <view class='headers'>
+    <image src='../../imgs/myBg.png' class='myBg'></image>
+    <open-data type="userAvatarUrl" class='ava abs'></open-data>
+    <open-data type="userNickName" class='nickname abs'></open-data>
+    <view class='addUp abs'>本周累计签到{{days}}天</view>
+  </view>
+  <view class='manage'>
+    <view class='temp'>
+      <view style='margin-left:20rpx;'>
+        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="order">
+          <image src='../../imgs/order.png' class='icon'></image>
+          <view class='font seat'>订单管理</view>
+        </button>
+      </view>
+      <view class='xian'></view>
+      <view>
+        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="hotMoney">
+          <image src='../../imgs/rlb.png' class='icon'></image>
+          <view class='font seat'>热力币</view>
+        </button>
+      </view>
+      <view class='xian'></view>
+      <view style='margin-right:20rpx;'>
+        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="analysis">
+          <image src='../../imgs/health.png' class='icon'></image>
+          <view class='font seat'>健康测评</view>
+        </button>
+      </view>
+    </view>
+    <view class='content'>
+      <view class='dis'>
+        <image class='icsm' src='../../imgs/addBig.png'></image>
+        <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="address">
+          <view class='font wid '>地址管理</view>
+        </button>
+        <image src='../../imgs/arrow.png' class='arrow'></image>
+      </view>
+      <view class='dis'>
+        <image class='icsm' src='../../imgs/rule.png'></image>
+        <view class='font wid' catchtap='rule'>规则说明</view>
+        <image src='../../imgs/arrow.png' class='arrow'></image>
+      </view>
+      <view class='dis'>
+        <image class='icsm' src='../../imgs/set.png'></image>
+        <view class='font wid border' catchtap='setting'>设置</view>
+        <image src='../../imgs/arrow.png' class='arrow'></image>
+      </view>
+    </view>
+  </view>
+  <view class="dialog" hidden="{{perMessage}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandle'></view>
+    <view class="condition" style='top:47%;'>
+      <view class='title'>
+        <image src='../../imgs/title.png' class='title'></image>
+        <view class='abs cor tit'>完善信息</view>
+      </view>
+      <form style='width:100%;' bindsubmit='wsResult'>
+        <view class='cljg'>
+          <view class='relati'>
+            <view class='ding'>
+              <view class='diss'>
+                <view class='duan'></view>
+                <view class='cor size'>体重</view>
+              </view>
+              <block wx:if="{{userInfo.weight>0}}">
+                <view class='kg'>{{userInfo.weight}}kg</view>
+              </block>
+              <block wx:else>
+                <picker bindchange="pickWeight" name='weight' class='pick' value='{{userInfo.weight}}' range="{{weightArr}}">
+                  <view class='place mts'>请输入你的体重</view>
+                </picker>
+              </block>
+            </view>
+            <image src='../../imgs/weightBg.png' class='ka'></image>
+          </view>
+          <view class='relati'>
+            <view class='ding'>
+              <view class='diss'>
+                <view class='duan'></view>
+                <view class='cor size'>身高</view>
+              </view>
+              <block wx:if="{{userInfo.height>0}}">
+                <view class='kg'>{{userInfo.height}}cm</view>
+              </block>
+              <block wx:else>
+                <picker bindchange="pickHeight" name='height' class='pick' value='{{userInfo.height}}' range="{{heightArr}}">
+                  <view class='place mts'>请输入你的身高</view>
+                </picker>
+              </block>
+            </view>
+            <image src='../../imgs/heightBg.png' class='ka'></image>
+          </view>
+          <view class='relati'>
+            <view class='ding'>
+              <view class='diss'>
+                <view class='duan'></view>
+                <view class='cor size'>性别</view>
+              </view>
+              <picker bindchange="pickGender" class='pick' name="gender" value="{{index}}" range="{{genderArray}}">
+                <block wx:if="{{userInfo.gender==1}}">
+                  <view class='kg'>男</view>
+                </block>
+                <block wx:elif="{{userInfo.gender==2}}">
+                  <view class='kg'>女</view>
+                </block>
+                <block wx:else>
+                  <view class='place mts'>请输入你的性别</view>
+                </block>
+              </picker>
+            </view>
+            <image src='../../imgs/genderBg.png' class='ka'></image>
+          </view>
+          <view class='relati'>
+            <view class='ding'>
+              <view class='diss'>
+                <view class='duan'></view>
+                <view class='cor size'>年龄</view>
+              </view>
+              <picker bindchange="pickAge" name='age' class='pick' value='{{userInfo.age}}' range="{{ageArr}}">
+                <block wx:if="{{userInfo.age>0}}">
+                  <view class='kg'>{{userInfo.age}}岁</view>
+                </block>
+                <block wx:else>
+                  <view class='place mts'>请输入你的年龄</view>
+                </block>
+              </picker>
+            </view>
+            <image src='../../imgs/ageBg.png' class='ka'></image>
+          </view>
+          <button class='btnYq cor ckjk' plain='true' form-type="submit" hover-class='none'>查看健康测评</button>
+        </view>
+      </form>
+    </view>
+    <image src='../../imgs/delete.png' class='delete jkcps' bindtap='hideHandle'></image>
+  </view>
+  <ad unit-id="adunit-de8f5735f3bc5f4e" class='ad'></ad>
+</view>

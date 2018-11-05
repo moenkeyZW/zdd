@@ -1,0 +1,17 @@
+<!--pages/friendList/index.wxml-->
+<view class='container'>
+  <view class='friendList'>
+    <view class='dis' wx:for="{{friendList}}" wx:key="{{index}}" >
+      <view>
+        <view class='xian'></view>
+        <view class='round'></view>
+        <view class='xian'></view>
+      </view>
+      <view class='dis intro {{index===friendList.length-1?"lastOne":""}}'>
+        <image src='{{item.avatarurl}}' lazy-load='true' class='avatar'></image>
+        <view class='nickname'>{{item.nickname}}</view>
+      </view>
+    </view>
+  </view>
+  <button open-type='share' class='btn' plain='true' hover-class='none'>邀请更多好友</button>
+</view>

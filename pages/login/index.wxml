@@ -1,0 +1,6 @@
+<!--pages/login/index.wxml-->
+<view class='container' wx:if="{{isHaveShow}}">
+  <image src='../../imgs/shou.png' class='shou'></image>
+  <view class='need'>微信授权后查看称重结果</view>
+  <button class='primary authorizeBtn' plain='true' open-type="getUserInfo" bindgetuserinfo="authorizeNow" hover-class='none'>立即授权</button>
+</view>

@@ -1,0 +1,275 @@
+/* pages/analysis/index.wxss */
+
+.head {
+  width: 690rpx;
+  height: 300rpx;
+  position: relative;
+  margin-top: 30rpx;
+}
+
+.mf{
+  padding-left:4rpx;
+}
+.mfs{
+  padding-left:8rpx;
+}
+.abs {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.record{
+  font-size:24rpx;
+  color:#000;
+  opacity: 0.6;
+  top:50rpx;
+  left:96rpx;
+}
+.anaBg {
+  width: 690rpx;
+  height: 300rpx;
+}
+
+.ava {
+  width: 104rpx;
+  height: 104rpx;
+  border: 8rpx solid #fff;
+  border-radius: 50%;
+  left: 50%;
+  top: 92rpx;
+}
+
+.gender {
+  width: 30rpx;
+  height: 30rpx;
+  left: 56%;
+  top: 136rpx;
+}
+
+.bi {
+  width: 40rpx;
+  height: 40rpx;
+  right: 40rpx;
+  top: 50rpx;
+}
+
+.color {
+  color: #b3b3b3;
+}
+
+.cor {
+  color: #333;
+}
+
+.cos {
+  color: #666;
+}
+
+.font {
+  font-size: 28rpx;
+}
+.lan{
+  color:#47A7FE;
+}
+.unit {
+  font-size: 24rpx;
+}
+
+.ti {
+  font-size: 32rpx;
+}
+
+.six {
+  font-size: 36rpx;
+}
+
+.num {
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.dis {
+  display: flex;
+  align-items: center;
+}
+
+.flex {
+  flex: 1;
+  text-align: center;
+}
+
+.wei {
+  bottom: -30rpx;
+  left: 50%;
+  width: 100%;
+}
+
+.biao {
+  width: 100%;
+  margin-top: 70rpx;
+  position: relative;
+}
+
+.ruh {
+  left: 50%;
+  z-index: 10;
+}
+
+.line {
+  background: #333;
+  width: 60rpx;
+  height: 4rpx;
+  left: 26%;
+}
+
+.other {
+  left: 74%;
+}
+
+.back {
+  width: 264rpx;
+  height: 36rpx;
+  background: #fbe64d;
+  bottom: -53rpx;
+  left: 50%;
+}
+
+.temp {
+  width: 690rpx;
+  height: 330rpx;
+  background: #fff;
+  margin-top: 60rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+}
+
+.bmi {
+  width: 630rpx;
+  margin-left: 30rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+  padding:16rpx 0;
+}
+
+.xian {
+  width: 6rpx;
+  height: 24rpx;
+  background: #47a7fe;
+  border-radius: 3rpx;
+  margin-right: 12rpx;
+}
+
+.shu {
+  color: #47a7fe;
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-bottom:6rpx;
+}
+
+.progress {
+  width: 100%;
+  height: 8rpx;
+  background: linear-gradient(to right, #fbe64d, #ff6a4c);
+}
+
+.ding {
+  width: 32rpx;
+  height: 40rpx;
+  position: relative;
+  top: 18rpx;
+  margin: 20rpx 0 8rpx 0;
+  transform: translate(-50%, -50%);
+}
+
+.yuan {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  border: 4rpx solid #fff;
+  background: #47a7fe;
+  margin-left: 140rpx;
+  position: relative;
+  bottom: 20rpx;
+  box-shadow:0px 4rpx 6rpx 0px rgba(71,167,254,0.3);
+}
+.bgcor{
+  background:#CCC;
+}
+.first {
+  margin-left: 157rpx;
+}
+
+.dian {
+  margin-top: 42rpx;
+  position: relative;
+  right: 6rpx;
+}
+
+.standard {
+  justify-content: space-around;
+  position: relative;
+  bottom: 6rpx;
+}
+
+.mu {
+  width: 100%;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.dream {
+  width: 336rpx;
+  min-height: 160rpx;
+  background: #fff;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+}
+
+.kacl {
+  margin: 22rpx 0 0 30rpx;
+}
+
+.mt {
+  margin-top: 6rpx;
+}
+
+.intro {
+  width: 690rpx;
+  min-height: 240rpx;
+  position: relative;
+  margin-top: 30rpx;
+}
+
+.tzBg {
+  width: 690rpx;
+  height: 240rpx;
+  box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+}
+
+.your {
+  left: 50%;
+  top: 40rpx;
+}
+
+.detail {
+  width: 560rpx;
+  left: 50%;
+  top: 126rpx;
+}
+
+.hotPower {
+  width: 690rpx;
+  min-height: 275rpx;
+  background: #fff;
+  margin-top: 60rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+}
+
+.range {
+  margin: 20rpx 0 12rpx 30rpx;
+}
+
+.lef {
+  margin:0 0 22rpx 30rpx;
+  width:628rpx;
+}

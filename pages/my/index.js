@@ -25,8 +25,6 @@ Page({
     ageArr: ageArr,
     heightArr: heightArr,
     weightArr: weightArr,
-    test_log_id: '',
-    type_id: '',
   },
 
   /**
@@ -64,7 +62,6 @@ Page({
       },
       success: function(res) {
         that.setData({
-          type_id: res.data.type_id,
           days: res.data.res.days,
         })
       }
@@ -113,13 +110,9 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
-          var id = res.data.res.test_log_id;
-          that.setData({
-            test_log_id: id
-          })
           if (res.data.state == 1) {
             wx.navigateTo({
-              url: '/pages/analysis/index?id=' + id,
+              url: '/pages/analysis/index',
             })
           } else {
             that.setData({
@@ -222,9 +215,8 @@ Page({
         openid: wx.getStorageSync('openid')
       },
       success: function(res) {
-        let id=that.data.id;
         wx.navigateTo({
-          url: '/pages/analysis/index?id=' + id,
+          url: '/pages/analysis/index',
         })
         that.setData({
           perMessage: true,

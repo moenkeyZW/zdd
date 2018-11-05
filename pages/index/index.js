@@ -50,7 +50,6 @@ Page({
     count_day: '',
     goods_detail: '',
     userInfo: '',
-    test_log_id: '',
     genderArray: ['男', '女'],
     ageArr: ageArr,
     heightArr: heightArr,
@@ -87,6 +86,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this;
     if (options.openid) {
       that.setData({
@@ -158,6 +160,7 @@ Page({
         openid: openids
       },
       success: function(res) {
+        wx.hideLoading();
         console.log(res)
         that.setData({
           goods: res.data.goods,
@@ -354,18 +357,14 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
-          var id = res.data.res.test_log_id;
-          that.setData({
-            test_log_id: id,
-          })
           if (res.data.state == 1) {
             wx.navigateTo({
-              url: '/pages/analysis/index?id=' + id,
+              url: '/pages/analysis/index',
             })
           } else {
             that.setData({
-              userInfo: res.data.res,
               perMessage: false,
+              userInfo: res.data.res,
             })
           }
         }
@@ -784,9 +783,8 @@ Page({
         openid: wx.getStorageSync('openid')
       },
       success: function(res) {
-        let id = res.data.id;
         wx.navigateTo({
-          url: '/pages/analysis/index?id=' + id,
+          url: '/pages/analysis/index',
         })
         that.setData({
           perMessage: true,

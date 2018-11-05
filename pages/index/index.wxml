@@ -187,14 +187,14 @@
         <image src='../../imgs/cljg.png' class='cldk'></image>
         <view class='cljgs'>
           <view class='relati'>
-            <view class='ding'>
+            <view class='ding top'>
               <view class='kg'>
                 <text class='nub'>{{result.weight}}</text>kg</view>
             </view>
             <image src='../../imgs/tz.png' class='ka'></image>
           </view>
           <view class='relati'>
-            <view class='ding'>
+            <view class='ding top'>
               <block wx:if='{{result.type_id==1}}'>
                 <view class='kg'>
                   <text class='nub'>{{result.height}}</text>cm</view>

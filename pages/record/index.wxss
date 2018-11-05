@@ -40,7 +40,7 @@
 }
 .weight{
   position: absolute;
-  top:32rpx;
+  top:30rpx;
   left:210rpx;
   font-size:48rpx;
 }

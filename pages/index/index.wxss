@@ -624,10 +624,12 @@
 
 .ding {
   position: absolute;
-  top: 62rpx;
+  top: 36rpx;
   left: 60rpx;
 }
-
+.top{
+  top:62rpx;
+}
 .nub {
   font-size: 48rpx;
   font-weight: bold;

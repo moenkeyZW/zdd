@@ -52,8 +52,7 @@
     <block wx:else>
       <button open-type="openSetting" bindopensetting="goRun" plain='true' class='btnClick clickDh primary' hover-class='none'>开启微信运动步数</button>
     </block>
-    <view class='yq cor'>每邀请一位新用户即可获赠
-      <text class='yqNum size'>4</text>枚热力币</view>
+    <view class='yq cor'>每邀请一位新用户即可获赠<text class='yqNum size'>4</text>枚热力币</view>
     <view class='xian'></view>
     <view class='friend'>
       <block wx:if="{{friendArr[0]}}">
@@ -98,19 +97,19 @@
   </view>
   <view class='detail'>
     <view class='wares cor'>
-      <text class='xx'></text> 商品兑换
+      <text class='xx mf'></text> 商品兑换
     </view>
-    <view wx:for="{{goods}}" wx:key="{{index}}" data-index="{{index}}">
-      <view class='wareDetail'>
-        <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='onDetail' lazy-load='true' data-id="{{item.goods_id}}"></image>
-        <view style='margin:32rpx 0 0 10rpx;'>
-          <view class='size cor'>{{item.title}}</view>
-          <view class='only'>剩余{{item.num}}件</view>
-          <view style='padding:45rpx 0 16rpx 0;'>
-            <image src='../../imgs/rlbSm.png' class='rb' lazy-load='true'></image>
-            <text class='price'>{{item.currency}}</text>
-            <text class='price pdf'>热力币</text>
-            <text class='yprice'>原价￥{{item.price}}</text>
+    <view class='week'>
+      <block wx:for="{{goods}}" wx:key="{{index}}" data-index="{{index}}">
+        <view class='wareDetail'>
+          <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='onDetail' lazy-load='true' data-id="{{item.goods_id}}"></image>
+          <view class='size cor mf'>{{item.title}}</view>
+          <view class='dis kuan'>
+            <view class=''>
+              <image src='../../imgs/rlbSm.png' class='rb' lazy-load='true'></image>
+              <text class='price wenzi'>{{item.currency}}</text>
+            </view>
+            <view class='yprice'>原价￥{{item.price}}</view>
           </view>
           <block wx:if="{{item.state==0}}">
             <button class='change cor size' plain='true' data-price="{{item.price}}" data-id="{{item.goods_id}}" open-type="getUserInfo" bindgetuserinfo="goChange" hover-class='none'>免费兑换</button>
@@ -118,9 +117,11 @@
           <block wx:if="{{item.state==1}}">
             <view class='change cor size ischange'>已兑换</view>
           </block>
+
         </view>
-      </view>
+      </block>
     </view>
+
     <view class="dialog" hidden="{{noEnough}}" catchtouchmove="ture">
       <view class="mask" bindtap='hideHandle'></view>
       <view class="condition">
@@ -181,7 +182,7 @@
     </view>
   </view>
   <view class="dialog" wx:if="{{clicked}}" hidden="{{measure}}" catchtouchmove="ture">
-    <view class="mask"  bindtap='hideHandle'></view>
+    <view class="mask" bindtap='heiping'></view>
     <view class="condition bgnone" style='top:40%'>
       <view class='relati'>
         <image src='../../imgs/cljg.png' class='cldk'></image>
@@ -191,7 +192,7 @@
               <view class='kg'>
                 <text class='nub'>{{result.weight}}</text>kg</view>
             </view>
-            <image src='../../imgs/tz.png' class='ka'></image>
+            <image src='../../imgs/tz.png' class='ka mf'></image>
           </view>
           <view class='relati'>
             <view class='ding top'>
@@ -203,7 +204,7 @@
                 <view class='zwcz'>暂无数据</view>
               </block>
             </view>
-            <image src='../../imgs/sg.png' class='ka'></image>
+            <image src='../../imgs/sg.png' class='ka mf'></image>
           </view>
         </view>
       </view>
@@ -215,7 +216,7 @@
     </view>
   </view>
   <view class="dialog" wx:if="{{clim}}" hidden="{{zanwu}}" catchtouchmove="ture">
-    <view class="mask"  bindtap='hideHandle'></view>
+    <view class="mask" bindtap='heiping'></view>
     <view class="condition bgnone" style='top:40%'>
       <view class='relati'>
         <image src='../../imgs/zanwu.png' class='cldk'></image>
@@ -251,7 +252,7 @@
                 </picker>
               </block>
             </view>
-            <image src='../../imgs/weightBg.png' class='ka'></image>
+            <image src='../../imgs/weightBg.png' class='ka mf'></image>
           </view>
           <view class='relati'>
             <view class='ding'>
@@ -268,7 +269,7 @@
                 </picker>
               </block>
             </view>
-            <image src='../../imgs/heightBg.png' class='ka'></image>
+            <image src='../../imgs/heightBg.png' class='ka mf'></image>
           </view>
           <view class='relati'>
             <view class='ding'>
@@ -288,7 +289,7 @@
                 </block>
               </picker>
             </view>
-            <image src='../../imgs/genderBg.png' class='ka'></image>
+            <image src='../../imgs/genderBg.png' class='ka mf'></image>
           </view>
           <view class='relati'>
             <view class='ding'>
@@ -305,7 +306,7 @@
                 </block>
               </picker>
             </view>
-            <image src='../../imgs/ageBg.png' class='ka'></image>
+            <image src='../../imgs/ageBg.png' class='ka mf'></image>
           </view>
           <button class='btnYq cor ckjk' plain='true' form-type="submit" hover-class='none'>查看健康测评</button>
         </view>
@@ -334,7 +335,7 @@
         <view class='money'>{{count_day}}</view>
       </view>
       <view class='footer'>
-        <view class='week'>
+        <view class='week mf'>
           <view wx:for="{{week}}" wx:key="{{index}}" data-index="{{index}}">
             <view class='size days'>{{item.week}}</view>
             <view class='jiabi {{item.state==1?"yellow":""}} {{index==week.length-1?"jiakuan":""}}'>

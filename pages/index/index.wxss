@@ -8,7 +8,9 @@
 .size {
   font-size: 28rpx;
 }
-
+.mf{
+  margin-left:30rpx;
+}
 .header {
   width: 100%;
   min-height: 700rpx;
@@ -269,17 +271,15 @@
   border-radius: 3rpx;
   position: relative;
   top: 5rpx;
-  margin-left: 30rpx;
 }
 
 .wareDetail {
-  width: calc(100% - 60rpx);
-  height: 300rpx;
+  /* width: calc(100% - 60rpx);
+  height: 300rpx; */
   background: #fff;
   margin: 20rpx 0 0 30rpx;
   border-radius: 10rpx;
   box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
-  display: flex;
 }
 
 .noMore {
@@ -303,15 +303,9 @@
 }
 
 .goods {
-  width: 240rpx;
-  height: 240rpx;
-  margin: 30rpx 18rpx 30rpx 30rpx;
-}
-
-.only {
-  font-size: 24rpx;
-  color: #b3b3b3;
-  margin-top: 12rpx;
+  width: 270rpx;
+  height: 200rpx;
+  margin: 30rpx 30rpx 6rpx 30rpx;
 }
 
 .price {
@@ -320,24 +314,19 @@
 }
 
 .yprice {
-  font-size: 24rpx;
+  font-size: 20rpx;
   color: #b3b3b3;
   text-decoration: line-through;
-  padding-left: 18rpx;
 }
 
 .change {
-  width: 160rpx;
-  height: 48rpx;
-  line-height: 48rpx;
+  width: 270rpx;
+  height: 52rpx;
+  line-height: 52rpx;
   text-align: center;
   background: linear-gradient(to bottom, #fce84c, #fad000);
-  border-radius: 24rpx;
-}
-
-.change[plain] {
-  margin: 0;
-  padding: 0;
+  border-radius: 26rpx;
+  margin:10rpx 0 30rpx 30rpx;
 }
 
 .ischange {
@@ -536,7 +525,6 @@
 
 .week {
   display: flex;
-  margin-left: 30rpx;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -553,7 +541,10 @@
 .jiakuan {
   width: 302rpx;
 }
-
+.jiage{
+  position: relative;
+  bottom:10rpx;
+}
 .rbig {
   width: 66rpx;
   height: 54rpx;
@@ -594,7 +585,6 @@
 .ka {
   width: 530rpx;
   height: 136rpx;
-  margin-left: 30rpx;
   box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
   margin-bottom: 10rpx;
 }
@@ -1149,4 +1139,13 @@
 .zwcz{
   font-size:36rpx;
   color:#ccc;
+}
+.kuan{
+  width:calc(100% - 60rpx);
+  margin:0 0 0 30rpx;
+}
+.wenzi{
+  position: relative;
+  bottom:2rpx;
+  left:2rpx;
 }

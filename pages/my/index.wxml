@@ -73,7 +73,7 @@
                 </picker>
               </block>
             </view>
-            <image src='../../imgs/weightBg.png' class='ka'></image>
+            <image src='../../imgs/weightBg.png' class='ka mf'></image>
           </view>
           <view class='relati'>
             <view class='ding'>
@@ -90,7 +90,7 @@
                 </picker>
               </block>
             </view>
-            <image src='../../imgs/heightBg.png' class='ka'></image>
+            <image src='../../imgs/heightBg.png' class='ka mf'></image>
           </view>
           <view class='relati'>
             <view class='ding'>
@@ -110,7 +110,7 @@
                 </block>
               </picker>
             </view>
-            <image src='../../imgs/genderBg.png' class='ka'></image>
+            <image src='../../imgs/genderBg.png' class='ka mf'></image>
           </view>
           <view class='relati'>
             <view class='ding'>
@@ -127,7 +127,7 @@
                 </block>
               </picker>
             </view>
-            <image src='../../imgs/ageBg.png' class='ka'></image>
+            <image src='../../imgs/ageBg.png' class='ka mf'></image>
           </view>
           <button class='btnYq cor ckjk' plain='true' form-type="submit" hover-class='none'>查看健康测评</button>
         </view>

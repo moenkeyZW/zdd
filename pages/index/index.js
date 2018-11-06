@@ -792,6 +792,15 @@ Page({
       }
     })
   },
+  heiping:function(){
+    that.setData({
+      measure: true,
+      zanwu: true,
+      clicked: false,
+      clim: false,
+    })
+    that.sportSQ();
+  },
   wsMessage: function(e) {
     var that = this;
     var form_id = e.detail.formId;
@@ -961,8 +970,6 @@ Page({
       perMessage: true,
       share: true,
       shareFriend: true,
-      zanwu:true,
-      measure:true,
     })
   },
   /**

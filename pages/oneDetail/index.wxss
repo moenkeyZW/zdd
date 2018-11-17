@@ -1,0 +1,21 @@
+/* pages/oneDetail/index.wxss */
+@import '../detail/index.wxss';
+
+.nedk {
+  width: 252rpx;
+  height: 58rpx;
+}
+
+.needhy {
+  position: fixed;
+  z-index: 10;
+  bottom: 72rpx;
+  right: 30rpx;
+}
+
+.still {
+  font-size: 12px;
+  position: relative;
+  bottom: 62rpx;
+  left: 20rpx;
+}

@@ -1,0 +1,114 @@
+<!--pages/share/index.wxml-->
+<view>
+  <image src='../../imgs/shareHead.png' class='shareHead'></image>
+  <view class='container'>
+    <view class='relati'>
+      <image src='../../imgs/shareBody.png' class='shareBody mf'></image>
+      <view class='abs disflex'>
+        <image src='{{userInfo.avatarUrl}}' class='ava'></image>
+        <view class='abs join'>
+          <view class='cor intro'>我正在参加助力换礼活动</view>
+          <view class='cor intro'>老铁赶紧助我一臂之力！</view>
+        </view>
+      </view>
+      <view class='disDia abs shareDetail'>
+        <image src='{{goods.imgs}}' class='goods'></image>
+        <view style='align-self:flex-end'>
+          <view class='cor size'>{{goods.title}}</view>
+          <view class='haved' style='margin-top:10rpx;'>已有{{goods.dh_count}}人领取</view>
+          <view class='dis' style='margin-top:70rpx'>
+            <view class='size'>原价
+              <text class='jiage'>￥{{goods.price}}</text>
+            </view>
+            <view class='haved' style='margin-left:50rpx;'>剩余{{goods.num}}件</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='relati' style='margin-top:20rpx;'>
+      <block wx:if="{{state==1}}">
+        <button class='shareBtn' plain='true' open-type='share'>
+          <image src='../../imgs/shareBtn.png' class='shareBtn'></image>
+          <view class='abs cor zlbtn'>邀请好友助力</view>
+        </button>
+      </block>
+      <block wx:else>
+        <button class='shareBtn' plain='true' open-type="getUserInfo" bindgetuserinfo="forFriend" >
+          <image src='../../imgs/shareBtn.png' class='shareBtn'></image>
+          <view class='abs cor zlbtn'>为好友助力</view>
+        </button>
+      </block>
+    </view>
+    <block wx:if="{{friend}}">
+      <view class='disDia zanno'>
+        <label wx:for='{{friend}}' wx:key='{{index}}' data-index='{{index}}'>
+          <image src='{{item.avatarurl}}' class='friAva'></image>
+        </label>
+        <view style='margin-left:10rpx;'>已有{{hy_num}}人助力</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='zanno'>暂无好友助力</view>
+    </block>
+    <view class='shareRule'>
+      <view class='tsix disDia ruleHead'>
+        <image src='../../imgs/lfb.png' class='icon'></image>
+        <view class='cor prefecture'>助力规则</view>
+        <image src='../../imgs/rtb.png' class='icon'></image>
+      </view>
+      <view class='disDia'>
+        <view class='round'></view>
+        <view class='size cor' style='width:588rpx;'>该商品以下地区暂不发货：新疆、西藏、青海、宁夏、甘肃、内蒙古；</view>
+      </view>
+      <view class='disDia mgt'>
+        <view class='round'></view>
+        <view class='size cor' style='width:588rpx;'>兑换成功且提交订单信息后，3个工作日内发货（节假日顺延）；</view>
+      </view>
+      <view class='disDia mgt'>
+        <view class='round'></view>
+        <view class='size cor' style='width:588rpx;'>兑换商品前，请先确认收货信息无误，如因地址或手机号码填写错误，导致无法收到商品，走多多不会补寄商品，另免费兑换的商品不可退换货</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="dialog" hidden="{{shouquan}}" catchtouchmove="ture">
+    <view class="mask"></view>
+    <view class="condition indexshou bgnone">
+      <image src='../../imgs/indexshou.png' class='indexshou'></image>
+      <view class='cor baituo'>走多多需要您的授权</view>
+      <view class='cor baituo' style='top:328rpx;'>才能为好友助力</view>
+      <view class='dis abcp dialog'>
+        <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='btnAnalysis comment relati' hover-class='none'>
+          <image src='../../imgs/anniuBig.png' class='comment relati '></image>
+        </button>
+      </view>
+    </view>
+  </view>
+  <view class="dialog" hidden="{{newUser}}" catchtouchmove="ture">
+    <view class="mask" ></view>
+    <view class="condition bgnone" style='top:45%'>
+      <image src='../../imgs/newuser.png' class='newuser relati'></image>
+      <view class='useDetail'>
+        <view class='sqcg cor'>助力成功</view>
+        <view class=' size cor '>走多多现赠送你
+          <text class='special relati '>5</text> 热力币 </view>
+        <view class='size cor '>可免费领取
+          <text class='special relati '>6</text> 件礼品</view>
+        <view class='btnYq cor ljlq ' bindtap='newUserLingqu'>立即领取</view>
+        <view class='useFoot'>每日运动步数可兑换更多热力币</view>
+      </view>
+    </view>
+  </view>
+  <view class="dialog" hidden="{{newUserFail}}" catchtouchmove="ture">
+    <view class="mask" ></view>
+    <view class="condition bgnone" style='top:45%'>
+      <image src='../../imgs/newuser_fail.png' class='newuser relati'></image>
+      <view class='useDetail'>
+        <view class='sqcg cor'>助力失败</view>
+        <view class='size cor' style='margin:50rpx 0 80rpx 0'>你不是新用户，无法为好友助力！</view>
+        <view class='btnYq cor ljlq ' bindtap='newUserLingqu'>查看我可兑换商品</view>
+        <view class='useFoot'>每日运动步数可兑换更多热力币</view>
+      </view>
+    </view>
+  </view>
+</view>

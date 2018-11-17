@@ -1,0 +1,23 @@
+<!--pages/moreGoods/index.wxml-->
+<view class='container'>
+  <view class='week'>
+    <block wx:for="{{zl_goods}}" wx:key="{{index}}" data-index="{{index}}">
+      <view class='wareDetail'>
+        <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='onDetail' lazy-load='true' data-id="{{item.goods_id}}"></image>
+        <view class='size cor mf'>{{item.title}}</view>
+        <view class='dis kuan'>
+          <view>
+            <image src='../../imgs/rlbSm.png' class='rb' lazy-load='true'></image>
+            <text class='price wenzi'>{{item.rlb_price}}</text>
+          </view>
+          <view class='yprice'>原价￥{{item.price}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='noMore dialog' hidden='{{noMore}}'>
+    <text class='line'></text>
+    <text class='none'>没有更多了</text>
+    <text class='line'></text>
+  </view>
+</view>

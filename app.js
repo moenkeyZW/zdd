@@ -45,14 +45,14 @@ App({
                 wx.getWeRunData({
                   success(res) {
                     wx.request({
-                      url: that.globalData.base_url + '/wxrun3',
+                      url: that.globalData.base_url + '/wxrun',
                       data: {
                         encryptedData: encodeURIComponent(res.encryptedData),
                         iv: encodeURIComponent(res.iv),
                         session: wx.getStorageSync('session'),
                         openid: wx.getStorageSync('openid'),
                       },
-                      method: 'POST',
+                      method: 'GET',
                       header: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                       },
@@ -70,8 +70,9 @@ App({
                                 withCredentials: true,
                                 success: function (res_user) {
                                   wx.request({
-                                    url: that.globalData.base_url + '/login2',
+                                    url: that.globalData.base_url + '/login',
                                     data: {
+                                      auth_type:0,
                                       scene_value: 0,
                                       code: res.code,
                                       encryptedData: encodeURIComponent(res_user.encryptedData),
@@ -91,11 +92,6 @@ App({
                                     }
                                   })
                                 },
-                                // fail: function() {
-                                //   console.log(99)
-                                //   that.globalData.isOpenWXRun = false;
-                                //   typeof cb == "function" && cb(that.globalData.userInfo);
-                                // },
                               })
                             },
 
@@ -114,8 +110,9 @@ App({
                         withCredentials: true,
                         success: function (res_user) {
                           wx.request({
-                            url: that.globalData.base_url + '/login2',
+                            url: that.globalData.base_url + '/login',
                             data: {
+                              auth_type: 0,
                               scene_value: 0,
                               code: res.code,
                               encryptedData: encodeURIComponent(res_user.encryptedData),
@@ -126,7 +123,6 @@ App({
                               'content-type': 'application/json'
                             },
                             success: function (res) {
-                              console.log(6, res)
                               that.globalData.userInfo = res.data.userinfo;
                               wx.setStorageSync('nickname', res.data.userinfo.nickname);
                               wx.setStorageSync('session', res.data.hash);
@@ -164,8 +160,9 @@ App({
                   withCredentials: true,
                   success: function (res_user) {
                     wx.request({
-                      url: that.globalData.base_url + '/login2',
+                      url: that.globalData.base_url + '/login',
                       data: {
+                        auth_type: 0,
                         scene_value: 1,
                         code: res.code,
                         encryptedData: encodeURIComponent(res_user.encryptedData),
@@ -202,8 +199,9 @@ App({
                 withCredentials: true,
                 success: function (res_user) {
                   wx.request({
-                    url: that.globalData.base_url + '/login2',
+                    url: that.globalData.base_url + '/login',
                     data: {
+                      auth_type: 0,
                       scene_value: 1,
                       code: res.code,
                       encryptedData: encodeURIComponent(res_user.encryptedData),
@@ -247,8 +245,9 @@ App({
                   withCredentials: true,
                   success: function (res_user) {
                     wx.request({
-                      url: that.globalData.base_url + '/login2',
+                      url: that.globalData.base_url + '/login',
                       data: {
+                        auth_type: 0,
                         scene_value: 0,
                         code: res.code,
                         encryptedData: encodeURIComponent(res_user.encryptedData),
@@ -285,8 +284,179 @@ App({
                 withCredentials: true,
                 success: function (res_user) {
                   wx.request({
-                    url: that.globalData.base_url + '/login2',
+                    url: that.globalData.base_url + '/login',
                     data: {
+                      auth_type: 0,
+                      scene_value: 0,
+                      code: res.code,
+                      encryptedData: encodeURIComponent(res_user.encryptedData),
+                      iv: encodeURIComponent(res_user.iv)
+                    },
+                    method: 'GET',
+                    header: {
+                      'content-type': 'application/json'
+                    },
+                    success: function (res) {
+                      console.log(4, res)
+                      that.globalData.userInfo = res.data.userinfo;
+                      wx.setStorageSync('nickname', res.data.userinfo.nickname);
+                      wx.setStorageSync('session', res.data.hash);
+                      wx.setStorageSync('openid', res.data.openid);
+                      wx.setStorageSync('open_id', res.data.open_id);
+                      typeof cb == "function" && cb(that.globalData.userInfo);
+                    }
+                  })
+                },
+              })
+            } else {
+              console.log('获取用户登录态失败！' + res.errMsg)
+            }
+          },
+        })
+      }
+    })
+  },
+  yqLogin: function (cb) {
+    var that = this;
+    wx.checkSession({
+      success: function (res) {
+        if (wx.getStorageSync('openid') && wx.getStorageSync('open_id') != 0) {
+          that.onRefresh(cb);
+        } else {
+          wx.login({
+            success: res => {
+              if (res.code) {
+                wx.getUserInfo({
+                  withCredentials: true,
+                  success: function (res_user) {
+                    wx.request({
+                      url: that.globalData.base_url + '/login',
+                      data: {
+                        auth_type: 1,
+                        scene_value: 0,
+                        code: res.code,
+                        encryptedData: encodeURIComponent(res_user.encryptedData),
+                        iv: encodeURIComponent(res_user.iv)
+                      },
+                      method: 'GET',
+                      header: {
+                        'content-type': 'application/json'
+                      },
+                      success: function (res) {
+                        console.log(3, res)
+                        that.globalData.userInfo = res.data.userinfo;
+                        wx.setStorageSync('nickname', res.data.userinfo.nickname);
+                        wx.setStorageSync('session', res.data.hash);
+                        wx.setStorageSync('openid', res.data.openid);
+                        wx.setStorageSync('open_id', res.data.open_id);
+                        typeof cb == "function" && cb(that.globalData.userInfo);
+                      }
+                    })
+                  },
+                })
+              } else {
+                console.log('获取用户登录态失败！' + res.errMsg)
+              }
+            },
+          })
+        }
+      },
+      fail: function () {
+        wx.login({
+          success: res => {
+            if (res.code) {
+              wx.getUserInfo({
+                withCredentials: true,
+                success: function (res_user) {
+                  wx.request({
+                    url: that.globalData.base_url + '/login',
+                    data: {
+                      auth_type: 1,
+                      scene_value: 0,
+                      code: res.code,
+                      encryptedData: encodeURIComponent(res_user.encryptedData),
+                      iv: encodeURIComponent(res_user.iv)
+                    },
+                    method: 'GET',
+                    header: {
+                      'content-type': 'application/json'
+                    },
+                    success: function (res) {
+                      console.log(4, res)
+                      that.globalData.userInfo = res.data.userinfo;
+                      wx.setStorageSync('nickname', res.data.userinfo.nickname);
+                      wx.setStorageSync('session', res.data.hash);
+                      wx.setStorageSync('openid', res.data.openid);
+                      wx.setStorageSync('open_id', res.data.open_id);
+                      typeof cb == "function" && cb(that.globalData.userInfo);
+                    }
+                  })
+                },
+              })
+            } else {
+              console.log('获取用户登录态失败！' + res.errMsg)
+            }
+          },
+        })
+      }
+    })
+  },
+  zlLogin: function (cb) {
+    var that = this;
+    wx.checkSession({
+      success: function (res) {
+        if (wx.getStorageSync('openid') && wx.getStorageSync('open_id') != 0) {
+          that.onRefresh(cb);
+        } else {
+          wx.login({
+            success: res => {
+              if (res.code) {
+                wx.getUserInfo({
+                  withCredentials: true,
+                  success: function (res_user) {
+                    wx.request({
+                      url: that.globalData.base_url + '/login',
+                      data: {
+                        auth_type: 2,
+                        scene_value: 0,
+                        code: res.code,
+                        encryptedData: encodeURIComponent(res_user.encryptedData),
+                        iv: encodeURIComponent(res_user.iv)
+                      },
+                      method: 'GET',
+                      header: {
+                        'content-type': 'application/json'
+                      },
+                      success: function (res) {
+                        console.log(3, res)
+                        that.globalData.userInfo = res.data.userinfo;
+                        wx.setStorageSync('nickname', res.data.userinfo.nickname);
+                        wx.setStorageSync('session', res.data.hash);
+                        wx.setStorageSync('openid', res.data.openid);
+                        wx.setStorageSync('open_id', res.data.open_id);
+                        typeof cb == "function" && cb(that.globalData.userInfo);
+                      }
+                    })
+                  },
+                })
+              } else {
+                console.log('获取用户登录态失败！' + res.errMsg)
+              }
+            },
+          })
+        }
+      },
+      fail: function () {
+        wx.login({
+          success: res => {
+            if (res.code) {
+              wx.getUserInfo({
+                withCredentials: true,
+                success: function (res_user) {
+                  wx.request({
+                    url: that.globalData.base_url + '/login',
+                    data: {
+                      auth_type: 2,
                       scene_value: 0,
                       code: res.code,
                       encryptedData: encodeURIComponent(res_user.encryptedData),
@@ -377,7 +547,7 @@ App({
     })
   },
   globalData: {
-    base_url: "https://www.mnancheng.com/admin/wechat",
+    base_url: "https://www.mnancheng.com/admin/wechat02",
     isOpenWXRun: null,
     wxRunData: null,
     userInfo: null,

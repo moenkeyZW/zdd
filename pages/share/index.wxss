@@ -1,0 +1,109 @@
+/* pages/share/index.wxss */
+@import '../index/index.wxss';
+.container{
+  background:linear-gradient(to bottom, #FFCC37, #FF6A4C);
+}
+.condition{
+  top:40%;
+}
+.baituo {
+  text-align: center;
+}
+.comment{
+  width:530rpx;
+  height:80rpx;
+}
+.abcp{
+  left:0;
+}
+.shareHead{
+  width:100%;
+  height:390rpx;
+  display: block;
+}
+.shareBody{
+  width:690rpx;
+  height:501rpx;
+}
+.ava{
+  width:100rpx;
+  height:100rpx;
+  border-radius: 50%;
+  margin:0 0 30rpx 40rpx;
+}
+.intro{
+  width:400rpx;
+  font-size:32rpx;
+}
+.disflex{
+  display: flex;
+  width:570rpx;
+  border-bottom:1rpx solid #E4E6ED;
+  top:120rpx;
+  margin-left:12rpx;
+}
+.join{
+  top:50rpx;
+  right:100rpx;
+}
+.shareDetail{
+  width:630rpx;
+  top:296rpx;
+}
+.haved{
+  color:#999;
+  font-size:24rpx;
+}
+.jiage{
+  font-size:36rpx;
+  color:#FFB247;
+}
+.goods{
+  margin:20rpx 20rpx 0 30rpx;
+}
+.shareBtn{
+  width:664rpx;
+  height:132rpx;
+}
+.shareBtn[plain]{
+  padding:0;
+}
+.zlbtn{
+  font-size:36rpx;
+  font-weight: bold;
+  top:55rpx;
+}
+.zanno{
+  font-size:32rpx;
+  color:#fff;
+  margin-top:12rpx;
+}
+.friAva{
+  width:48rpx;
+  height:48rpx;
+  position: relative;
+  border-radius: 50%;
+}
+.shareRule{
+  width:calc(100% - 60rpx);
+  min-height:436rpx;
+  background:#fff;
+  border-radius: 10rpx;
+  margin:32rpx 0 68rpx 0;
+}
+.ruleHead{
+  justify-content: center;
+  margin:30rpx 0;
+}
+.round{
+  width:24rpx;
+  height:24rpx;
+  background:#FBE64D;
+  border-radius: 50%;
+  position: relative;
+  top:8rpx;
+  margin:0 10rpx 0 30rpx;
+}
+.mgt{
+  margin-top:10rpx;
+}

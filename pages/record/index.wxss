@@ -1,8 +1,20 @@
 /* pages/record/index.wxss */
-@import '../friendList/index.wxss';
+
 .container{
   align-items: flex-start;
   padding:30rpx 0 60rpx 0;
+}
+.dis{
+  display: flex;
+}
+
+.round{
+  width:24rpx;
+  height:24rpx;
+  border-radius: 50%;
+  background:#FBE64D;
+  margin-left:30rpx;
+  z-index:10;
 }
 .xians{
   width:2rpx;
@@ -10,9 +22,7 @@
   margin-left:42rpx;
   background:#FBE64D;
 }
-.round{
-  margin-left:30rpx;
-}
+
 .dc{
   margin-top:12rpx;
   width:646rpx;

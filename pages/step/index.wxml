@@ -1,0 +1,135 @@
+<!--pages/step/index.wxml-->
+<view class='container'>
+  <view class='header'>
+    <view class='dis'>
+      <button class='btnAnalysis' plain='true' hover-class='none' open-type="getUserInfo" bindgetuserinfo="goHeat">
+        <view class='rlb cor'>
+          <image src='../../imgs/rb.png' class='empty'></image>
+          <image src='../../imgs/hot.png' class='hot'></image>
+          <text class='moneys'>{{money}}</text>
+        </view>
+      </button>
+      <view class='size cor mgr'>兑换规则</view>
+    </view>
+    <view class='fg'>
+      <image src='../../imgs/main.png' class='main abs'></image>
+      <view class='useStep abs size cor'>可兑换步数</view>
+      <view class='num abs cor'>{{step}}</view>
+      <view class='clear abs size'>每日24点清零</view>
+    </view>
+    <block wx:if="{{isOpenWXRun}}">
+      <block wx:if="{{isHaveopenid}}">
+        <form bindsubmit='exchange' report-submit='true'>
+          <button form-type='submit' plain='true' class='btnClick clickDh primary' disabled='{{dhcg}}' hover-class='none'>点击兑换热力币</button>
+        </form>
+      </block>
+      <block wx:else>
+        <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='btnClick clickDh primary' hover-class='none'>点击兑换热力币</button>
+      </block>
+    </block>
+    <block wx:else>
+      <button open-type="openSetting" bindopensetting="goRun" plain='true' class='btnClick clickDh primary' hover-class='none'>开启微信运动步数</button>
+    </block>
+    <view class='titi gray'>步数换热力币，免费领取礼品</view>
+    <view class='xian'></view>
+    <view class='disDia' style='margin-left:60rpx;'>
+      <block wx:for="{{weeks}}" wx:key='{{index}}'>
+        <view class='day'>
+          <image src='{{item.img}}' class='day'></image>
+          <view class='color twenty {{item.week>0?"":"gray"}}'>{{item.week}}</view>
+        </view>
+      </block>
+    </view>
+    <block wx:if="{{isHaveopenid}}">
+      <block wx:if="{{is_sign==0}}">
+        <button plain='true' disabled='{{yiqd}}' class='btnClick cor size clickDh sign primary' hover-class='none' bindtap='goSign'>立即签到</button>
+      </block>
+      <block wx:else>
+        <view class=' cor size clickDh seetomo sign'>已签到</view>
+      </block>
+    </block>
+    <block wx:else>
+      <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='btnClick cor size clickDh sign primary' hover-class='none'>立即签到</button>
+    </block>
+  </view>
+  <view class='tsix disDia'>
+    <image src='../../imgs/lfb.png' class='icon'></image>
+    <view class='zqg'>赚取更多热力币</view>
+    <image src='../../imgs/rtb.png' class='icon'></image>
+  </view>
+  <view class='act dis'>
+    <view class='disDia'>
+      <image src='../../imgs/msyq.png' class='actimg'></image>
+      <view class='damo'>
+        <view class='cor follow'>邀请5位好友</view>
+        <view>
+          <text class='award color'>+5</text>
+          <text class='color size jiangli'>热力币</text>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{isHaveopenid}}">
+      <button plain='true' class='enjoy' open-type='share' hover-class='none'>马上邀请</button>
+    </block>
+    <block wx:else>
+      <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='enjoy' hover-class='none'>马上邀请</button>
+    </block>
+  </view>
+  <view class='act dis' style='margin-bottom:30rpx;'>
+    <view class='disDia'>
+      <image src='../../imgs/ljgz.png' class='actimg'></image>
+      <view class='damo'>
+        <view class='cor follow'>关注走多多官方公众号</view>
+        <view>
+          <text class='award color'>+50</text>
+          <text class='color size jiangli'>热力币</text>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{isHaveopenid}}">
+      <button plain='true' class='enjoy' open-type='share' hover-class='none'>立即关注</button>
+    </block>
+    <block wx:else>
+      <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='enjoy' hover-class='none'>立即关注</button>
+    </block>
+  </view>
+  <view class="dialog" hidden="{{sign}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandle'></view>
+    <view class="condition signCod">
+      <view class='signHead'>
+        <image src='../../imgs/qdsuc.png' class='qdsuc'></image>
+        <view class='amount cor abs'>{{today_rlb}}</view>
+      </view>
+      <view class='bespoke'>
+        <view class='tomorrow'>明日可领取
+          <text class='klqnum'>{{tomorrow_rlb}}</text>热力币</view>
+        <view class='disDia'>
+          <view class='qdtx'>预约明日签到提醒</view>
+          <view class='ytime' catchtap='selectTap'>{{selectData[index]}}
+            <image src='../../imgs/daosj.png' class='triangle'></image>
+          </view>
+        </view>
+        <view class='option_box abs {{show?"":"ops"}}' hidden='{{show}}'>
+          <view class='option' wx:for='{{selectData}}' wx:key='{{index}}' data-index='{{index}}' data-time='{{item}}' catchtap='optionTap'>{{item}}</view>
+        </view>
+        <form bindsubmit='bespeak' report-submit='true'>
+          <button form-type='submit' plain='true' class='commyy primary'>立即预约</button>
+        </form>
+        <view class='nothanks gray' bindtap='hideHandle'>不用了</view>
+      </view>
+    </view>
+  </view>
+  <view class="dialog" hidden="{{share}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideShare'></view>
+    <view class="condition">
+      <view class='biaoti'>
+        <image src='../../imgs/shareGuang.png' class='abs shareGuang'></image>
+        <image src='../../imgs/shareSuccess.png' class='abs shareSuccess'></image>
+        <image src='../../imgs/shareRlb.png' class=' shareRlb'></image>
+        <view class='huode'>分享给好友可获得热力币哦。</view>
+        <button class='fenxiang primary' plain='true' open-type='share'>分享</button>
+      </view>
+    </view>
+    <image src='../../imgs/delete.png' class='delete shareX' bindtap='hideShare'></image>
+  </view>
+</view>

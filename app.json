@@ -5,7 +5,6 @@
     "pages/analysis/index",
     "pages/my/index",
     "pages/heatMoney/index",
-    "pages/friendList/index",
     "pages/detail/index",
     "pages/order/index",
     "pages/address/index",
@@ -14,7 +13,12 @@
     "pages/set/index",
     "pages/editAdd/index",
     "pages/person/index",
-    "pages/record/index"
+    "pages/record/index",
+    "pages/assistance/index",
+    "pages/share/index",
+    "pages/step/index",
+    "pages/moreGoods/index",
+    "pages/oneDetail/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -24,7 +28,7 @@
     "backgroundColor": "#fff"
   },
   "tabBar": {
-    "color":"#B2B2B2",
+    "color": "#B2B2B2",
     "selectedColor": "#333333",
     "list": [
       {
@@ -32,6 +36,12 @@
         "text": "首页",
         "iconPath": "./imgs/index.png",
         "selectedIconPath": "./imgs/index_selected.png"
+      },
+      {
+        "pagePath": "pages/step/index",
+        "text": "热力币",
+        "iconPath": "./imgs/bb.png",
+        "selectedIconPath": "./imgs/bbs.png"
       },
       {
         "pagePath": "pages/my/index",

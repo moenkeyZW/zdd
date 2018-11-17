@@ -25,6 +25,7 @@ Page({
     ageArr: ageArr,
     heightArr: heightArr,
     weightArr: weightArr,
+    yq_num:0,
   },
 
   /**
@@ -61,8 +62,10 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
+        console.log(res)
         that.setData({
-          days: res.data.res.days,
+          days: res.data.sign_days,
+          yq_num: res.data.yq_num,
         })
       }
     })
@@ -88,6 +91,20 @@ Page({
     if (wx.getStorageSync('openid') && wx.getStorageSync('open_id')) {
       wx.navigateTo({
         url: '/pages/heatMoney/index',
+      })
+    } else {
+      app.onLogin(function (res) {
+        if (res) {
+          that.onShow()
+        }
+      });
+    }
+  },
+  assistance:function(){
+    var that = this;
+    if (wx.getStorageSync('openid') && wx.getStorageSync('open_id')) {
+      wx.navigateTo({
+        url: '/pages/assistance/index',
       })
     } else {
       app.onLogin(function (res) {

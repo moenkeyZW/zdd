@@ -7,11 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    curIndex: 0,
     openid: '',
+    haveFriend: false,
     foot: true,
-    noEnough:true,
+    rule: true,
+    noEnough: true,
     goods_id: '',
-    button_state: 0,
+    button_state: 3,
     addinfo_state: '',
     goods: '',
     addinfo: '',
@@ -20,14 +23,14 @@ Page({
     record: '',
     address: '',
     content: '',
-    my_currency:'',
+    my_currency: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const that=this;
+    const that = this;
     that.setData({
       goods_id: options.id
     })
@@ -52,7 +55,7 @@ Page({
       })
     }
     wx.request({
-      url: app.globalData.base_url + '/free_goods_detail',
+      url: app.globalData.base_url + '/zl_goods_detail',
       data: {
         goods_id: goods_id,
         openid: openid
@@ -67,6 +70,7 @@ Page({
           addinfo_state: res.data.addinfo_state,
           record: res.data.record,
           goods: res.data.goods,
+          haveFriend: res.data.friends,
           content: res.data.content,
           button_state: res.data.button_state,
           my_currency: res.data.my_currency,
@@ -76,6 +80,7 @@ Page({
             addinfo: res.data.addinfo,
           })
         }
+
       }
     })
   },
@@ -192,7 +197,7 @@ Page({
     // })
   },
 
-  goChange: function (e) {
+  goChange: function(e) {
     var that = this;
     var id = e.currentTarget.dataset.id;
     if (wx.getStorageSync('openid') && wx.getStorageSync('open_id') != 0) {
@@ -202,7 +207,7 @@ Page({
           goods_id: id,
           openid: wx.getStorageSync('openid')
         },
-        success: function (res) {
+        success: function(res) {
           if (res.data.state == 1) {
             that.setData({
               noEnough: false,
@@ -217,7 +222,7 @@ Page({
       })
 
     } else {
-      app.onLogin(function (res) {
+      app.onLogin(function(res) {
         wx.showLoading({
           title: '授权中',
         })
@@ -293,24 +298,42 @@ Page({
     }
   },
 
-  hideHandle:function(){
+  hideHandle: function() {
     this.setData({
       foot: true,
+      rule: true,
       noEnough: true,
     })
   },
-
+  helpRule: function() {
+    this.setData({
+      rule: false,
+    })
+  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
-    var openid = wx.getStorageSync('openid')
-    var nickname = wx.getStorageSync('nickname')
-
+    const that=this;
+    const openid = wx.getStorageSync('openid')
+    const nickname = wx.getStorageSync('nickname');
+    const goods_id=that.data.goods.id;
+    if (res.from === 'button') {
+      wx.request({
+        url: app.globalData.base_url + '/zl_ask',
+        data: {
+          goods_id: goods_id,
+          openid: openid
+        },
+        success: function(res) {
+          console.log(1)
+        }
+      })
+    }
     return {
       title: `${nickname}邀请你用步数免费换礼物，数量有限，先到先得！`,
       imageUrl: '../../imgs/share.png',
-      path: '/pages/index/index?openid=' + openid
+      path: '/pages/share/index?openid=' + openid+'&&goods_id='+goods_id
     }
   },
 })

@@ -5,10 +5,18 @@
     <open-data type="userAvatarUrl" class='ava abs'></open-data>
     <open-data type="userNickName" class='nickname abs'></open-data>
     <view class='addUp abs'>本周累计签到{{days}}天</view>
+    <view class='addUp abs' style='bottom:50rpx;'>已邀请{{yq_num}}人</view>
   </view>
   <view class='manage'>
     <view class='temp'>
       <view style='margin-left:20rpx;'>
+        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="assistance">
+          <image src='../../imgs/myzl.png' class='icon'></image>
+          <view class='font seat'>我的助力</view>
+        </button>
+      </view>
+      <view class='xian'></view>
+      <view>
         <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="order">
           <image src='../../imgs/order.png' class='icon'></image>
           <view class='font seat'>订单管理</view>

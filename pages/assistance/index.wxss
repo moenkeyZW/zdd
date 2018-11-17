@@ -1,0 +1,92 @@
+/* pages/assistance/index.wxss */
+@import '../index/index.wxss';
+
+.progress {
+  width: 230rpx;
+  height: 2rpx;
+  background: #e6e6e6;
+  margin-left:36rpx;
+}
+
+.headTit {
+  font-size: 32rpx;
+  margin: 30rpx 0;
+}
+.change{
+  width:240rpx;
+  margin:26rpx 0 30rpx 85rpx;
+}
+.item {
+  width: calc(100% - 60rpx);
+  height: 260rpx;
+  background: #fff;
+  box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+  border-radius: 10rpx;
+  margin: 10rpx 0;
+}
+
+.yuan {
+  width: 17rpx;
+  height: 17rpx;
+  background: #47A7FE;
+  border: 3rpx solid rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 4rpx 6rpx 0px rgba(71, 167, 254, 0.4);
+  border-radius: 50%;
+  position: relative;
+  bottom:11rpx;
+  left:22rpx;
+}
+.two{
+  margin-right:103rpx;
+}
+.detail{
+  margin-bottom:60rpx
+}
+
+.dian {
+  font-size: 24rpx;
+  color: #47a7fe;
+  position: relative;
+  right:18rpx;
+}
+.hui{
+  width:20rpx;
+  height:20rpx;
+  background:#E6E6E6;
+  border:none;
+  box-shadow: none;
+}
+.mgr{
+  margin-right:28rpx;
+}
+.noMore{
+  font-size:36rpx;
+  color:#333;
+  position: relative;
+  margin-top:40rpx;
+}
+.lines{
+  width:48rpx;
+  border:2rpx solid #333;
+  left:28%;
+}
+.linetwo{
+  left:72%;
+}
+.dik{
+  width:228rpx;
+  height:24rpx;
+  background:#FBE64D;
+  top:15rpx;
+}
+.none{
+  padding:0 64rpx;
+  z-index: 10;
+}
+.kuan{
+  margin:10rpx 0 30rpx 30rpx
+}
+.start{
+  color:#999;
+  margin:26rpx 0 56rpx 0;
+}

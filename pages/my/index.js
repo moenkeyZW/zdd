@@ -26,6 +26,10 @@ Page({
     heightArr: heightArr,
     weightArr: weightArr,
     yq_num:0,
+    is_new:'',
+    goods_num:'',
+    money:'',
+    newUser: true,
   },
 
   /**
@@ -64,6 +68,9 @@ Page({
       success: function(res) {
         console.log(res)
         that.setData({
+          is_new: res.data.is_new,
+          goods_num: res.data.goods_num,
+          money: res.data.my_currency,
           days: res.data.sign_days,
           yq_num: res.data.yq_num,
         })
@@ -71,7 +78,35 @@ Page({
     })
 
   },
-
+  sportSQ: function () {
+    var that = this;
+    wx.getWeRunData({
+      complete: function () {
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+      },
+    })
+  },
+  newUserLingqu: function () {
+    const that = this;
+    wx.request({
+      url: app.globalData.base_url + '/is_new',
+      data: {
+        openid: wx.getStorageSync('openid')
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          newUser: true,
+        })
+        that.sportSQ();
+      }
+    })
+  },
   order: function(e) {
     var that=this;
     if (wx.getStorageSync('openid') && wx.getStorageSync('open_id')) {
@@ -80,8 +115,15 @@ Page({
       })
     } else {
       app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
         if (res) {
-          that.onShow()
+          wx.hideLoading();
+          that.onShow();
+          that.setData({
+            newUser: false,
+          })
         }
       });
     }
@@ -94,8 +136,15 @@ Page({
       })
     } else {
       app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
         if (res) {
-          that.onShow()
+          wx.hideLoading();
+          that.onShow();
+          that.setData({
+            newUser: false,
+          })
         }
       });
     }
@@ -108,8 +157,15 @@ Page({
       })
     } else {
       app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
         if (res) {
-          that.onShow()
+          wx.hideLoading();
+          that.onShow();
+          that.setData({
+            newUser: false,
+          })
         }
       });
     }
@@ -140,12 +196,18 @@ Page({
         }
       })
     } else {
-      app.onLogin(function(res) {
+      app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
         if (res) {
+          wx.hideLoading();
           that.onShow();
+          that.setData({
+            newUser: false,
+          })
         }
       });
-      return;
     }
   },
   wsResult: function(e) {
@@ -223,7 +285,7 @@ Page({
     }
     gender = gender == 1 ? "男" : "女";
     wx.request({
-      url: app.globalData.base_url + '/save_info2',
+      url: app.globalData.base_url + '/save_info',
       data: {
         gender: gender,
         age: age,
@@ -254,9 +316,16 @@ Page({
         url: '/pages/address/index',
       })
     } else {
-      app.onLogin(function(res) {
+      app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
         if (res) {
-          that.onShow()
+          wx.hideLoading();
+          that.onShow();
+          that.setData({
+            newUser: false,
+          })
         }
       });
     }

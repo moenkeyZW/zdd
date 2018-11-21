@@ -1,7 +1,7 @@
 <!--pages/detail/index.wxml-->
 <view class='container'>
   <image src='{{goods.imgs}}' class='detailBg dialog' lazy-load='true'></image>
-  <swiper class='swiper' vertical='true' interval='3000' duration='1000' autoplay='true' circular='true' wx:if='{{record}}'>
+  <swiper class='swiper' vertical='true' interval='2000' duration='1000' autoplay='true' circular='true' wx:if='{{record}}'>
     <block wx:for="{{record}}" wx:key='{{index}}'>
       <swiper-item>
         <text>{{item.record}}</text>
@@ -9,39 +9,28 @@
     </block>
   </swiper>
   <view class='biaoti'>
-    <view class='tit cors thrsix'>{{goods.title}}</view>
+    <view class='diss' style='margin-left:30rpx;'>
+      <view class='cors fonte'>{{goods.title}}</view>
+      <block wx:if='{{record}}'>
+        <view class='exchanged' style='color:#47a7fe'>已有{{goods.dh_count}}人兑换</view>
+      </block>
+      <block wx:else>
+        <view class='exchanged'>暂无兑换</view>
+      </block>
+    </view>
     <view class='diss bod'>
       <view class='buju'>
         <view>
           <image src='../../imgs/rlbSm.png' class='rb'></image>
-          <text class='price blue thrsix'>{{goods.rlb_price}}</text>
-          <text class='price blue thrsix' style='padding-left:6rpx;'>热力币</text>
+          <text class='price blue fonte'>{{goods.rlb_price}}</text>
         </view>
         <view class='yprice color'>原价￥{{goods.price}}</view>
       </view>
       <view class='only color'>剩余{{goods.num}}件</view>
     </view>
-    <view class='diss' style='margin-left:30rpx;'>
-      <view class='buju' style='margin:16rpx 0 36rpx 0;'>
-        <view class='duanxian'></view>
-        <block wx:if='{{record}}'>
-          <view class='exchanged cors'>已有{{goods.dh_count}}人兑换</view>
-        </block>
-        <block wx:else>
-          <view class='exchanged cors'>暂无兑换</view>
-        </block>
-      </view>
-      <view class='buju'>
-        <label wx:for="{{friendArr}}" wx:key="{{index}}" data-index="{{index}}">
-          <view class='ii' style='right:{{right[index]}}rpx'>
-            <image class='friAvatar' src='{{item}}'></image>
-          </view>
-        </label>
-      </view>
-    </view>
   </view>
 
-  <view class='buju postage'>
+  <view class='buju postage' style='position:relative;bottom:10rpx;'>
     <view class='textAlgin'>
       <image src='../../imgs/baoyou.png' class='gfz'></image>
       <view class='sicor font'>全场包邮</view>
@@ -59,7 +48,7 @@
       <view class='sicor font'>不支持退换货</view>
     </view>
   </view>
-  <view class='buju postage xqTit'>
+  <view class='buju postage xqTit' style='margin-top:10rpx;'>
     <image src='../../imgs/jl.png' class='icon'></image>
     <view class='xiangq cors'>商品详情</view>
   </view>
@@ -71,24 +60,24 @@
   <block wx:if="{{button_state==0}}">
     <view class='buju dibu dialog'>
       <view style='margin-left:60rpx;'>
-        <view class='font'>所需热力币：
+        <view class='font sxb'>所需热力币：
           <text class='need'>{{goods.rlb_price}}</text>
         </view>
-        <view class='font' style='opacity:0.7;margin-bottom:8rpx;'>拥有热力币：
+        <view class='font yyb'>拥有热力币：
           <text style='font-size:32rpx;'>{{my_currency}}</text> </view>
       </view>
       <view>
-        <button class='freeDhs textAlgin thrsix noEnough' open-type='share' plain='true' hover-class='none'>热力不不足</button>
+        <button class='freeDhs textAlgin thrsix primary' open-type='share' plain='true' hover-class='none'>邀请好友得币</button>
       </view>
     </view>
   </block>
   <block wx:if="{{button_state==1}}">
     <view class='buju dibu dialog'>
       <view style='margin-left:60rpx;'>
-        <view class='font'>所需热力币：
+        <view class='font sxb'>所需热力币：
           <text class='need'>{{goods.rlb_price}}</text>
         </view>
-        <view class='font' style='opacity:0.7;margin-bottom:8rpx;'>拥有热力币：
+        <view class='font yyb'>拥有热力币：
           <text style='font-size:32rpx;'>{{my_currency}}</text> </view>
       </view>
       <view>
@@ -99,10 +88,10 @@
   <block wx:if="{{button_state==2}}">
     <view class='buju dibu dialog'>
       <view style='margin-left:60rpx;'>
-        <view class='font'>所需热力币：
+        <view class='font sxb'>所需热力币：
           <text class='need'>{{goods.rlb_price}}</text>
         </view>
-        <view class='font' style='opacity:0.7;margin-bottom:8rpx;'>拥有热力币：
+        <view class='font yyb'>拥有热力币：
           <text style='font-size:32rpx;'>{{my_currency}}</text> </view>
       </view>
       <view>
@@ -178,39 +167,5 @@
     <form bindsubmit='affirm' report-submit='true'>
       <button class='primary freeDh dialog textAlgin thrsix' hover-class='none' plain='true' form-type='submit' disabled='{{disabled}}'>立即兑换</button>
     </form>
-  </view>
-  <view class="dialog" hidden="{{noEnough}}" catchtouchmove="ture">
-    <view class="mask" bindtap='hideHandle'></view>
-    <view class="condition">
-      <view class='title'>
-        <image src='../../imgs/title.png' class='title'></image>
-        <view class='abs zlRule cors thrsix' style='font-weight:bold'>热力币不足</view>
-      </view>
-      <view class='disDia'>
-        <view>
-          <image src='{{goods_detail.photo}}' class='comm' lazy-load='true'></image>
-        </view>
-        <view style='margin-top:40rpx;'>
-          <view class='introDialog cors'>{{goods_detail.title}}</view>
-          <view style='margin-top:50rpx;'>
-            <image src='../../imgs/rlbSm.png' class='rbs'></image>
-            <text class='teight blue'>{{goods_detail.currency}}</text>
-            <text class='teight blue pdf'>热力币</text>
-          </view>
-        </view>
-      </view>
-      <view class='diss myRlb'>
-        <view class='cors introDialog'>我的热力币</view>
-        <view>
-          <image src='../../imgs/rlbSm.png' class='rbs'></image>
-          <text class='cors teight'>{{money}}</text>
-          <text class='cors teight pdf'>热力币</text>
-        </view>
-      </view>
-      <view>
-        <button open-type='share' class='btnYq cors' plain='true' hover-class='none'>邀请好友立即赚取热力币</button>
-      </view>
-    </view>
-    <image src='../../imgs/delete.png' class='delete' bindtap='hideHandle'></image>
   </view>
 </view>

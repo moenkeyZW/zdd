@@ -24,6 +24,11 @@ Page({
     address: '',
     content: '',
     my_currency: '',
+    needNum:'',
+    readyNum:'',
+    is_new:'',
+    goods_num:'',
+    newUser:true,
   },
 
   /**
@@ -34,6 +39,11 @@ Page({
     that.setData({
       goods_id: options.id
     })
+    if(options.dh){
+      that.setData({
+        foot:false,
+      })
+    }
   },
 
 
@@ -67,9 +77,13 @@ Page({
       success: function(res) {
         console.log(res)
         that.setData({
+          is_new:res.data.is_new,
+          goods_num:res.data.goods_num,
           addinfo_state: res.data.addinfo_state,
           record: res.data.record,
           goods: res.data.goods,
+          needNum: res.data.number2,
+          readyNum:res.data.number1,
           haveFriend: res.data.friends,
           content: res.data.content,
           button_state: res.data.button_state,
@@ -84,19 +98,49 @@ Page({
       }
     })
   },
-
-  authorizeNow: function(e) {
+  sportSQ: function () {
     var that = this;
-    app.onLogin(function(res) {
+    wx.getWeRunData({
+      complete: function () {
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+      },
+    })
+  },
+  newUserLingqu: function () {
+    const that = this;
+    wx.request({
+      url: app.globalData.base_url + '/is_new',
+      data: {
+        openid: wx.getStorageSync('openid')
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          newUser: true,
+        })
+        that.sportSQ();
+      }
+    })
+  },
+  authorizeNow: function(e) {
+    const that = this;
+    app.onLogin(function (res) {
+      wx.showLoading({
+        title: '授权中',
+      })
       if (res) {
-        that.onShow()
+        wx.hideLoading();
+        that.onShow();
+        that.setData({
+          newUser: false,
+        })
       }
     });
-    if (e.detail.errMsg == "getUserInfo:ok") {
-      that.setData({
-        isHaveopenid: true,
-      })
-    }
   },
   freExchange: function(e) {
     var that = this;
@@ -114,9 +158,16 @@ Page({
         })
       }
     } else {
-      app.onLogin(function(res) {
+      app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
         if (res) {
-          that.onShow()
+          wx.hideLoading();
+          that.onShow();
+          that.setData({
+            newUser: false,
+          })
         }
       });
     }
@@ -150,7 +201,11 @@ Page({
         }
       })
     }
-
+  },
+  goIndex:function(){
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
   },
   editAddress: function(e) {
     var that = this;
@@ -192,47 +247,8 @@ Page({
         })
       },
     })
-    // wx.navigateTo({
-    //   url: '/pages/editAdd/index',
-    // })
   },
 
-  goChange: function(e) {
-    var that = this;
-    var id = e.currentTarget.dataset.id;
-    if (wx.getStorageSync('openid') && wx.getStorageSync('open_id') != 0) {
-      wx.request({
-        url: app.globalData.base_url + '/goods_tk',
-        data: {
-          goods_id: id,
-          openid: wx.getStorageSync('openid')
-        },
-        success: function(res) {
-          if (res.data.state == 1) {
-            that.setData({
-              noEnough: false,
-              goods_detail: res.data.goods,
-            })
-          } else {
-            wx.navigateTo({
-              url: '/pages/detail/index?id=' + id,
-            })
-          }
-        }
-      })
-
-    } else {
-      app.onLogin(function(res) {
-        wx.showLoading({
-          title: '授权中',
-        })
-        if (res) {
-          wx.hideLoading();
-          that.sportSQ();
-        }
-      });
-    }
-  },
   affirm: function(e) {
     var that = this;
     var form_id = e.detail.formId;
@@ -326,7 +342,6 @@ Page({
           openid: openid
         },
         success: function(res) {
-          console.log(1)
         }
       })
     }

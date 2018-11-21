@@ -67,6 +67,21 @@ Page({
         openid: options.openid
       })
     }
+    if (app.globalData.scene === 1082){
+      wx.request({
+        url: app.globalData.base_url + '/follow_wechat',
+        data: {
+          openid: wx.getStorageSync('openid')
+        },
+        success: function (res) {
+          wx.showModal({
+            title: '谢谢关注',
+            content: '走多多公众号感谢您的关注，您的10个热力币已到账',
+            showCancel:false,
+          })
+        }
+      })
+    }
     wx.request({
       url: app.globalData.base_url + '/free_goods_list',
       data: {
@@ -90,16 +105,7 @@ Page({
   onShow: function() {
     var that = this;
     if (wx.getStorageSync('openid') && wx.getStorageSync('open_id') != 0) {
-      app.onRun(function(res) {
-        that.setData({
-          isOpenWXRun: app.globalData.isOpenWXRun
-        })
-        if (res == undefined) {
-          console.log('获取运动步数失败')
-        } else {
-          that.getStepRecord(res.data);
-        }
-      })
+      that.onRun();
       var openids = wx.getStorageSync('openid');
       that.setData({
         isHaveopenid: true
@@ -135,7 +141,7 @@ Page({
           result: res.data.result,
           money: res.data.currency,
           scene_value: res.data.scene_value,
-          top_num: res.data.top_num, 
+          top_num: res.data.top_num,
           is_new: res.data.is_new,
         })
         if (res.data.scene_value == 1) {
@@ -157,20 +163,136 @@ Page({
     wx.getWeRunData({
       fail: function(res) {
         that.setData({
-          isOpenWXRun: app.globalData.isOpenWXRun
+          isOpenWXRun: false,
         })
       },
       success: function(res) {
-        app.onRun(function(res) {
-          that.setData({
-            isOpenWXRun: app.globalData.isOpenWXRun
-          })
-          that.getStepRecord(res.data);
-        })
+        that.onRun()
       },
       complete: function() {
         that.onShow();
       },
+    })
+  },
+  onRun: function(cb) {
+    var that = this;
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.werun']) {
+          that.setData({
+            isOpenWXRun: false,
+          })
+        } else {
+          if (!wx.getStorageSync('session')) {
+            that.setData({
+              isOpenWXRun: false,
+            })
+          } else {
+            wx.checkSession({
+              success: function() {
+                wx.getWeRunData({
+                  success(res) {
+                    wx.request({
+                      url: app.globalData.base_url + '/wxrun',
+                      data: {
+                        encryptedData: encodeURIComponent(res.encryptedData),
+                        iv: encodeURIComponent(res.iv),
+                        session: wx.getStorageSync('session'),
+                        openid: wx.getStorageSync('openid'),
+                      },
+                      method: 'GET',
+                      header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                      },
+                      success: function(res) {
+                        console.log(21, res)
+                        if (res.data.status == 1) {
+                          that.setData({
+                            isOpenWXRun: true,
+                            step: res.data.data,
+                          })
+                        } else {
+                          that.setData({
+                            isOpenWXRun: false,
+                          })
+                          wx.login({
+                            success: res => {
+                              wx.getUserInfo({
+                                withCredentials: true,
+                                success: function(res_user) {
+                                  wx.request({
+                                    url: app.globalData.base_url + '/login',
+                                    data: {
+                                      auth_type: 0,
+                                      scene_value: 0,
+                                      code: res.code,
+                                      encryptedData: encodeURIComponent(res_user.encryptedData),
+                                      iv: encodeURIComponent(res_user.iv)
+                                    },
+                                    method: 'GET',
+                                    header: {
+                                      'content-type': 'application/json'
+                                    },
+                                    success: function(res) {
+                                      wx.setStorageSync('nickname', res.data.userinfo.nickname);
+                                      wx.setStorageSync('session', res.data.hash);
+                                      wx.setStorageSync('openid', res.data.openid);
+                                      wx.setStorageSync('open_id', res.data.open_id);
+                                      that.onShow();
+                                    }
+                                  })
+                                },
+                              })
+                            },
+
+                          })
+                        }
+                      }
+                    })
+                  }
+                })
+              },
+              fail: function() {
+                wx.login({
+                  success: res => {
+                    if (res.code) {
+                      wx.getUserInfo({
+                        withCredentials: true,
+                        success: function(res_user) {
+                          wx.request({
+                            url: app.globalData.base_url + '/login',
+                            data: {
+                              auth_type: 0,
+                              scene_value: 0,
+                              code: res.code,
+                              encryptedData: encodeURIComponent(res_user.encryptedData),
+                              iv: encodeURIComponent(res_user.iv)
+                            },
+                            method: 'GET',
+                            header: {
+                              'content-type': 'application/json'
+                            },
+                            success: function(res) {
+                              wx.setStorageSync('nickname', res.data.userinfo.nickname);
+                              wx.setStorageSync('session', res.data.hash);
+                              wx.setStorageSync('openid', res.data.openid);
+                              wx.setStorageSync('open_id', res.data.open_id);
+                              that.onShow();
+                            }
+                          })
+                        },
+                      })
+                    } else {
+                      console.log('获取用户登录态失败！' + res.errMsg)
+                    }
+                  },
+                })
+              }
+            })
+
+          }
+        }
+      }
     })
   },
 
@@ -212,14 +334,15 @@ Page({
   },
 
   authorizeNow: function(e) {
-    var that = this;
-    if (that.data.openid){
-      app.yqLogin(function (res) {
+    const that = this;
+    if (that.data.openid) {
+      app.yqLogin(function(res) {
         wx.showLoading({
           title: '授权中',
         })
         if (res) {
           wx.hideLoading();
+          that.onShow()
           that.setData({
             shouquan: true,
             shouIndex: false,
@@ -227,13 +350,14 @@ Page({
           })
         }
       });
-    }else{
-      app.onLogin(function (res) {
+    } else {
+      app.onLogin(function(res) {
         wx.showLoading({
           title: '授权中',
         })
         if (res) {
           wx.hideLoading();
+          that.onShow()
           that.setData({
             shouquan: true,
             shouIndex: false,
@@ -242,7 +366,7 @@ Page({
         }
       });
     }
-  
+
   },
   newUserLingqu: function() {
     const that = this;
@@ -256,9 +380,12 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
-        console.log(res)
         that.setData({
           newUser: true,
+          measure: true,
+          zanwu: true,
+          clicked: false,
+          clim: false,
         })
         that.sportSQ();
       }
@@ -271,32 +398,34 @@ Page({
         url: '/pages/heatMoney/index',
       })
     } else {
-      if(that.data.openid){
-        app.yqLogin(function (res) {
+      if (that.data.openid) {
+        app.yqLogin(function(res) {
           wx.showLoading({
             title: '授权中',
           })
           if (res) {
             wx.hideLoading();
+            that.onShow()
             that.setData({
               newUser: false,
             })
           }
         });
-      }else{
-        app.onLogin(function (res) {
+      } else {
+        app.onLogin(function(res) {
           wx.showLoading({
             title: '授权中',
           })
           if (res) {
             wx.hideLoading();
+            that.onShow()
             that.setData({
               newUser: false,
             })
           }
         });
       }
- 
+
     }
   },
   zlDetail: function(e) {
@@ -325,13 +454,13 @@ Page({
               wx.openSetting({
                 success: (res) => {
                   if (res.authSetting['scope.werun']) {
-                    app.onRun(function(res) {
-                      console.log(res, app.globalData.isOpenWXRun)
-                      that.setData({
-                        isOpenWXRun: app.globalData.isOpenWXRun
-                      })
-                      that.getStepRecord(res.data);
-                    })
+                    that.onRun();
+                    // that.onRun(function(res) {
+                    //   that.setData({
+                    //     isOpenWXRun: app.globalData.isOpenWXRun
+                    //   })
+                    //   that.getStepRecord(res.data);
+                    // })
                   }
                 }
               })
@@ -340,67 +469,35 @@ Page({
         })
       },
       success: function(res) {
-        app.onRun(function(res) {
-          that.setData({
-            isOpenWXRun: app.globalData.isOpenWXRun
-          })
-          that.getStepRecord(res.data);
-        })
+        that.onRun();
+        // that.onRun(function(res) {
+        //   that.setData({
+        //     isOpenWXRun: app.globalData.isOpenWXRun
+        //   })
+        //   that.getStepRecord(res.data);
+        // })
       }
     })
   },
 
-  getStepRecord: function(runData) {
-    var that = this;
-    var runData = app.globalData.wxRunData;
-    if (runData) {
-      var count = runData.data;
-    } else {
-      var count = 0;
-    }
-    that.setData({
-      step: count
-    })
-  },
+  // getStepRecord: function(runData) {
+  //   var that = this;
+  //   var runData = app.globalData.wxRunData;
+  //   if (runData) {
+  //     var count = runData.data;
+  //   } else {
+  //     var count = 0;
+  //   }
+  //   that.setData({
+  //     step: count
+  //   })
+  // },
   seeMore: function() {
     wx.navigateTo({
       url: '/pages/moreGoods/index',
     })
   },
-  heiping: function() {
-    const that = this;
-    that.setData({
-      measure: true,
-      zanwu: true,
-      clicked: false,
-      clim: false,
-    })
-    that.sportSQ();
-  },
-  wsMessage: function(e) {
-    var that = this;
-    var form_id = e.detail.formId;
-    wx.request({
-      url: app.globalData.base_url + '/tishi2',
-      data: {
-        form_id: form_id,
-        openid: wx.getStorageSync('openid')
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        that.setData({
-          measure: true,
-          zanwu: true,
-          clicked: false,
-          clim: false,
-        })
-      }
-    })
-    that.sportSQ();
-  },
+
   drawMore: function() {
     wx.switchTab({
       url: '/pages/step/index',

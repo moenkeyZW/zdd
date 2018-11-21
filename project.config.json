@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 17,
+			"current": 18,
 			"list": [
 				{
 					"id": -1,
@@ -102,7 +102,7 @@
 					"query": ""
 				},
 				{
-					"id": 12,
+					"id": 11,
 					"name": "登录",
 					"pathName": "pages/login/index",
 					"query": "",
@@ -144,6 +144,12 @@
 					"id": -1,
 					"name": "分享专区",
 					"pathName": "pages/oneDetail/index",
+					"query": ""
+				},
+				{
+					"id": 18,
+					"name": "模板",
+					"pathName": "pages/template/index",
 					"query": ""
 				}
 			]

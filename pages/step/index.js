@@ -12,9 +12,6 @@ Page({
     step: 0,
     money: 0,
     goods: '',
-    selectData: ['08:00', '09:00', '10:00', '11:00','12:00'],//下拉列表的数据
-    index: 0,//选择的下拉列表下标
-    show:true,
     sign:true,
     share: true,
     openid: '',
@@ -33,6 +30,10 @@ Page({
     tomorrow_rlb:'',
     time:'07:00',
     yiqd:false,
+    contact:true,
+    is_new:'',
+    goods_num:'',
+    newUser:true,
   },
 
   /**
@@ -50,21 +51,10 @@ Page({
   onLoad: function(options) {
 
   },
-  // 点击下拉列表
-  optionTap(e) {
-    let Index = e.currentTarget.dataset.index;//获取点击的下拉列表的下标
-    let time = e.currentTarget.dataset.time;
+  bindTimeChange: function (e) {
     this.setData({
-      index: Index,
-      time: time,
-      show: !this.data.show
-    });
-  },
-    // 点击下拉显示框
-  selectTap(){
-    this.setData({
-      show: !this.data.show
-    });
+      time: e.detail.value
+    })
   },
   /**
    * 生命周期函数--监听页面显示
@@ -104,6 +94,8 @@ Page({
         wx.hideLoading();
         console.log(res)
         that.setData({
+          is_new:res.data.is_new,
+          goods_num:res.data.goods_num,
           money: res.data.my_currency,
           weeks:res.data.sign,
           is_sign:res.data.is_sign,
@@ -129,6 +121,35 @@ Page({
           that.getStepRecord(res.data);
         })
       },
+      complete: function () {
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+      },
+    })
+  },
+  newUserLingqu: function () {
+    const that = this;
+    wx.request({
+      url: app.globalData.base_url + '/is_new',
+      data: {
+        openid: wx.getStorageSync('openid')
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          newUser: true,
+        })
+        that.sportSQ();
+      }
+    })
+  },
+  goRule:function(){
+    wx.navigateTo({
+      url: '/pages/rule/index',
     })
   },
   music: function() {
@@ -144,10 +165,10 @@ Page({
       })
       if (res) {
         wx.hideLoading();
+        that.onShow();
         that.setData({
-          shouIndex: false,
+          newUser: false,
         })
-        that.sportSQ();
       }
     });
   },
@@ -159,13 +180,16 @@ Page({
         url: '/pages/heatMoney/index',
       })
     } else {
-      app.onLogin(function(res) {
+      app.onLogin(function (res) {
         wx.showLoading({
           title: '授权中',
         })
         if (res) {
           wx.hideLoading();
-          that.sportSQ();
+          that.onShow();
+          that.setData({
+            newUser: false,
+          })
         }
       });
     }
@@ -339,6 +363,11 @@ Page({
       }
     })
   },
+  opencontact:function(){
+    this.setData({
+      contact:false,
+    })
+  },
   hideHandle:function(){
     const that=this;
     that.setData({
@@ -346,10 +375,12 @@ Page({
     })
     that.onShow();
   },
+
   hideShare:function(){
     const that=this;
     that.setData({
       share:true,
+      contact:true,
     })
   },
   /**

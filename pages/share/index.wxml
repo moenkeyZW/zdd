@@ -3,7 +3,7 @@
   <image src='../../imgs/shareHead.png' class='shareHead'></image>
   <view class='container'>
     <view class='relati'>
-      <image src='../../imgs/shareBody.png' class='shareBody mf'></image>
+      <image src='../../imgs/shareBody.png' class='shareBody'></image>
       <view class='abs disflex'>
         <image src='{{userInfo.avatarUrl}}' class='ava'></image>
         <view class='abs join'>
@@ -12,7 +12,7 @@
         </view>
       </view>
       <view class='disDia abs shareDetail'>
-        <image src='{{goods.imgs}}' class='goods'></image>
+        <image src='{{goods.imgs}}' class='goods' catchtap='goOnedetail'></image>
         <view style='align-self:flex-end'>
           <view class='cor size'>{{goods.title}}</view>
           <view class='haved' style='margin-top:10rpx;'>已有{{goods.dh_count}}人领取</view>
@@ -33,10 +33,10 @@
         </button>
       </block>
       <block wx:else>
-        <button class='shareBtn' plain='true' open-type="getUserInfo" bindgetuserinfo="forFriend" >
+        <view class='shareBtn' bindtap="forFriend">
           <image src='../../imgs/shareBtn.png' class='shareBtn'></image>
           <view class='abs cor zlbtn'>为好友助力</view>
-        </button>
+        </view>
       </block>
     </view>
     <block wx:if="{{friend}}">
@@ -58,15 +58,22 @@
       </view>
       <view class='disDia'>
         <view class='round'></view>
-        <view class='size cor' style='width:588rpx;'>该商品以下地区暂不发货：新疆、西藏、青海、宁夏、甘肃、内蒙古；</view>
+        <view class='size cor' style='width:588rpx;'>怎么完成助力？
+          <view class='size zldetail'>邀请XXX新用户助力，邀请助力好友数达到即完 成助力；</view>
+        </view>
       </view>
       <view class='disDia mgt'>
         <view class='round'></view>
-        <view class='size cor' style='width:588rpx;'>兑换成功且提交订单信息后，3个工作日内发货（节假日顺延）；</view>
+        <view class='size cor' style='width:588rpx;'>老用户可以助力吗？
+          <view class='size zldetail'>暂不支持邀请老用户助力，即走多多老用户助力无效；
+          </view>
+        </view>
       </view>
       <view class='disDia mgt'>
         <view class='round'></view>
-        <view class='size cor' style='width:588rpx;'>兑换商品前，请先确认收货信息无误，如因地址或手机号码填写错误，导致无法收到商品，走多多不会补寄商品，另免费兑换的商品不可退换货</view>
+        <view class='size cor' style='width:588rpx;'>可以兑换几次
+          <view class='size zldetail'>每人每件产品有且仅有一次兑换机会，兑换完成后，无法再次兑换；</view>
+        </view>
       </view>
     </view>
   </view>
@@ -85,7 +92,7 @@
     </view>
   </view>
   <view class="dialog" hidden="{{newUser}}" catchtouchmove="ture">
-    <view class="mask" ></view>
+    <view class="mask" bindtap='hideHandle'></view>
     <view class="condition bgnone" style='top:45%'>
       <image src='../../imgs/newuser.png' class='newuser relati'></image>
       <view class='useDetail'>
@@ -100,7 +107,7 @@
     </view>
   </view>
   <view class="dialog" hidden="{{newUserFail}}" catchtouchmove="ture">
-    <view class="mask" ></view>
+    <view class="mask" bindtap='hideHandle'></view>
     <view class="condition bgnone" style='top:45%'>
       <image src='../../imgs/newuser_fail.png' class='newuser relati'></image>
       <view class='useDetail'>

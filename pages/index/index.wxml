@@ -22,7 +22,7 @@
     </view>
     <block wx:if="{{isOpenWXRun}}">
       <block wx:if="{{isHaveopenid}}">
-        <button form-type='submit' plain='true' bindtap='drawMore' class='btnClick freeMOre abs' hover-class='none'>点击兑换热力币</button>
+        <button form-type='submit' plain='true' bindtap='drawMore' class='btnClick freeMOre abs' hover-class='none'>领取更多热力币</button>
       </block>
       <block wx:else>
         <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='btnClick freeMOre abs' hover-class='none'>授权领取更多礼品</button>
@@ -43,7 +43,7 @@
       <block wx:for="{{zl_goods}}" wx:key="{{index}}" data-index="{{index}}">
         <view class='wareDetail'>
           <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='zlDetail' lazy-load='true' data-id="{{item.goods_id}}"></image>
-          <view class='size cor mf'>{{item.title}}</view>
+          <view class='size cor mf' style='margin-top:10rpx;'>{{item.title}}</view>
           <view class='dis kuan'>
             <view>
               <image src='../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
@@ -54,7 +54,11 @@
         </view>
       </block>
     </view>
-    <view class='seeMore dialog cor' bindtap='seeMore'>查看更多</view>
+    <view class='seeMore dialog price' bindtap='seeMore'>
+      <text class='line borderColor' ></text>
+      <text class='none'>查看更多</text>
+      <text class='line borderColor' ></text>
+    </view>
     <view class='tsix disDia' style='justify-content:center;margin-top:60rpx;'>
       <image src='../../imgs/lfb.png' class='icon'></image>
       <view class='cor prefecture'>免费专区</view>
@@ -65,7 +69,7 @@
       <block wx:for="{{free_goods}}" wx:key="{{index}}" data-index="{{index}}">
         <view class='wareDetail'>
           <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='freeDetail' lazy-load='true' data-id="{{item.goods_id}}"></image>
-          <view class='size cor mf'>{{item.title}}</view>
+          <view class='size cor mf' style='margin-top:10rpx;'>{{item.title}}</view>
           <view class='dis kuan'>
             <view>
               <image src='../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
@@ -91,7 +95,7 @@
     </view>
   </view>
   <view class="dialog" wx:if="{{clicked}}" hidden="{{measure}}" catchtouchmove="ture">
-    <view class="mask" bindtap='heiping'></view>
+    <view class="mask" bindtap='newUserLingqu'></view>
     <view class="condition bgnone" style='top:40%'>
       <view class='relati'>
         <image src='../../imgs/cljg.png' class='cldk'></image>
@@ -117,24 +121,32 @@
           </view>
         </view>
       </view>
-      <form bindsubmit='wsMessage' report-submit='true'>
-        <button form-type='submit' class='btnAnalysis adv' plain='true'>
+      <view class='adv' bindtap='newUserLingqu'>
+        <block wx:if='{{is_new}}'>
+          <image src='../../imgs/advself.png' class='advs'></image>
+          <view class='cor abs wealth'>你有{{money}}热力币</view>
+        </block>
+        <block wx:else>
           <image src='../../imgs/adv.png' class='advs'></image>
-        </button>
-      </form>
+        </block>
+      </view>
     </view>
   </view>
   <view class="dialog" wx:if="{{clim}}" hidden="{{zanwu}}" catchtouchmove="ture">
-    <view class="mask" bindtap='heiping'></view>
+    <view class="mask" bindtap='newUserLingqu'></view>
     <view class="condition bgnone" style='top:40%'>
       <view class='relati'>
         <image src='../../imgs/zanwu.png' class='cldk'></image>
       </view>
-      <form bindsubmit='wsMessage' report-submit='true'>
-        <button form-type='submit' class='btnAnalysis adv' plain='true'>
+      <view class='adv' bindtap='newUserLingqu'>
+        <block wx:if='{{is_new}}'>
+          <image src='../../imgs/advself.png' class='advs'></image>
+          <view class='cor abs wealth'>你有{{money}}热力币</view>
+        </block>
+        <block wx:else>
           <image src='../../imgs/adv.png' class='advs'></image>
-        </button>
-      </form>
+        </block>
+      </view>
     </view>
   </view>
   <view class="dialog" hidden="{{newUser}}" catchtouchmove="ture">
@@ -144,17 +156,16 @@
       <view class='useDetail'>
         <view class='sqcg cor'>授权成功</view>
         <block wx:if='{{is_new}}'>
-          <view class='size cor'>微信步数换礼啦</view>
-          <view class='size cor'>礼品有限，先到先得</view>
+          <view class='size cor'>你有{{money}}热力币</view>
         </block>
         <block wx:else>
           <view class='size cor'>走多多现赠送你
             <text class='special relati'>5</text> 热力币
           </view>
-          <view class='size cor'>可免费领取
-            <text class='special relati'>6</text> 件礼品
-          </view>
         </block>
+        <view class='size cor'>可免费领取
+          <text class='special relati'>{{top_num}}</text> 件礼品
+        </view>
         <view class='btnYq cor ljlq' bindtap='newUserLingqu'>立即领取</view>
         <view class='useFoot'>每日运动步数可兑换更多热力币</view>
       </view>

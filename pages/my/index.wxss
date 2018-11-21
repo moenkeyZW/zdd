@@ -130,3 +130,28 @@
   zoom: 0.92;
   margin-top:36rpx;
 }
+.mts {
+  margin-top: 6rpx;
+}
+
+.place {
+  color: #b3b3b3;
+  font-size: 28rpx;
+}
+.jkcps {
+  bottom: -22rpx;
+}
+.ckjk {
+  width: 530rpx;
+  margin-top: 16rpx;
+  margin-bottom: 0;
+}
+.title {
+  width: 590rpx;
+  height: 120rpx;
+  position: relative;
+}
+.tit {
+  font-size: 36rpx;
+  top: 64rpx;
+}

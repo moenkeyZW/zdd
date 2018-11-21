@@ -38,18 +38,18 @@ Page({
     const that = this;
     const goods_id = that.data.goods_id;
     const openid = that.data.openid;
-    var hy_openid='';
-    if (wx.getStorageSync('openid')){
+    var hy_openid = '';
+    if (wx.getStorageSync('openid')) {
       var hy_openid = wx.getStorageSync('openid')
-    }else{
-      hy_openid=0;
+    } else {
+      hy_openid = 0;
     }
     wx.request({
       url: app.globalData.base_url + '/zl_con',
       data: {
         goods_id: goods_id,
         openid: openid,
-        hy_openid:hy_openid,
+        hy_openid: hy_openid,
       },
       method: 'GET',
       header: {
@@ -68,6 +68,23 @@ Page({
     })
 
   },
+  goOnedetail: function() {
+    const that = this;
+    const goods_id = that.data.goods_id;
+    wx.navigateTo({
+      url: '/pages/oneDetail/index?id=' + goods_id,
+    })
+  },
+  sportSQ: function () {
+    var that = this;
+    wx.getWeRunData({
+      complete: function () {
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+      },
+    })
+  },
   authorizeNow: function() {
     const that = this;
     app.zlLogin(function(res) {
@@ -76,11 +93,11 @@ Page({
       })
       if (res) {
         wx.hideLoading();
+        that.onShow();
         that.setData({
           shouquan: true,
           shouIndex: false,
         })
-        that.onShow();
       }
     });
   },
@@ -106,7 +123,7 @@ Page({
     const that = this;
     const goods_id = that.data.goods_id;
     const openid = that.data.openid;
-    if (wx.getStorageSync('openid')){
+    if (wx.getStorageSync('openid')) {
       wx.request({
         url: app.globalData.base_url + '/zl_friends',
         data: {
@@ -114,7 +131,7 @@ Page({
           openid: openid,
           hy_openid: wx.getStorageSync('openid')
         },
-        success: function (res) {
+        success: function(res) {
           if (res.data.is_right == 1) {
             that.setData({
               newUser: false,
@@ -126,12 +143,19 @@ Page({
           }
         }
       })
-    }else{
+    } else {
       that.setData({
-        shouquan:false,
+        shouquan: false,
       })
     }
-   
+
+  },
+  hideHandle: function() {
+    const that = this;
+    that.setData({
+      newUser: true,
+      newUserFail: true,
+    })
   },
   /**
    * 用户点击右上角分享

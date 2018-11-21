@@ -3,19 +3,91 @@
 
 .nedk {
   width: 252rpx;
-  height: 58rpx;
+  height: 86rpx;
 }
 
 .needhy {
   position: fixed;
   z-index: 10;
-  bottom: 72rpx;
-  right: 30rpx;
+  bottom: 102rpx;
+  right: 40rpx;
 }
 
 .still {
+  width:240rpx;
   font-size: 12px;
+  position: fixed;
+  bottom: 130rpx;
+  right: 34rpx;
+}
+.hyzl{
+  margin-bottom:10rpx;
+  text-align:center;
   position: relative;
-  bottom: 62rpx;
-  left: 20rpx;
+  bottom:10rpx;
+}
+
+.goindex{
+  position: absolute;
+  bottom:112rpx;
+  right:30rpx;
+  width:78rpx;
+  height:74rpx;
+}
+.changeRule{
+  position: absolute;
+  right:30rpx;
+  top:20rpx;
+  font-size:24rpx;
+}
+
+.relati{
+  position: relative;
+}
+.btnYq {
+  width: 530rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  box-shadow: 0px 10rpx 20rpx 0px rgba(251, 230, 77, 0.6);
+  background: linear-gradient(to bottom, #fff07f, #fce84c);
+  margin-bottom: 40rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.newuser{
+  width:590rpx;
+  height:222rpx;
+  top:16rpx;
+}
+.useDetail{
+  width:590rpx;
+  height:410rpx;
+  background:#fff;
+  border-radius: 10rpx;
+  text-align: center;
+}
+
+.bgnone {
+  background: none;
+}
+.sqcg{
+  font-size:36rpx;
+  font-weight: bold;
+  padding-top:36rpx;
+  margin-bottom:10rpx;
+}
+.special{
+  color:#47A7FE;
+  font-size:40rpx;
+  top:5rpx;
+}
+.ljlq{
+  margin:50rpx 0 20rpx 30rpx;
+  font-weight: 500;
+}
+.useFoot{
+  color:#666;
+  font-size:24rpx;
 }

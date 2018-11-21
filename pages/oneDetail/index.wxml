@@ -9,43 +9,46 @@
     </block>
   </swiper>
   <view class='biaoti'>
-    <view class='tit cors thrsix'>{{goods.title}}</view>
+    <view class='diss' style='margin-left:30rpx;'>
+      <view class='cors fonte'>{{goods.title}}</view>
+      <block wx:if='{{record}}'>
+        <view class='exchanged' style='color:#47a7fe'>已有{{goods.dh_count}}人兑换</view>
+      </block>
+      <block wx:else>
+        <view class='exchanged'>暂无兑换</view>
+      </block>
+    </view>
     <view class='diss bod'>
       <view class='buju'>
         <view>
           <image src='../../imgs/rlbSm.png' class='rb'></image>
-          <text class='price blue thrsix'>{{goods.rlb_price}}</text>
-          <text class='price blue thrsix' style='padding-left:6rpx;'>热力币</text>
+          <text class='price blue fonte'>{{goods.rlb_price}}</text>
         </view>
         <view class='yprice color'>原价￥{{goods.price}}</view>
       </view>
       <view class='only color'>剩余{{goods.num}}件</view>
     </view>
-    <view class='diss' style='margin-left:30rpx;'>
-      <view class='buju' style='margin:16rpx 0 36rpx 0;'>
-        <view class='duanxian'></view>
-        <block wx:if='{{record}}'>
-          <view class='exchanged cors'>已有{{record.length}}人兑换</view>
-        </block>
-        <block wx:else>
-          <view class='exchanged cors'>暂无兑换</view>
-        </block>
-      </view>
-    </view>
   </view>
-  <view class='postage' style='margin-bottom:20rpx;text-align:center'>
+  <view class='postage hyzl'>
+    <image src='../../imgs/goindex.png' class='goindex' style='{{haveFriend?"":"bottom:30rpx;"}}' bindtap='goIndex'></image>
     <view class='buju' style='justify-content:center; margin-top:30rpx;'>
       <image src='../../imgs/lfb.png' class='icon'></image>
       <view class='friend thrsix cors'>好友助力</view>
       <image src='../../imgs/rtb.png' class='icon'></image>
     </view>
-    <view class='helpRule blue' bindtap='helpRule'>助力规则>></view>
-    <button class='friendHelp primary' open-type='share' plain='true' hover-class='none'>邀请好友助力</button>
-    <block wx:if='{{haveFriend.avatarUrl}}'>
-      <view class='ready teight color'>已有{{haveFriend.number1}}位好友助力</view>
+    <view class='blue changeRule' bindtap='helpRule'>助力规则></view>
+    <view class='helpRule'>邀请60人即可一币领取></view>
+    <block wx:if='{{isHaveopenid}}'>
+      <button class='friendHelp primary' open-type='share' plain='true' hover-class='none'>邀请好友助力</button>
+    </block>
+    <block wx:else>
+      <button class='friendHelp primary' open-type='getUserInfo' plain='true' bindgetuserinfo='authorizeNow' hover-class='none'>邀请好友助力</button>
+    </block>
+    <block wx:if='{{haveFriend}}'>
+      <view class='ready teight color'>已有{{readyNum}}位好友助力</view>
       <view class='xian'></view>
       <view class='buju' style='justify-content:center;margin-bottom:20rpx;'>
-        <label wx:for='{{haveFriend.avatarUrl}}' wx:key='{{index}}' data-index='{{index}}'>
+        <label wx:for='{{haveFriend}}' wx:key='{{index}}' data-index='{{index}}'>
           <image class='avatar' src='{{item.avatarurl}}'></image>
         </label>
       </view>
@@ -86,10 +89,10 @@
   <block wx:if="{{button_state==0}}">
     <view class='buju dibu dialog'>
       <view style='margin-left:60rpx;'>
-        <view class='font'>所需热力币：
+        <view class='font sxb'>所需热力币：
           <text class='need'>{{goods.rlb_price}}</text>
         </view>
-        <view class='font' style='opacity:0.7;margin-bottom:8rpx;'>拥有热力币：
+        <view class='font yyb'>拥有热力币：
           <text style='font-size:32rpx;'>{{my_currency}}</text> </view>
       </view>
       <view>
@@ -100,10 +103,10 @@
   <block wx:if="{{button_state==1}}">
     <view class='buju dibu dialog'>
       <view style='margin-left:60rpx;'>
-        <view class='font'>所需热力币：
+        <view class='font sxb'>所需热力币：
           <text class='need'>{{goods.rlb_price}}</text>
         </view>
-        <view class='font' style='opacity:0.7;margin-bottom:8rpx;'>拥有热力币：
+        <view class='font yyb'>拥有热力币：
           <text style='font-size:32rpx;'>{{my_currency}}</text> </view>
       </view>
       <view>
@@ -114,10 +117,10 @@
   <block wx:if="{{button_state==2}}">
     <view class='buju dibu dialog'>
       <view style='margin-left:60rpx;'>
-        <view class='font'>所需热力币：
+        <view class='font sxb'>所需热力币：
           <text class='need'>{{goods.rlb_price}}</text>
         </view>
-        <view class='font' style='opacity:0.7;margin-bottom:8rpx;'>拥有热力币：
+        <view class='font yyb'>拥有热力币：
           <text style='font-size:32rpx;'>{{my_currency}}</text> </view>
       </view>
       <view>
@@ -129,17 +132,17 @@
     <view class='buju dibu dialog'>
       <view class='needhy'>
         <image src='../../imgs/nedk.png' class='nedk'></image>
-        <view class='cors still'>还需邀请{{haveFriend.number2}}位新用户</view>
+        <view class='cors still'>还需邀请{{needNum}}位新用户即可一币领取</view>
       </view>
       <view style='margin-left:60rpx;'>
-        <view class='font'>所需热力币：
+        <view class='font sxb'>所需热力币：
           <text class='need'>{{goods.rlb_price}}</text>
         </view>
-        <view class='font' style='opacity:0.7;margin-bottom:8rpx;'>拥有热力币：
+        <view class='font yyb'>拥有热力币：
           <text style='font-size:32rpx;'>{{my_currency}}</text> </view>
       </view>
       <view>
-        <button class='primary freeDhs textAlgin thrsix' open-type='share' plain='true' hover-class='none'>好友不足</button>
+        <button class='primary freeDhs textAlgin thrsix' open-type='share' plain='true' hover-class='none'>邀请好友助力</button>
       </view>
     </view>
   </block>
@@ -247,7 +250,7 @@
   </view>
   <view class="dialog" hidden="{{rule}}" catchtouchmove="ture">
     <view class="mask" bindtap='hideHandle'></view>
-    <view class="condition" style='top:40%'>
+    <view class="condition" style='top:43%'>
       <view class='title'>
         <image src='../../imgs/title.png' class='title'></image>
         <view class='abs zlRule cors thrsix'>助力规则</view>
@@ -262,6 +265,28 @@
       </view>
       <image src='../../imgs/sx.png' class='abs sx' bindtap='hideHandle'></image>
     </view>
-
+  </view>
+  <view class="dialog" hidden="{{newUser}}" catchtouchmove="ture">
+    <view class="mask" bindtap='newUserLingqu'></view>
+    <view class="condition bgnone" style='top:45%'>
+      <image src='../../imgs/newuser.png' class='newuser relati'></image>
+      <view class='useDetail'>
+        <view class='sqcg cors'>授权成功</view>
+        <block wx:if='{{is_new}}'>
+          <view class='teight cors'>你有
+            <text class='special relati'>{{my_currency}}</text>热力币</view>
+        </block>
+        <block wx:else>
+          <view class='teight cors'>走多多现赠送你
+            <text class='special relati'>5</text> 热力币
+          </view>
+        </block>
+        <view class='teight cors'>可免费领取
+          <text class='special relati'>{{goods_num}}</text> 件礼品
+        </view>
+        <view class='btnYq cors ljlq' bindtap='newUserLingqu'>立即领取</view>
+        <view class='useFoot'>每日运动步数可兑换更多热力币</view>
+      </view>
+    </view>
   </view>
 </view>

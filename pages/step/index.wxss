@@ -342,6 +342,8 @@
   position: relative;
   top: 20rpx;
   right: 30rpx;
+  text-align: center;
+  box-sizing:content-box;
 }
 
 .enjoy[plain] {
@@ -422,27 +424,6 @@
   z-index: 20;
 }
 
-.option_box {
-  width: 188rpx;
-  left: 70%;
-  border: 1rpx solid #efefef;
-  box-sizing: border-box;
-  height: 0;
-  overflow-y: auto;
-  border-top: 0;
-  background: #fff;
-  z-index: 18;
-}
-
-.option {
-  padding: 0 0 3rpx 20rpx;
-}
-
-.ops {
-  height: 276rpx;
-  bottom: -134rpx;
-}
-
 .biaoti {
   width: 590rpx;
   height: 550rpx;
@@ -502,4 +483,20 @@
 
 .seetomo {
   background: #fdf2a6;
+}
+.gzh{
+  width:590rpx;
+  height:832rpx;
+}
+.clickcontact{
+  width:470rpx;
+  height:80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx; 
+  bottom:2rpx;
+}
+.sx{
+  width:60rpx;
+  height:60rpx;
+  bottom:-135rpx;
 }

@@ -13,6 +13,9 @@
 .thrsix{
   font-size:36rpx;
 }
+.fonte{
+  font-size:32rpx;
+}
 .cors{
   color:#333;
 }
@@ -63,11 +66,6 @@
   justify-content: space-between;
 }
 
-.tit {
-  font-weight: 500;
-  margin: 26rpx 0 0 30rpx;
-}
-
 .title {
   width: 590rpx;
   height: 120rpx;
@@ -76,13 +74,14 @@
 
 .only {
   font-size: 24rpx;
-  margin-top: 12rpx;
 }
 
 .rb {
   width: 28rpx;
   height: 36rpx;
   margin-right: 12rpx;
+  position: relative;
+  top:4rpx;
 }
 
 
@@ -112,16 +111,12 @@
   z-index:10;
 }
 
-
 .freeDhs {
   width: 300rpx;
   height: 110rpx;
   line-height: 110rpx;
   border-radius: 0;
-}
-
-.noEnough {
-  background: #fdf2a6 !important;
+  padding:0;
 }
 
 .once {
@@ -291,7 +286,6 @@
 }
 
 
-
 .jx {
   width: 2rpx;
   height: 60rpx;
@@ -301,20 +295,19 @@
 
 .bod {
   margin: 12rpx 0 0 30rpx;
-  padding-bottom: 22rpx;
-  border-bottom: 1rpx solid #f5f5f5;
+  padding-bottom: 20rpx;
 }
-
-.duanxian {
-  width: 6rpx;
-  height: 24rpx;
-  background: #47a7fe;
-  border-radius: 3rpx;
+.yyb{
+  opacity:0.7;
+  margin-bottom:16rpx;
 }
-
+.sxb{
+  position: relative;
+  top:6rpx;
+}
 .exchanged {
-  font-size: 32rpx;
-  margin-left: 10rpx;
+  font-size: 24rpx;
+  color:#b2b2b2;
 }
 
 .friAvatar {
@@ -343,8 +336,10 @@
 
 .xqTit {
   height: 96rpx;
-  margin: 20rpx 0;
+  margin-top: 20rpx;
   justify-content: center;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .xiangq {
@@ -353,6 +348,7 @@
 }
 
 .dibu {
+  height:110rpx;
   background: #fff;
   position: fixed;
   bottom: 0;
@@ -371,7 +367,7 @@
 
 .helpRule {
   font-size: 24rpx;
-  margin: 16rpx 0 40rpx 0;
+  margin: 12rpx 0 36rpx 0;
 }
 
 .friendHelp {

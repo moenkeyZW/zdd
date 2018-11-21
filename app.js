@@ -350,6 +350,9 @@ App({
                         wx.setStorageSync('openid', res.data.openid);
                         wx.setStorageSync('open_id', res.data.open_id);
                         typeof cb == "function" && cb(that.globalData.userInfo);
+                        wx.reLaunch({
+                          url: '/pages/index/index',
+                        })
                       }
                     })
                   },
@@ -389,9 +392,11 @@ App({
                       wx.setStorageSync('openid', res.data.openid);
                       wx.setStorageSync('open_id', res.data.open_id);
                       typeof cb == "function" && cb(that.globalData.userInfo);
+                    
                     }
                   })
                 },
+            
               })
             } else {
               console.log('获取用户登录态失败！' + res.errMsg)

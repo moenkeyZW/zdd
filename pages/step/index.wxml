@@ -9,7 +9,7 @@
           <text class='moneys'>{{money}}</text>
         </view>
       </button>
-      <view class='size cor mgr'>兑换规则</view>
+      <view class='size cor mgr' bindtap='goRule'>兑换规则</view>
     </view>
     <view class='fg'>
       <image src='../../imgs/main.png' class='main abs'></image>
@@ -75,7 +75,7 @@
       <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='enjoy' hover-class='none'>马上邀请</button>
     </block>
   </view>
-  <view class='act dis' style='margin-bottom:30rpx;'>
+  <view class='act dis' style='margin-top:20rpx;'>
     <view class='disDia'>
       <image src='../../imgs/ljgz.png' class='actimg'></image>
       <view class='damo'>
@@ -87,7 +87,7 @@
       </view>
     </view>
     <block wx:if="{{isHaveopenid}}">
-      <button plain='true' class='enjoy' open-type='share' hover-class='none'>立即关注</button>
+      <view class='enjoy' bindtap='opencontact'>立即关注</view>
     </block>
     <block wx:else>
       <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='enjoy' hover-class='none'>立即关注</button>
@@ -105,12 +105,11 @@
           <text class='klqnum'>{{tomorrow_rlb}}</text>热力币</view>
         <view class='disDia'>
           <view class='qdtx'>预约明日签到提醒</view>
-          <view class='ytime' catchtap='selectTap'>{{selectData[index]}}
-            <image src='../../imgs/daosj.png' class='triangle'></image>
-          </view>
-        </view>
-        <view class='option_box abs {{show?"":"ops"}}' hidden='{{show}}'>
-          <view class='option' wx:for='{{selectData}}' wx:key='{{index}}' data-index='{{index}}' data-time='{{item}}' catchtap='optionTap'>{{item}}</view>
+          <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+            <view class='ytime'> {{time}}
+              <image src='../../imgs/daosj.png' class='triangle'></image>
+            </view>
+          </picker>
         </view>
         <form bindsubmit='bespeak' report-submit='true'>
           <button form-type='submit' plain='true' class='commyy primary'>立即预约</button>
@@ -131,5 +130,37 @@
       </view>
     </view>
     <image src='../../imgs/delete.png' class='delete shareX' bindtap='hideShare'></image>
+  </view>
+  <view class="dialog" hidden="{{contact}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideShare'></view>
+    <view class="condition" style='top:46%'>
+      <view class='relati'>
+        <image src='../../imgs/gzh.png' class='gzh'></image>
+        <button plain='true' open-type="contact" class='abs primary clickcontact'>好的</button>
+        <image src='../../imgs/sx.png' class='abs sx' bindtap='hideShare'></image>
+      </view>
+    </view>
+  </view>
+  <view class="dialog" hidden="{{newUser}}" catchtouchmove="ture">
+    <view class="mask" bindtap='newUserLingqu'></view>
+    <view class="condition bgnone" style='top:45%'>
+      <image src='../../imgs/newuser.png' class='newuser relati'></image>
+      <view class='useDetail'>
+        <view class='sqcg cor'>授权成功</view>
+        <block wx:if='{{is_new}}'>
+          <view class='size cor'>你有<text class='special relati'>{{money}}</text>热力币</view>
+        </block>
+        <block wx:else>
+          <view class='size cor'>走多多现赠送你
+            <text class='special relati'>5</text> 热力币
+          </view>
+        </block>
+        <view class='size cor'>可免费领取
+          <text class='special relati'>{{goods_num}}</text> 件礼品
+        </view>
+        <view class='btnYq cor ljlq' bindtap='newUserLingqu'>立即领取</view>
+        <view class='useFoot'>每日运动步数可兑换更多热力币</view>
+      </view>
+    </view>
   </view>
 </view>

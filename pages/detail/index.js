@@ -9,7 +9,6 @@ Page({
   data: {
     openid: '',
     foot: true,
-    noEnough:true,
     goods_id: '',
     button_state: 0,
     addinfo_state: '',
@@ -187,47 +186,9 @@ Page({
         })
       },
     })
-    // wx.navigateTo({
-    //   url: '/pages/editAdd/index',
-    // })
+
   },
 
-  goChange: function (e) {
-    var that = this;
-    var id = e.currentTarget.dataset.id;
-    if (wx.getStorageSync('openid') && wx.getStorageSync('open_id') != 0) {
-      wx.request({
-        url: app.globalData.base_url + '/goods_tk',
-        data: {
-          goods_id: id,
-          openid: wx.getStorageSync('openid')
-        },
-        success: function (res) {
-          if (res.data.state == 1) {
-            that.setData({
-              noEnough: false,
-              goods_detail: res.data.goods,
-            })
-          } else {
-            wx.navigateTo({
-              url: '/pages/detail/index?id=' + id,
-            })
-          }
-        }
-      })
-
-    } else {
-      app.onLogin(function (res) {
-        wx.showLoading({
-          title: '授权中',
-        })
-        if (res) {
-          wx.hideLoading();
-          that.sportSQ();
-        }
-      });
-    }
-  },
   affirm: function(e) {
     var that = this;
     var form_id = e.detail.formId;

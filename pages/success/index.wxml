@@ -1,25 +1,60 @@
 <!--pages/success/index.wxml-->
 <view class='container'>
   <image src='../../imgs/dhcg.png' class='dhcg'></image>
-  <view class='receiver'>
+  <view class='receiver commodity'>
     <view class='othDis'>
       <view class='xian'></view>
-      <view class='tit'>收货信息</view>
+      <view class='tit'>商品信息</view>
     </view>
-    <view>
-      <view class='mg'>
-        <image src='../../imgs/name.png' class='icon left'></image>
-        <text class='font cor pos'>{{addinfo.name}}</text>
-        <image src='../../imgs/phone.png' class='icon long'></image>
-        <text class='font cor pos'>{{addinfo.phone}}</text>
+    <view class='dis'>
+      <view>
+        <image src='{{msg.photo}}' class='img'></image>
       </view>
-      <view class='mgs'>
-        <image src='../../imgs/add.png' class='icon left'></image>
-        <text class='font cor con pos'>{{addinfo.address}}</text>
-        <text class='font cor con new posi'>{{addinfo.detail_address}}</text>
+      <view>
+        <view class='font'>{{msg.title}}</view>
+        <view class='through'>原价￥{{msg.price}}</view>
+        <view>
+          <image src='../../imgs/rlbSm.png' class='rb'></image>
+          <text class='price'>{{msg.currency}}</text>
+          <text class='price' style='padding-left:6rpx;'>热力币</text>
+        </view>
       </view>
     </view>
   </view>
+  <block wx:if='{{num}}'>
+    <view class='receiver' style='{{num?"height:208rpx":""}}'>
+      <view class='othDis'>
+        <view class='xian'></view>
+        <view class='tit'>充值号码</view>
+      </view>
+      <view class='dis dbh'>
+        <image src='../../imgs/phone.png' class='icon'></image>
+        <view class='font mgf'>{{msg.tel}}</view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='receiver'>
+      <view class='othDis'>
+        <view class='xian'></view>
+        <view class='tit'>收货信息</view>
+      </view>
+      <view>
+        <view class='mg'>
+          <image src='../../imgs/name.png' class='icon left'></image>
+          <text class='font cor pos'>{{addinfo.name}}</text>
+          <image src='../../imgs/phone.png' class='icon long'></image>
+          <text class='font cor pos'>{{addinfo.phone}}</text>
+        </view>
+        <view class='mgs'>
+          <image src='../../imgs/add.png' class='icon left'></image>
+          <text class='font cor con pos'>{{addinfo.address}}</text>
+          <text class='font cor con new posi'>{{addinfo.detail_address}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
   <view class='receiver order'>
     <view class='display'>
       <view class='dis'>
@@ -43,26 +78,6 @@
     <view class='dis dbh'>
       <image src='../../imgs/time.png' class='icon'></image>
       <view class='font mgf'>下单时间：{{msg.timeline}}</view>
-    </view>
-  </view>
-  <view class='receiver commodity'>
-    <view class='othDis'>
-      <view class='xian'></view>
-      <view class='tit'>商品信息</view>
-    </view>
-    <view class='dis'>
-      <view>
-        <image src='{{msg.photo}}' class='img'></image>
-      </view>
-      <view>
-        <view class='font'>{{msg.title}}</view>
-        <view class='through'>原价￥{{msg.price}}</view>
-        <view>
-          <image src='../../imgs/rlbSm.png' class='rb'></image>
-          <text class='price'>{{msg.currency}}</text>
-          <text class='price' style='padding-left:6rpx;'>热力币</text>
-        </view>
-      </view>
     </view>
   </view>
 </view>

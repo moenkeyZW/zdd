@@ -4,7 +4,7 @@
 
 .header {
   width: 100%;
-  min-height: 686rpx;
+  min-height: 714rpx;
   background: #fff;
   box-shadow: 0 6rpx 10rpx 0 rgba(71, 167, 254, 0.1);
 }
@@ -34,14 +34,28 @@
   margin-right: 28rpx;
 }
 
-.fg {
+.main {
   position: relative;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  top: 260rpx;
+  transform: translate(-50%,-50%);
+  left:50%;
+  top:116rpx;
+  width: 420rpx;
   height: 284rpx;
 }
 
+.useStep {
+  top: 120rpx;
+}
+.num {
+  font-size: 96rpx;
+  font-weight: bold;
+  top: 220rpx;
+}
+
+.clear {
+  color: #999;
+  top: 310rpx;
+}
 .titi {
   width: 100%;
   text-align: center;
@@ -60,7 +74,7 @@
   width: calc(100% - 60rpx);
   height: 1rpx;
   background: #e4e6ed;
-  margin: 23rpx 0 12rpx 30rpx;
+  margin: 30rpx 0 16rpx 30rpx;
 }
 
 .mgr {
@@ -72,11 +86,11 @@
   height: 60rpx;
   line-height: 60rpx;
   font-weight: 400;
-  margin-top: 46rpx !important;
+  margin-top: 42rpx !important;
 }
 
 .tsix {
-  margin: 30rpx 0 10rpx 0;
+  margin: 40rpx 0 10rpx 0;
 }
 
 .act {
@@ -350,7 +364,10 @@
   margin: 0;
   padding: 0;
 }
-
+.enjoyed{
+  color:#b3b3b3 !important;
+  border: 2rpx solid #ccc !important;
+}
 .zqg {
   padding: 0 18rpx 0 22rpx;
 }
@@ -487,6 +504,7 @@
 .gzh{
   width:590rpx;
   height:832rpx;
+  display: block;
 }
 .clickcontact{
   width:470rpx;
@@ -499,4 +517,19 @@
   width:60rpx;
   height:60rpx;
   bottom:-135rpx;
+}
+.ad{
+  zoom: 0.925;
+  margin-top:30rpx;
+}
+.seechange{
+  margin-top:20rpx;
+  background:#fff4a7;
+  font-size:36rpx;
+  font-weight: 500;
+}
+.cente{
+  font-size:24rpx;
+  justify-content: center;
+  margin-top:20rpx;
 }

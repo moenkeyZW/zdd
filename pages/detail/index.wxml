@@ -12,7 +12,7 @@
     <view class='diss' style='margin-left:30rpx;'>
       <view class='cors fonte'>{{goods.title}}</view>
       <block wx:if='{{record}}'>
-        <view class='exchanged' style='color:#47a7fe'>已有{{goods.dh_count}}人兑换</view>
+        <view class='exchanged' style='color:#47a7fe' bindtap='goChangeRecord'>已有{{goods.dh_count}}人兑换></view>
       </block>
       <block wx:else>
         <view class='exchanged'>暂无兑换</view>
@@ -100,72 +100,98 @@
     </view>
   </block>
 
-  <view class='dikuang dialog {{addinfo_state==1?"animation":address==""?"smdi":"animation"}}' hidden='{{foot}}' catchtouchmove="ture">
-    <view class="masks" bindtap='hideHandle'></view>
-    <view class='header dialog textAlgin'>
-      <text class='line'></text>
-      <text class='center cors thrsix'>确认兑换商品</text>
-      <text class='line'></text>
-      <view class='kong'></view>
-    </view>
-    <view class='dis'>
-      <view>
-        <image src='{{goods.photo}}' class='img' lazy-load='true'></image>
+  <view class='dikuang dialog ' hidden='{{foot}}' catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandle'></view>
+    <view class='conditions dialog {{addinfo_state==1?"animation":address==""?"smdi":"animation"}}'>
+      <view class='header dialog textAlgin'>
+        <text class='line'></text>
+        <text class='center cors thrsix'>确认兑换商品</text>
+        <text class='line'></text>
+        <view class='kong'></view>
       </view>
-      <view>
-        <view class='cors thrsix'>{{goods.title}}</view>
-        <view class='through color'>原价￥{{goods.price}}</view>
+      <view class='dis'>
         <view>
-          <image src='../../imgs/rlbSm.png' class='rb'></image>
-          <text class='price blue thrsix'>{{goods.rlb_price}}</text>
+          <image src='{{goods.photo}}' class='img' lazy-load='true'></image>
+        </view>
+        <view>
+          <view class='cors thrsix'>{{goods.title}}</view>
+          <view class='through color'>原价￥{{goods.price}}</view>
+          <view>
+            <image src='../../imgs/rlbSm.png' class='rb'></image>
+            <text class='price blue thrsix'>{{goods.rlb_price}}</text>
+          </view>
         </view>
       </view>
+      <view class='dhnum'>
+        <view class='diss' style='width:100%;'>
+          <view class='teight cors'>兑换数量</view>
+          <view class='teight cors'>x1</view>
+        </view>
+        <view class='diss' style='width:100%;'>
+          <view class='teight cors'>支出热力币</view>
+          <view class='teight cors'>{{goods.rlb_price}}</view>
+        </view>
+      </view>
+      <view wx:if="{{addinfo_state==1}}">
+        <view class='mgs'>
+          <image src='../../imgs/name.png' class='icon left six'></image>
+          <text class='font cor pos'>{{addinfo.userName}}</text>
+          <image src='../../imgs/phone.png' class='icon long six'></image>
+          <text class='font cor pos'>{{addinfo.telNumber}}</text>
+        </view>
+        <view class='mgs'>
+          <image src='../../imgs/add.png' class='icon left six'></image>
+          <text class='font cor con pos'>{{addinfo.address}}</text>
+          <text class='font cor con new posi'>{{addinfo.detailInfo}}</text>
+          <text class='teight blue posi' bindtap='goAddress'>修改地址</text>
+        </view>
+      </view>
+      <view wx:elif="{{address}}">
+        <view class='mgs'>
+          <image src='../../imgs/name.png' class='icon left six'></image>
+          <text class='font cor pos'>{{address.userName}}</text>
+          <image src='../../imgs/phone.png' class='icon long six'></image>
+          <text class='font cor pos'>{{address.telNumber}}</text>
+        </view>
+        <view class='mgs'>
+          <image src='../../imgs/add.png' class='icon left six'></image>
+          <text class='font cor con pos'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}</text>
+          <text class='font cor con new posi'>{{address.detailInfo}}</text>
+          <text class='blue teight posi' bindtap='goAddress'>修改地址</text>
+        </view>
+      </view>
+      <view wx:else>
+        <view class='teight please choosed' bindtap='editAddress'>您还没有填写收货地址，
+          <text class='blue teight'>请点击获取</text>
+        </view>
+      </view>
+      <form bindsubmit='affirm' report-submit='true'>
+        <button class='primary freeDh dialog textAlgin thrsix' hover-class='none' plain='true' form-type='submit' disabled='{{disabled}}'>立即兑换</button>
+      </form>
     </view>
-    <view class='dhnum'>
-      <view class='diss' style='width:100%;'>
-        <view class='teight cors'>兑换数量</view>
-        <view class='teight cors'>x1</view>
-      </view>
-      <view class='diss' style='width:100%;'>
-        <view class='teight cors'>支出热力币</view>
-        <view class='teight cors'>{{goods.rlb_price}}</view>
-      </view>
-    </view>
-    <view wx:if="{{addinfo_state==1}}">
-      <view class='mgs'>
-        <image src='../../imgs/name.png' class='icon left six'></image>
-        <text class='font cor pos'>{{addinfo.userName}}</text>
-        <image src='../../imgs/phone.png' class='icon long six'></image>
-        <text class='font cor pos'>{{addinfo.telNumber}}</text>
-      </view>
-      <view class='mgs'>
-        <image src='../../imgs/add.png' class='icon left six'></image>
-        <text class='font cor con pos'>{{addinfo.address}}</text>
-        <text class='font cor con new posi'>{{addinfo.detailInfo}}</text>
-        <text class='teight blue posi' bindtap='goAddress'>修改地址</text>
-      </view>
-    </view>
-    <view wx:elif="{{address}}">
-      <view class='mgs'>
-        <image src='../../imgs/name.png' class='icon left six'></image>
-        <text class='font cor pos'>{{address.userName}}</text>
-        <image src='../../imgs/phone.png' class='icon long six'></image>
-        <text class='font cor pos'>{{address.telNumber}}</text>
-      </view>
-      <view class='mgs'>
-        <image src='../../imgs/add.png' class='icon left six'></image>
-        <text class='font cor con pos'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}</text>
-        <text class='font cor con new posi'>{{address.detailInfo}}</text>
-        <text class='blue teight posi' bindtap='goAddress'>修改地址</text>
+
+  </view>
+  <view class="dialog" hidden="{{newUser}}" catchtouchmove="ture">
+    <view class="mask" bindtap='newUserLingqus'></view>
+    <view class="condition bgnone" style='top:45%'>
+      <image src='../../imgs/newuser.png' class='newuser relati'></image>
+      <view class='useDetail'>
+        <view class='sqcg cors'>授权成功</view>
+        <block wx:if='{{is_new}}'>
+          <view class='teight cors'>你有
+            <text class='special relati'>{{my_currency}}</text>热力币</view>
+        </block>
+        <block wx:else>
+          <view class='teight cors'>走多多现赠送你
+            <text class='special relati'>5</text> 热力币
+          </view>
+        </block>
+        <view class='teight cors'>可免费领取
+          <text class='special relati'>{{goods_num}}</text> 件礼品
+        </view>
+        <view class='btnYq cors ljlq' bindtap='newUserLingqu'>立即领取</view>
+        <view class='useFoot'>每日运动步数可兑换更多热力币</view>
       </view>
     </view>
-    <view wx:else>
-      <view class='teight please choosed' bindtap='editAddress'>您还没有填写收货地址，
-        <text class='blue teight'>请点击获取</text>
-      </view>
-    </view>
-    <form bindsubmit='affirm' report-submit='true'>
-      <button class='primary freeDh dialog textAlgin thrsix' hover-class='none' plain='true' form-type='submit' disabled='{{disabled}}'>立即兑换</button>
-    </form>
   </view>
 </view>

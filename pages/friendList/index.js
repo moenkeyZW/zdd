@@ -1,52 +1,36 @@
-// pages/moreGoods/index.js
+// pages/friendList/index.js
 const Page = require('../../utils/ald-stat.js').Page;
-const app=getApp();
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    zl_goods:'',
+    friendList:'',
     page:1,
-    haveMore:'',
     noMore:'',
+    haveMore:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const that=this;
+    const that = this;
     wx.request({
-      url: app.globalData.base_url + '/zl_goods_list',
+      url: app.globalData.base_url + '/yq_friends',
       data: {
         page: 1,
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
+        openid: wx.getStorageSync('openid')
       },
       success: function (res) {
         that.setData({
-          zl_goods: res.data.goods,
-          noMore: res.data.more,
+          friendList: res.data.list,
+          noMore:res.data.more,
           haveMore: res.data.more
         })
       }
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-  onDetail: function (e) {
-    var id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/oneDetail/index?id=' + id,
     })
   },
   // 上拉触底事件，请求记录数据
@@ -58,18 +42,19 @@ Page({
       page++;
       that.data.page = page
       wx.request({
-        url: app.globalData.base_url + '/zl_goods_list',
+        url: app.globalData.base_url + '/yq_friends',
         data: {
           page: page,
+          openid: wx.getStorageSync('openid')
         },
         method: 'GET',
         header: {
           'content-type': 'application/json'
         },
         success: function (res) {
-          that.data.zl_goods = that.data.zl_goods.concat(res.data.goods);
+          that.data.friendList = that.data.friendList.concat(res.data.list);
           that.setData({
-            zl_goods: that.data.zl_goods,
+            friendList: that.data.friendList,
             haveMore: res.data.more,
           })
           if (res.data.more) {
@@ -85,7 +70,17 @@ Page({
       })
     }
   },
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    this.onShow(); // 刷新页面
+    wx.hideNavigationBarLoading() //完成停止加载
+    wx.stopPullDownRefresh() //停止下拉刷新
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
 
+  },
 
- 
 })

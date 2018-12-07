@@ -18,7 +18,10 @@
     "pages/share/index",
     "pages/step/index",
     "pages/moreGoods/index",
-    "pages/oneDetail/index"
+    "pages/oneDetail/index",
+    "pages/exchange/index",
+    "pages/changeRecord/index",
+    "pages/friendList/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -40,8 +43,8 @@
       {
         "pagePath": "pages/step/index",
         "text": "热力币",
-        "iconPath": "./imgs/bb.png",
-        "selectedIconPath": "./imgs/bbs.png"
+        "iconPath": "./imgs/step.png",
+        "selectedIconPath": "./imgs/step_select.png"
       },
       {
         "pagePath": "pages/my/index",

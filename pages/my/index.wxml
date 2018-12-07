@@ -4,15 +4,15 @@
     <image src='../../imgs/myBg.png' class='myBg'></image>
     <open-data type="userAvatarUrl" class='ava abs'></open-data>
     <open-data type="userNickName" class='nickname abs'></open-data>
-    <view class='addUp abs'>本周累计签到{{days}}天</view>
-    <view class='addUp abs' style='bottom:50rpx;'>已邀请{{yq_num}}人</view>
+    <view class='addUp abs' bindtap='gotoFriend'>本周累计签到{{days}}天</view>
+    <view class='addUp abs' style='bottom:50rpx;font-weight:bold' bindtap='gotoFriend'>已邀请{{yq_num}}人</view>
   </view>
   <view class='manage'>
     <view class='temp'>
       <view style='margin-left:20rpx;'>
         <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="assistance">
           <image src='../../imgs/myzl.png' class='icon'></image>
-          <view class='font seat'>我的助力</view>
+          <view class='font seat'>助力订单</view>
         </button>
       </view>
       <view class='xian'></view>
@@ -72,12 +72,17 @@
                 <view class='duan'></view>
                 <view class='cor size'>体重</view>
               </view>
-              <block wx:if="{{userInfo.weight>0}}">
+              <block wx:if='{{userInfo.type==1||userInfo.type==3}}'>
                 <view class='kg'>{{userInfo.weight}}kg</view>
               </block>
               <block wx:else>
                 <picker bindchange="pickWeight" name='weight' class='pick' value='{{userInfo.weight}}' range="{{weightArr}}">
-                  <view class='place mts'>请输入你的体重</view>
+                  <block wx:if="{{userInfo.weight>0}}">
+                    <view class='kg'>{{userInfo.weight}}kg</view>
+                  </block>
+                  <block wx:else>
+                    <view class='place mts'>请输入你的体重</view>
+                  </block>
                 </picker>
               </block>
             </view>
@@ -89,12 +94,17 @@
                 <view class='duan'></view>
                 <view class='cor size'>身高</view>
               </view>
-              <block wx:if="{{userInfo.height>0}}">
+              <block wx:if='{{userInfo.type==1}}'>
                 <view class='kg'>{{userInfo.height}}cm</view>
               </block>
               <block wx:else>
                 <picker bindchange="pickHeight" name='height' class='pick' value='{{userInfo.height}}' range="{{heightArr}}">
-                  <view class='place mts'>请输入你的身高</view>
+                  <block wx:if="{{userInfo.height>0}}">
+                    <view class='kg'>{{userInfo.height}}cm</view>
+                  </block>
+                  <block wx:else>
+                    <view class='place mts'>请输入你的身高</view>
+                  </block>
                 </picker>
               </block>
             </view>
@@ -144,7 +154,7 @@
     <image src='../../imgs/delete.png' class='delete jkcps' bindtap='hideHandle'></image>
   </view>
   <view class="dialog" hidden="{{newUser}}" catchtouchmove="ture">
-    <view class="mask" bindtap='newUserLingqu'></view>
+    <view class="mask" bindtap='newUserLingqus'></view>
     <view class="condition bgnone" style='top:45%'>
       <image src='../../imgs/newuser.png' class='newuser relati'></image>
       <view class='useDetail'>
@@ -166,5 +176,5 @@
       </view>
     </view>
   </view>
-  <ad unit-id="adunit-de8f5735f3bc5f4e" class='ad'></ad>
+  <!-- <ad unit-id="adunit-de8f5735f3bc5f4e" class='ad'></ad> -->
 </view>

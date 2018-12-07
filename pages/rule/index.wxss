@@ -80,6 +80,6 @@ image{
   position: relative;
 }
 .two{
-  height:288rpx;
-  bottom:16rpx;
+  height:333rpx;
+  bottom:210rpx;
 }

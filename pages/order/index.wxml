@@ -34,10 +34,14 @@
           <text class='yprice'>原价￥{{item.price}}</text>
         </view>
       </view>
-      <view class='dis copy' wx:if="{{item.order_state==1||item.order_state==2}}">
+      <view class='dis copy' wx:if="{{(item.order_state==1||item.order_state==2)&&item.kd_number!=0}}">
         <view class='cor size company'>{{item.kd_name}}：</view>
         <view class='cor size'>{{item.kd_number}}</view>
         <view class='state size cop' bindtap='copyText' data-text="{{item.kd_number}}">复制查询</view>
+      </view>
+      <view class='dis copy' wx:if='{{item.tel!=0}}'>
+        <view class='cor size company'>充值号码：</view>
+        <view class='cor size'>{{item.tel}}</view>
       </view>
     </view>
     <view class='kong'></view>

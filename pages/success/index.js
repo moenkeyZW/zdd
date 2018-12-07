@@ -10,6 +10,8 @@ Page({
     addinfo:'',
     msg:'',
     orderId:'',
+    tel:'',
+    num:'',
   },
 
   /**
@@ -19,6 +21,11 @@ Page({
     this.setData({
       orderId: options.orderId
     })
+    if(options.num){
+      this.setData({
+        num:options.num
+      })
+    }
   },
 
 
@@ -39,9 +46,7 @@ Page({
         that.setData({
           addinfo:res.data.addinfo,
           msg:res.data.res,
-          
         })
-     
       }
     })
   },

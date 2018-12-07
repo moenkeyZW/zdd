@@ -20,6 +20,9 @@ Page({
     address: '',
     content: '',
     my_currency:'',
+    is_new: '',
+    goods_num: '',
+    newUser:true,
   },
 
   /**
@@ -63,6 +66,8 @@ Page({
       success: function(res) {
         console.log(res)
         that.setData({
+          is_new: res.data.is_new,
+          goods_num: res.data.goods_num,
           addinfo_state: res.data.addinfo_state,
           record: res.data.record,
           goods: res.data.goods,
@@ -78,20 +83,85 @@ Page({
       }
     })
   },
-
-  authorizeNow: function(e) {
+  goChangeRecord:function(){
+    const that=this;
+    const goods_id=that.data.goods.id;
+    wx.navigateTo({
+      url: '/pages/changeRecord/index?goods_id='+goods_id,
+    })
+  },
+  sportSQS: function () {
     var that = this;
-    app.onLogin(function(res) {
+    wx.getWeRunData({
+      complete: function () {
+        that.onShow();
+      },
+    })
+  },
+  sportSQ: function () {
+    var that = this;
+    wx.getWeRunData({
+      complete: function () {
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+      },
+    })
+  },
+  newUserLingqus: function () {
+    const that = this;
+    wx.request({
+      url: app.globalData.base_url + '/is_new',
+      data: {
+        openid: wx.getStorageSync('openid')
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          newUser: true,
+        })
+        that.sportSQS();
+      }
+    })
+  },
+  newUserLingqu: function () {
+    const that = this;
+    wx.request({
+      url: app.globalData.base_url + '/is_new',
+      data: {
+        openid: wx.getStorageSync('openid')
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          newUser: true,
+        })
+        that.sportSQ();
+      }
+    })
+  },
+  authorizeNow: function (e) {
+    const that = this;
+    app.onLogin(function (res) {
+      wx.showLoading({
+        title: '授权中',
+      })
       if (res) {
-        that.onShow()
+        wx.hideLoading();
+        that.onShow();
+        that.setData({
+          newUser: false,
+        })
       }
     });
-    if (e.detail.errMsg == "getUserInfo:ok") {
-      that.setData({
-        isHaveopenid: true,
-      })
-    }
   },
+
   freExchange: function(e) {
     var that = this;
     if (wx.getStorageSync('openid')) {
@@ -108,9 +178,16 @@ Page({
         })
       }
     } else {
-      app.onLogin(function(res) {
+      app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
         if (res) {
-          that.onShow()
+          wx.hideLoading();
+          that.onShow();
+          that.setData({
+            newUser: false,
+          })
         }
       });
     }
@@ -217,7 +294,7 @@ Page({
               disabled: true,
             })
             wx.request({
-              url: app.globalData.base_url + '/duihuan_goods',
+              url: 'https://www.mnancheng.com/admin/wechat/duihuan_goods',
               data: {
                 name: name,
                 phone: phone,

@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.4",
+	"libVersion": "2.4.1",
 	"appid": "wxe28bb30028ed5d17",
 	"projectname": "zdd",
 	"isGameTourist": false,
@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -106,7 +106,8 @@
 					"name": "登录",
 					"pathName": "pages/login/index",
 					"query": "",
-					"scene": "1001"
+					"scene": "1035",
+					"referrerInfo": {}
 				},
 				{
 					"id": -1,
@@ -151,6 +152,25 @@
 					"name": "模板",
 					"pathName": "pages/template/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "可兑换商品",
+					"pathName": "pages/exchange/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "兑换记录",
+					"pathName": "pages/changeRecord/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "好友列表",
+					"pathName": "pages/friendList/index",
+					"query": "",
+					"scene": "1001"
 				}
 			]
 		}

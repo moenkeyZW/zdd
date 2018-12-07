@@ -39,7 +39,7 @@
             <view class='dian' style='{{item.state==1?"":"color:#b2b2b2;"}}'>免费领取</view>
           </view>
           <block wx:if='{{item.state==0||item.state==3}}'>
-            <button open-type='share' plain='true' class='change cor size ' data-id="{{item.id}}">邀请好友助力</button>
+            <button open-type='share' plain='true' class='change cor size ' data-title='{{item.title}}' data-photo='{{item.share_img}}' data-id="{{item.id}}">邀请好友助力</button>
           </block>
           <block wx:else>
             <view class='change cor size ' data-id="{{item.id}}" bindtap='gotoDh'>立即兑换</view>
@@ -50,24 +50,24 @@
   </block>
   <block wx:else>
     <image src='../../imgs/nozl.png' class='nozl'></image>
-    <view class='size start'>发起助力后免费领取礼品，<text style='color:#47A7FE' catchtap='goMoreGooods'>立即发起</text></view>
+    <view class='size start'>暂未发起任何助力，<text style='color:#47A7FE' catchtap='goMoreGooods'>立即发起</text></view>
   </block>
-  <view class='{{goods_help?"detail":""}}'>
+  <view class='dialog {{goods_help?"details":""}}'>
     <view class='noMore'>
       <span class="lines abs"></span>
       <text class='none abs'>好物推荐</text>
       <span class="lines abs linetwo"></span>
       <view class='dik abs'></view>
     </view>
-    <view class='week' style='margin-top:80rpx;'>
+    <view class='week' style='margin-top:100rpx;'>
       <block wx:for="{{goods}}" wx:key="{{index}}" data-index="{{index}}">
         <view class='wareDetail'>
-          <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='onDetail' lazy-load='true' data-id="{{item.id}}"></image>
-          <view class='size cor mf' style='margin-top:6rpx;'>{{item.title}}</view>
+          <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='goOnedetail' lazy-load='true' data-id="{{item.id}}"></image>
+          <view class='size cor mf ellipsis'>{{item.title}}</view>
           <view class='dis kuan'>
             <view>
               <image src='../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
-              <text class='price'>{{item.rlb_price}}</text>
+              <text class='price wenzi relati'>{{item.rlb_price}}</text>
             </view>
             <view class='yprice'>原价￥{{item.price}}</view>
           </view>

@@ -88,6 +88,33 @@ Page({
       },
     })
   },
+  sportSQS: function () {
+    var that = this;
+    wx.getWeRunData({
+      complete: function () {
+        that.onShow();
+      },
+    })
+  },
+  newUserLingqus: function () {
+    const that = this;
+    wx.request({
+      url: app.globalData.base_url + '/is_new',
+      data: {
+        openid: wx.getStorageSync('openid')
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          newUser: true,
+        })
+        that.sportSQS();
+      }
+    })
+  },
   newUserLingqu: function () {
     const that = this;
     wx.request({
@@ -127,6 +154,11 @@ Page({
         }
       });
     }
+  },
+  gotoFriend:function(){
+    wx.navigateTo({
+      url: '/pages/friendList/index',
+    })
   },
   hotMoney: function(e) {
     var that=this;

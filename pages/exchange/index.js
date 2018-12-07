@@ -1,5 +1,4 @@
-// pages/moreGoods/index.js
-const Page = require('../../utils/ald-stat.js').Page;
+// pages/exchange/index.js
 const app=getApp();
 Page({
 
@@ -7,21 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    zl_goods:'',
+    k_goods:'',
     page:1,
-    haveMore:'',
-    noMore:'',
+    haveMore: '',
+    noMore: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const that=this;
+    const that = this;
     wx.request({
-      url: app.globalData.base_url + '/zl_goods_list',
+      url: app.globalData.base_url + '/k_goods_list',
       data: {
         page: 1,
+        openid: wx.getStorageSync('openid')
       },
       method: 'GET',
       header: {
@@ -29,9 +29,9 @@ Page({
       },
       success: function (res) {
         that.setData({
-          zl_goods: res.data.goods,
-          noMore: res.data.more,
-          haveMore: res.data.more
+          k_goods: res.data.goods,
+          noMore:res.data.more,
+          haveMore:res.data.more
         })
       }
     })
@@ -44,10 +44,18 @@ Page({
 
   },
   onDetail: function (e) {
+    var price = e.currentTarget.dataset.price;
     var id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/oneDetail/index?id=' + id,
-    })
+    if(price>1){
+      wx.navigateTo({
+        url: '/pages/detail/index?id=' + id,
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/oneDetail/index?id=' + id,
+      })
+    }
+    
   },
   // 上拉触底事件，请求记录数据
   onReachBottom: function () {
@@ -58,18 +66,19 @@ Page({
       page++;
       that.data.page = page
       wx.request({
-        url: app.globalData.base_url + '/zl_goods_list',
+        url: app.globalData.base_url + '/k_goods_list',
         data: {
           page: page,
+          openid: wx.getStorageSync('openid')
         },
         method: 'GET',
         header: {
           'content-type': 'application/json'
         },
         success: function (res) {
-          that.data.zl_goods = that.data.zl_goods.concat(res.data.goods);
+          that.data.k_goods = that.data.k_goods.concat(res.data.goods);
           that.setData({
-            zl_goods: that.data.zl_goods,
+            k_goods: that.data.k_goods,
             haveMore: res.data.more,
           })
           if (res.data.more) {
@@ -85,7 +94,4 @@ Page({
       })
     }
   },
-
-
- 
 })

@@ -11,8 +11,8 @@ Page({
     openid: '',
     haveFriend: false,
     foot: true,
+    telephone:true,
     rule: true,
-    noEnough: true,
     goods_id: '',
     button_state: 3,
     addinfo_state: '',
@@ -20,6 +20,7 @@ Page({
     addinfo: '',
     isHaveopenid: '',
     disabled: false,
+    disableds:false,
     record: '',
     address: '',
     content: '',
@@ -29,6 +30,8 @@ Page({
     is_new:'',
     goods_num:'',
     newUser:true,
+    dh:'',
+    dummy:[0,1,2,3,4,5,6],
   },
 
   /**
@@ -41,7 +44,7 @@ Page({
     })
     if(options.dh){
       that.setData({
-        foot:false,
+        dh:options.dh,
       })
     }
   },
@@ -89,6 +92,15 @@ Page({
           button_state: res.data.button_state,
           my_currency: res.data.my_currency,
         })
+        if (that.data.dh && res.data.button_state != 2 && res.data.goods.type == 3){
+          that.setData({
+            telephone:false,
+          })
+        } else if (that.data.dh && res.data.button_state != 2){
+          that.setData({
+            foot :false,
+          })
+        }
         if (res.data.addinfo_state == 1) {
           that.setData({
             addinfo: res.data.addinfo,
@@ -96,6 +108,14 @@ Page({
         }
 
       }
+    })
+  },
+  sportSQS: function () {
+    var that = this;
+    wx.getWeRunData({
+      complete: function () {
+        that.onShow();
+      },
     })
   },
   sportSQ: function () {
@@ -106,6 +126,25 @@ Page({
           url: '/pages/index/index',
         })
       },
+    })
+  },
+  newUserLingqus: function () {
+    const that = this;
+    wx.request({
+      url: app.globalData.base_url + '/is_new',
+      data: {
+        openid: wx.getStorageSync('openid')
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          newUser: true,
+        })
+        that.sportSQS();
+      }
     })
   },
   newUserLingqu: function () {
@@ -152,7 +191,11 @@ Page({
           showCancel: false
         })
         return
-      } else {
+      } else if (that.data.goods.type==3){
+        that.setData({
+          telephone: false,
+        })
+      } else{
         that.setData({
           foot: false,
         })
@@ -207,6 +250,13 @@ Page({
       url: '/pages/index/index',
     })
   },
+  goChangeRecord: function () {
+    const that=this;
+    const goods_id = that.data.goods.id;
+    wx.navigateTo({
+      url: '/pages/changeRecord/index?goods_id=' + goods_id,
+    })
+  },
   editAddress: function(e) {
     var that = this;
     wx.chooseAddress({
@@ -249,8 +299,73 @@ Page({
     })
   },
 
+  affirmPhone:function(e){
+    const that=this;
+    var form_id = e.detail.formId;
+    var goods_id = that.data.goods_id;
+    var phone=e.detail.value.phone;
+    if (phone.length !== 11) {
+      wx.showModal({
+        title: '提示',
+        content: '请输入正确的电话号码',
+        showCancel: false,
+      })
+      return;
+    }
+    var myreg = /^0{0,1}(13[0-9]|15[0-9]|18[0-9]|14[0-9]|17[0,1,2,4,5,6,8,9]|19[8-9]|16[6])[0-9]{8}$/;
+    if (!myreg.test(phone)) {
+      wx.showModal({
+        title: '提示',
+        content: '请输入正确的电话号码',
+        showCancel: false,
+      })
+      return;
+    }
+    if(phone){
+      wx.showModal({
+        title: '确认充值',
+        content: '若电话号码填写有误，导致充值失败，将不再重新充值！确认充值？',
+        success: function (res) {
+          if (res.confirm) {
+            that.setData({
+              disableds: true,
+            })
+            wx.request({
+              url: app.globalData.base_url + '/chongzhi',
+              data: {
+                phone: phone,
+                form_id: form_id,
+                goods_id: goods_id,
+                openid: wx.getStorageSync('openid')
+              },
+              method: 'GET',
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (res) {
+                const orderId = res.data.order_id;
+                wx.redirectTo({
+                  url: '/pages/success/index?orderId=' + orderId + '&&num=10086',
+                })
+                that.setData({
+                  telephone: true,
+                })
+              }
+            })
+          }
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '电话号码未填写',
+        showCancel: false,
+        success: function (res) { }
+      })
+    }
+  },
   affirm: function(e) {
-    var that = this;
+    const that = this;
     var form_id = e.detail.formId;
     var goods_id = that.data.goods_id;
     var addinfo_state = that.data.addinfo_state;
@@ -277,7 +392,7 @@ Page({
               disabled: true,
             })
             wx.request({
-              url: app.globalData.base_url + '/duihuan_goods',
+              url: 'https://www.mnancheng.com/admin/wechat/duihuan_goods',
               data: {
                 name: name,
                 phone: phone,
@@ -318,7 +433,7 @@ Page({
     this.setData({
       foot: true,
       rule: true,
-      noEnough: true,
+      telephone:true,
     })
   },
   helpRule: function() {
@@ -332,8 +447,9 @@ Page({
   onShareAppMessage: function(res) {
     const that=this;
     const openid = wx.getStorageSync('openid')
-    const nickname = wx.getStorageSync('nickname');
+    const photo=that.data.goods.share_img;
     const goods_id=that.data.goods.id;
+    const title=that.data.goods.title;
     if (res.from === 'button') {
       wx.request({
         url: app.globalData.base_url + '/zl_ask',
@@ -344,10 +460,10 @@ Page({
         success: function(res) {
         }
       })
-    }
+    } 
     return {
-      title: `${nickname}邀请你用步数免费换礼物，数量有限，先到先得！`,
-      imageUrl: '../../imgs/share.png',
+      title: `免费拿${title}，点击有份，速度来！`,
+      imageUrl: photo,
       path: '/pages/share/index?openid=' + openid+'&&goods_id='+goods_id
     }
   },

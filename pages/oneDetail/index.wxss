@@ -2,8 +2,8 @@
 @import '../detail/index.wxss';
 
 .nedk {
-  width: 252rpx;
-  height: 86rpx;
+  width: 250rpx;
+  height: 90rpx;
 }
 
 .needhy {
@@ -14,12 +14,13 @@
 }
 
 .still {
-  width:240rpx;
+  width:230rpx;
   font-size: 12px;
   position: fixed;
   bottom: 130rpx;
-  right: 34rpx;
+  right: 40rpx;
 }
+
 .hyzl{
   margin-bottom:10rpx;
   text-align:center;
@@ -28,11 +29,14 @@
 }
 
 .goindex{
-  position: absolute;
-  bottom:112rpx;
-  right:30rpx;
-  width:78rpx;
-  height:74rpx;
+  position: fixed;
+  bottom:326rpx;
+  right:32rpx;
+  width:90rpx;
+  height:90rpx;
+}
+.indexBotm{
+  bottom:136rpx;
 }
 .changeRule{
   position: absolute;
@@ -40,54 +44,38 @@
   top:20rpx;
   font-size:24rpx;
 }
-
-.relati{
+.xuxian{
+  box-sizing: border-box;
+  border:2rpx dashed #B2DAFF;
+}
+.avshare{
+  width:63rpx;
+  height:63rpx;
+}
+.avshare[plain]{
+  margin:0;
+  padding:0;
+}
+.hyzl{
   position: relative;
+  bottom:3rpx;
+  left:3rpx;
 }
-.btnYq {
-  width: 530rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-  border-radius: 40rpx;
-  box-shadow: 0px 10rpx 20rpx 0px rgba(251, 230, 77, 0.6);
-  background: linear-gradient(to bottom, #fff07f, #fce84c);
-  margin-bottom: 40rpx;
-  font-size: 36rpx;
-  font-weight: bold;
+.xinghao{
+  color:#FF6060;
+  font-size:48rpx;
+  position: relative;
+  top:10rpx;
+  right:16rpx;
 }
-
-.newuser{
-  width:590rpx;
-  height:222rpx;
-  top:16rpx;
-}
-.useDetail{
-  width:590rpx;
-  height:410rpx;
-  background:#fff;
-  border-radius: 10rpx;
+.inputPhone{
+  width:220rpx;
+  height:50rpx;
+  background:#E4E6ED;
   text-align: center;
 }
-
-.bgnone {
-  background: none;
-}
-.sqcg{
-  font-size:36rpx;
-  font-weight: bold;
-  padding-top:36rpx;
-  margin-bottom:10rpx;
-}
-.special{
-  color:#47A7FE;
-  font-size:40rpx;
-  top:5rpx;
-}
-.ljlq{
-  margin:50rpx 0 20rpx 30rpx;
-  font-weight: 500;
-}
-.useFoot{
-  color:#666;
+.inputHold{
   font-size:24rpx;
+  color:#999;
+  text-align: center;
 }

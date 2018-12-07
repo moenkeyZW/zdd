@@ -1,0 +1,43 @@
+/* pages/changeRecord/index.wxss */
+.body{
+  width: calc(100% - 60rpx);
+  background:#fff;
+  margin-top:20rpx;
+  box-shadow:0px 6px 10px 0px rgba(71,167,254,0.1);
+  border-radius: 10rpx;
+}
+.foot{
+  color:#666;
+  font-size: 28rpx;
+  margin:30rpx 0;
+}
+.ava{
+  width:60rpx;
+  height:60rpx;
+  border-radius: 50%;
+}
+.detail{
+  width:calc(100% - 120rpx);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom:1rpx solid #EBECF5;
+  margin-left:60rpx;
+}
+.border{
+  border:none;
+}
+.dis{
+  display: flex;
+  align-items: center;
+  margin:30rpx 0;
+}
+.time{
+  color:#b3b3b3;
+  font-size:28rpx;
+}
+.name{
+  margin-left:30rpx;
+  color:#333;
+  font-size:32rpx;
+}

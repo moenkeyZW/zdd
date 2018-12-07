@@ -11,8 +11,8 @@
       </button>
       <view class='size cor mgr' bindtap='goRule'>兑换规则</view>
     </view>
-    <view class='fg'>
-      <image src='../../imgs/main.png' class='main abs'></image>
+    <view>
+      <image src='../../imgs/main.png' class='main'></image>
       <view class='useStep abs size cor'>可兑换步数</view>
       <view class='num abs cor'>{{step}}</view>
       <view class='clear abs size'>每日24点清零</view>
@@ -30,7 +30,10 @@
     <block wx:else>
       <button open-type="openSetting" bindopensetting="goRun" plain='true' class='btnClick clickDh primary' hover-class='none'>开启微信运动步数</button>
     </block>
-    <view class='titi gray'>步数换热力币，免费领取礼品</view>
+    <view class='cor dialog disDia cente'>
+      <view>热力币免费换礼，</view>
+      <view style='color: #47a7fe;' bindtap='seeExchange'>立即查看</view>
+    </view>
     <view class='xian'></view>
     <view class='disDia' style='margin-left:60rpx;'>
       <block wx:for="{{weeks}}" wx:key='{{index}}'>
@@ -42,7 +45,9 @@
     </view>
     <block wx:if="{{isHaveopenid}}">
       <block wx:if="{{is_sign==0}}">
-        <button plain='true' disabled='{{yiqd}}' class='btnClick cor size clickDh sign primary' hover-class='none' bindtap='goSign'>立即签到</button>
+        <form bindsubmit='goSign' report-submit='true'>
+          <button  form-type='submit'  plain='true' disabled='{{yiqd}}' class='btnClick cor size clickDh sign primary' hover-class='none'>立即签到</button>
+        </form>
       </block>
       <block wx:else>
         <view class=' cor size clickDh seetomo sign'>已签到</view>
@@ -61,9 +66,9 @@
     <view class='disDia'>
       <image src='../../imgs/msyq.png' class='actimg'></image>
       <view class='damo'>
-        <view class='cor follow'>邀请5位好友</view>
+        <view class='cor follow'>邀请好友</view>
         <view>
-          <text class='award color'>+5</text>
+          <text class='award color'>+4</text>
           <text class='color size jiangli'>热力币</text>
         </view>
       </view>
@@ -75,24 +80,30 @@
       <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='enjoy' hover-class='none'>马上邀请</button>
     </block>
   </view>
-  <view class='act dis' style='margin-top:20rpx;'>
+  <view class='act dis' style='margin:20rpx 0;'>
     <view class='disDia'>
       <image src='../../imgs/ljgz.png' class='actimg'></image>
       <view class='damo'>
         <view class='cor follow'>关注走多多官方公众号</view>
         <view>
-          <text class='award color'>+50</text>
+          <text class='award color'>+10</text>
           <text class='color size jiangli'>热力币</text>
         </view>
       </view>
     </view>
     <block wx:if="{{isHaveopenid}}">
-      <view class='enjoy' bindtap='opencontact'>立即关注</view>
+      <block wx:if='{{is_follow==1}}'>
+        <view class='enjoy enjoyed'>已关注</view>
+      </block>
+      <block wx:else>
+        <view class='enjoy' bindtap='opencontact'>立即关注</view>
+      </block>
     </block>
     <block wx:else>
       <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='enjoy' hover-class='none'>立即关注</button>
     </block>
   </view>
+
   <view class="dialog" hidden="{{sign}}" catchtouchmove="ture">
     <view class="mask" bindtap='hideHandle'></view>
     <view class="condition signCod">
@@ -142,13 +153,14 @@
     </view>
   </view>
   <view class="dialog" hidden="{{newUser}}" catchtouchmove="ture">
-    <view class="mask" bindtap='newUserLingqu'></view>
+    <view class="mask" bindtap='newUserLingqus'></view>
     <view class="condition bgnone" style='top:45%'>
       <image src='../../imgs/newuser.png' class='newuser relati'></image>
       <view class='useDetail'>
         <view class='sqcg cor'>授权成功</view>
         <block wx:if='{{is_new}}'>
-          <view class='size cor'>你有<text class='special relati'>{{money}}</text>热力币</view>
+          <view class='size cor'>你有
+            <text class='special relati'>{{money}}</text>热力币</view>
         </block>
         <block wx:else>
           <view class='size cor'>走多多现赠送你

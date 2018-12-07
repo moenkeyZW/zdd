@@ -40,11 +40,15 @@
     </view>
     <view class='dis item'>
       <view class='round bom'></view>
-      <view class='detail mg' >兑换礼品前，请务必确认收货信息无误。如因地址或手机号码填写错误，导致无法收到礼品，将不补寄礼品；</view>
+      <view class='detail mg'>兑换礼品前，请务必确认收货信息无误。如因地址或手机号码填写错误，导致无法收到礼品，将不补寄礼品；</view>
     </view>
     <view class='dis item'>
       <view class='round bom'></view>
       <view class='detail mg'>兑换成功的礼品概不可退换货。</view>
+    </view>
+    <view class='dis item'>
+      <view class='round bom'></view>
+      <view class='detail mg'>为保障公平兑换环境，使用违规操作提升步数或热力币，走多多有权判定你的部分或所有兑换无效，并对你做出暂时或永久性的封禁；情节严重者将移交至有关行政机关给予行政处罚；违规操作包括但不限于用摇步器获取步数，使用外挂程序刷步数，刷热力币；</view>
     </view>
   </view>
   <view class='dis'>

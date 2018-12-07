@@ -8,15 +8,14 @@ Page({
    */
   data: {
     newUser: true,
-    newUserFail: true,
-    shouquan: true,
-    state: 1,
+    state: 0,
     openid: '',
     goods_id: '',
     goods: '',
     userInfo: '',
     hy_num: '',
     friend: '',
+    goods_num:'',
   },
 
   /**
@@ -58,6 +57,7 @@ Page({
       success: function(res) {
         console.log(res)
         that.setData({
+          goods_num: res.data.goods_num,
           state: res.data.state,
           userInfo: res.data.users,
           goods: res.data.goods,
@@ -68,6 +68,19 @@ Page({
     })
 
   },
+  fhindex:function(){
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+  },
+  goExchange:function(){
+    const that = this;
+    const goods_id = that.data.goods_id;
+    const dh = 100;
+    wx.navigateTo({
+      url: '/pages/oneDetail/index?id=' + goods_id + '&&dh=' + dh,
+    })
+  },
   goOnedetail: function() {
     const that = this;
     const goods_id = that.data.goods_id;
@@ -75,10 +88,10 @@ Page({
       url: '/pages/oneDetail/index?id=' + goods_id,
     })
   },
-  sportSQ: function () {
+  sportSQ: function() {
     var that = this;
     wx.getWeRunData({
-      complete: function () {
+      complete: function() {
         wx.switchTab({
           url: '/pages/index/index',
         })
@@ -94,10 +107,7 @@ Page({
       if (res) {
         wx.hideLoading();
         that.onShow();
-        that.setData({
-          shouquan: true,
-          shouIndex: false,
-        })
+        that.forFriend();
       }
     });
   },
@@ -113,9 +123,10 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
-        wx.switchTab({
-          url: '/pages/index/index',
+        that.setData({
+          newUser: true,
         })
+        that.sportSQ();
       }
     })
   },
@@ -132,42 +143,60 @@ Page({
           hy_openid: wx.getStorageSync('openid')
         },
         success: function(res) {
-          if (res.data.is_right == 1) {
+          if(res.data.is_right==1){
             that.setData({
               newUser: false,
             })
-          } else {
-            that.setData({
-              newUserFail: false,
-            })
+          }else{
+            that.sportSQS();
           }
         }
       })
-    } else {
-      that.setData({
-        shouquan: false,
-      })
+    }else{
+      that.authorizeNow();
     }
 
   },
-  hideHandle: function() {
-    const that = this;
-    that.setData({
-      newUser: true,
-      newUserFail: true,
+  sportSQS: function () {
+    var that = this;
+    wx.getWeRunData({
+      complete:function(){
+        that.onShow();
+      },
     })
   },
+  newUserLingqus: function () {
+    const that = this;
+    wx.request({
+      url: app.globalData.base_url + '/is_new',
+      data: {
+        openid: wx.getStorageSync('openid')
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          newUser: true,
+        })
+        that.sportSQS();
+      }
+    })
+  },
+
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
     const that = this;
     const openid = that.data.openid;
-    const nickname = wx.getStorageSync('nickname');
+    const photo = that.data.goods.share_img;
     const goods_id = that.data.goods.id;
+    const title = that.data.goods.title;
     return {
-      title: `${nickname}邀请你用步数免费换礼物，数量有限，先到先得！`,
-      imageUrl: '../../imgs/share.png',
+      title: `免费拿${title}，点击有份，速度来！`,
+      imageUrl: photo,
       path: '/pages/share/index?openid=' + openid + '&&goods_id=' + goods_id
     }
   }

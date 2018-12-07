@@ -1,0 +1,13 @@
+<!--pages/changeRecord/index.wxml-->
+<view class='container'>
+  <view class='body'>
+    <view wx:for='{{record}}' wx:key='{{index}}' class='detail {{index==record.length-1?"border":""}}'>
+      <view class='dis'>
+        <image src='{{item.avatarUrl}}' class='ava'></image>
+        <view class='name'>{{item.name}}</view>
+      </view>
+      <view class='time'>{{item.timeline}}</view>
+    </view>
+  </view>
+  <view class='foot'>已有{{goods_num}}人兑换</view>
+</view>

@@ -15,7 +15,7 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    if (app.globalData.scene === 1017) {
+    if (app.globalData.scene === 1035) {
       if (wx.getStorageSync('openid') && wx.getStorageSync('open_id')) {
         wx.showLoading({
           title: '正在获取中',

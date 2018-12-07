@@ -552,7 +552,7 @@ App({
     })
   },
   globalData: {
-    base_url: "https://www.mnancheng.com/admin/wechat02",
+    base_url: "https://www.mnancheng.com/admin/wechat",
     isOpenWXRun: null,
     wxRunData: null,
     userInfo: null,

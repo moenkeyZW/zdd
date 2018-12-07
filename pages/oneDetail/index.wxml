@@ -12,7 +12,7 @@
     <view class='diss' style='margin-left:30rpx;'>
       <view class='cors fonte'>{{goods.title}}</view>
       <block wx:if='{{record}}'>
-        <view class='exchanged' style='color:#47a7fe'>已有{{goods.dh_count}}人兑换</view>
+        <view class='exchanged' style='color:#47a7fe' bindtap='goChangeRecord'>已有{{goods.dh_count}}人兑换></view>
       </block>
       <block wx:else>
         <view class='exchanged'>暂无兑换</view>
@@ -24,38 +24,90 @@
           <image src='../../imgs/rlbSm.png' class='rb'></image>
           <text class='price blue fonte'>{{goods.rlb_price}}</text>
         </view>
+        <view class='blue fonte' style='padding:0 0 3rpx 10rpx'>+{{goods.yq_num}}
+          <text class='only hyzl'>好友助力</text>
+        </view>
         <view class='yprice color'>原价￥{{goods.price}}</view>
       </view>
       <view class='only color'>剩余{{goods.num}}件</view>
     </view>
   </view>
   <view class='postage hyzl'>
-    <image src='../../imgs/goindex.png' class='goindex' style='{{haveFriend?"":"bottom:30rpx;"}}' bindtap='goIndex'></image>
+    <image src='../../imgs/goindex.png' class='goindex {{button_state==3?"":"indexBotm"}}' bindtap='goIndex'></image>
     <view class='buju' style='justify-content:center; margin-top:30rpx;'>
       <image src='../../imgs/lfb.png' class='icon'></image>
       <view class='friend thrsix cors'>好友助力</view>
       <image src='../../imgs/rtb.png' class='icon'></image>
     </view>
     <view class='blue changeRule' bindtap='helpRule'>助力规则></view>
-    <view class='helpRule'>邀请60人即可一币领取></view>
-    <block wx:if='{{isHaveopenid}}'>
-      <button class='friendHelp primary' open-type='share' plain='true' hover-class='none'>邀请好友助力</button>
-    </block>
-    <block wx:else>
-      <button class='friendHelp primary' open-type='getUserInfo' plain='true' bindgetuserinfo='authorizeNow' hover-class='none'>邀请好友助力</button>
-    </block>
+    <view class='helpRule cors'>成功邀请{{goods.yq_num}}位好友即为完成助力</view>
     <block wx:if='{{haveFriend}}'>
       <view class='ready teight color'>已有{{readyNum}}位好友助力</view>
-      <view class='xian'></view>
-      <view class='buju' style='justify-content:center;margin-bottom:20rpx;'>
-        <label wx:for='{{haveFriend}}' wx:key='{{index}}' data-index='{{index}}'>
-          <image class='avatar' src='{{item.avatarurl}}'></image>
-        </label>
-      </view>
     </block>
     <block wx:else>
-      <view class='ready color teight' style='margin-bottom:36rpx;'>暂无好友助力</view>
+      <view class='ready color teight'>暂无好友助力</view>
     </block>
+    <view class='xian'></view>
+    <view class='buju' style='justify-content:center;margin-bottom:20rpx;'>
+      <block wx:if="{{haveFriend[0]}}">
+        <image class='avatar' src='{{haveFriend[0].avatarurl}}'></image>
+      </block>
+      <block wx:else>
+        <view class='avatar xuxian'></view>
+      </block>
+      <block wx:if="{{haveFriend[1]}}">
+        <image class='avatar' src='{{haveFriend[1].avatarurl}}'></image>
+      </block>
+      <block wx:elif="{{goods.yq_num<2}}"></block>
+      <block wx:else>
+        <view class='avatar xuxian'></view>
+      </block>
+      <block wx:if="{{haveFriend[2]}}">
+        <image class='avatar' src='{{haveFriend[2].avatarurl}}'></image>
+      </block>
+      <block wx:elif="{{goods.yq_num<3}}"></block>
+      <block wx:else>
+        <view class='avatar xuxian'></view>
+      </block>
+      <block wx:if="{{haveFriend[3]}}">
+        <image class='avatar' src='{{haveFriend[3].avatarurl}}'></image>
+      </block>
+      <block wx:elif="{{goods.yq_num<4}}"></block>
+      <block wx:else>
+        <view class='avatar xuxian'></view>
+      </block>
+      <block wx:if="{{haveFriend[4]}}">
+        <image class='avatar' src='{{haveFriend[4].avatarurl}}'></image>
+      </block>
+      <block wx:elif="{{goods.yq_num<5}}"></block>
+      <block wx:else>
+        <view class='avatar xuxian'></view>
+      </block>
+      <block wx:if="{{haveFriend[5]}}">
+        <image class='avatar' src='{{haveFriend[5].avatarurl}}'></image>
+      </block>
+      <block wx:elif="{{goods.yq_num<6}}"></block>
+      <block wx:else>
+        <view class='avatar xuxian'></view>
+      </block>
+      <block wx:if="{{haveFriend[6]}}">
+        <image class='avatar' src='{{haveFriend[6].avatarurl}}'></image>
+      </block>
+      <block wx:elif="{{goods.yq_num<7}}"></block>
+      <block wx:else>
+        <view class='avatar xuxian'></view>
+      </block>
+      <block wx:if="{{isHaveopenid}}">
+        <button class='avshare' plain='true' open-type='share'>
+          <image src='../../imgs/jiay.png' class='avatar'></image>
+        </button>
+      </block>
+      <block wx:else>
+        <button class='avshare' open-type='getUserInfo' plain='true' bindgetuserinfo="authorizeNow">
+          <image src='../../imgs/jiay.png' class='avatar'></image>
+        </button>
+      </block>
+    </view>
   </view>
 
   <view class='buju postage'>
@@ -96,7 +148,7 @@
           <text style='font-size:32rpx;'>{{my_currency}}</text> </view>
       </view>
       <view>
-        <button class='freeDhs textAlgin thrsix noEnough' open-type='share' plain='true' hover-class='none'>热力币不足</button>
+        <button class='freeDhs textAlgin thrsix primary' open-type='share' plain='true' hover-class='none'>热力币不足</button>
       </view>
     </view>
   </block>
@@ -146,75 +198,121 @@
       </view>
     </view>
   </block>
-  <view class='dikuang dialog {{addinfo_state==1?"animation":address==""?"smdi":"animation"}}' hidden='{{foot}}' catchtouchmove="ture">
-    <view class="masks" bindtap='hideHandle'></view>
-    <view class='header dialog textAlgin'>
-      <text class='line'></text>
-      <text class='center cors thrsix'>确认兑换商品</text>
-      <text class='line'></text>
-      <view class='kong'></view>
-    </view>
-    <view class='dis'>
-      <view>
-        <image src='{{goods.photo}}' class='img' lazy-load='true'></image>
+  <view class='dikuang dialog ' hidden='{{telephone}}' catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandle'></view>
+    <view class='conditions dialog smdi'>
+      <view class='header textAlgin'>
+        <text class='line'></text>
+        <text class='center cors thrsix'>确认兑换商品</text>
+        <text class='line'></text>
+        <view class='kong'></view>
       </view>
-      <view>
-        <view class='cors thrsix'>{{goods.title}}</view>
-        <view class='through color'>原价￥{{goods.price}}</view>
+      <view class='dis'>
         <view>
-          <image src='../../imgs/rlbSm.png' class='rb'></image>
-          <text class='price blue thrsix'>{{goods.rlb_price}}</text>
+          <image src='{{goods.photo}}' class='img' lazy-load='true'></image>
+        </view>
+        <view>
+          <view class='cors thrsix'>{{goods.title}}</view>
+          <view class='through color'>原价￥{{goods.price}}</view>
+          <view>
+            <image src='../../imgs/rlbSm.png' class='rb'></image>
+            <text class='price blue thrsix'>{{goods.rlb_price}}</text>
+          </view>
         </view>
       </view>
+      <view class='dhnum'>
+        <view class='diss' style='width:100%;'>
+          <view class='teight cors'>兑换数量</view>
+          <view class='teight cors'>x1</view>
+        </view>
+        <view class='diss' style='width:100%;'>
+          <view class='teight cors'>支出热力币</view>
+          <view class='teight cors'>{{goods.rlb_price}}</view>
+        </view>
+      </view>
+      <form bindsubmit='affirmPhone' report-submit='true'>
+        <view class='diss' style='margin-left:30rpx;'>
+          <view class='cors teight'>充值号码</view>
+          <view class='teight buju'>
+            <view class='xinghao'>*</view>
+            <input class='inputPhone teight cors' maxlength='11' value='{{phone}}' type='number' name='phone' placeholder='请输入充值号码' placeholder-class='inputHold'></input>
+          </view>
+        </view>
+        <button class='primary freeDh dialog textAlgin thrsix' hover-class='none' plain='true' form-type='submit' disabled='{{disableds}}'>立即兑换</button>
+      </form>
     </view>
-    <view class='dhnum'>
-      <view class='diss' style='width:100%;'>
-        <view class='teight cors'>兑换数量</view>
-        <view class='teight cors'>x1</view>
-      </view>
-      <view class='diss' style='width:100%;'>
-        <view class='teight cors'>支出热力币</view>
-        <view class='teight cors'>{{goods.rlb_price}}</view>
-      </view>
-    </view>
-    <view wx:if="{{addinfo_state==1}}">
-      <view class='mgs'>
-        <image src='../../imgs/name.png' class='icon left six'></image>
-        <text class='font cor pos'>{{addinfo.userName}}</text>
-        <image src='../../imgs/phone.png' class='icon long six'></image>
-        <text class='font cor pos'>{{addinfo.telNumber}}</text>
-      </view>
-      <view class='mgs'>
-        <image src='../../imgs/add.png' class='icon left six'></image>
-        <text class='font cor con pos'>{{addinfo.address}}</text>
-        <text class='font cor con new posi'>{{addinfo.detailInfo}}</text>
-        <text class='teight blue posi' bindtap='goAddress'>修改地址</text>
-      </view>
-    </view>
-    <view wx:elif="{{address}}">
-      <view class='mgs'>
-        <image src='../../imgs/name.png' class='icon left six'></image>
-        <text class='font cor pos'>{{address.userName}}</text>
-        <image src='../../imgs/phone.png' class='icon long six'></image>
-        <text class='font cor pos'>{{address.telNumber}}</text>
-      </view>
-      <view class='mgs'>
-        <image src='../../imgs/add.png' class='icon left six'></image>
-        <text class='font cor con pos'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}</text>
-        <text class='font cor con new posi'>{{address.detailInfo}}</text>
-        <text class='blue teight posi' bindtap='goAddress'>修改地址</text>
-      </view>
-    </view>
-    <view wx:else>
-      <view class='teight please choosed' bindtap='editAddress'>您还没有填写收货地址，
-        <text class='blue teight'>请点击获取</text>
-      </view>
-    </view>
-    <form bindsubmit='affirm' report-submit='true'>
-      <button class='primary freeDh dialog textAlgin thrsix' hover-class='none' plain='true' form-type='submit' disabled='{{disabled}}'>立即兑换</button>
-    </form>
   </view>
-  <view class="dialog" hidden="{{noEnough}}" catchtouchmove="ture">
+  <view class='dikuang dialog ' hidden='{{foot}}' catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandle'></view>
+    <view class='conditions dialog  {{addinfo_state==1?"animation":address==""?"smdi":"animation"}}'>
+      <view class='header textAlgin'>
+        <text class='line'></text>
+        <text class='center cors thrsix'>确认兑换商品</text>
+        <text class='line'></text>
+        <view class='kong'></view>
+      </view>
+      <view class='dis'>
+        <view>
+          <image src='{{goods.photo}}' class='img' lazy-load='true'></image>
+        </view>
+        <view>
+          <view class='cors thrsix'>{{goods.title}}</view>
+          <view class='through color'>原价￥{{goods.price}}</view>
+          <view>
+            <image src='../../imgs/rlbSm.png' class='rb'></image>
+            <text class='price blue thrsix'>{{goods.rlb_price}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='dhnum'>
+        <view class='diss' style='width:100%;'>
+          <view class='teight cors'>兑换数量</view>
+          <view class='teight cors'>x1</view>
+        </view>
+        <view class='diss' style='width:100%;'>
+          <view class='teight cors'>支出热力币</view>
+          <view class='teight cors'>{{goods.rlb_price}}</view>
+        </view>
+      </view>
+      <view wx:if="{{addinfo_state==1}}">
+        <view class='mgs'>
+          <image src='../../imgs/name.png' class='icon left six'></image>
+          <text class='font cor pos'>{{addinfo.userName}}</text>
+          <image src='../../imgs/phone.png' class='icon long six'></image>
+          <text class='font cor pos'>{{addinfo.telNumber}}</text>
+        </view>
+        <view class='mgs'>
+          <image src='../../imgs/add.png' class='icon left six'></image>
+          <text class='font cor con pos'>{{addinfo.address}}</text>
+          <text class='font cor con new posi'>{{addinfo.detailInfo}}</text>
+          <text class='teight blue posi' bindtap='goAddress'>修改地址</text>
+        </view>
+      </view>
+      <view wx:elif="{{address}}">
+        <view class='mgs'>
+          <image src='../../imgs/name.png' class='icon left six'></image>
+          <text class='font cor pos'>{{address.userName}}</text>
+          <image src='../../imgs/phone.png' class='icon long six'></image>
+          <text class='font cor pos'>{{address.telNumber}}</text>
+        </view>
+        <view class='mgs'>
+          <image src='../../imgs/add.png' class='icon left six'></image>
+          <text class='font cor con pos'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}</text>
+          <text class='font cor con new posi'>{{address.detailInfo}}</text>
+          <text class='blue teight posi' bindtap='goAddress'>修改地址</text>
+        </view>
+      </view>
+      <view wx:else>
+        <view class='teight please choosed' bindtap='editAddress'>您还没有填写收货地址，
+          <text class='blue teight'>请点击获取</text>
+        </view>
+      </view>
+      <form bindsubmit='affirm' report-submit='true'>
+        <button class='primary freeDh dialog textAlgin thrsix' hover-class='none' plain='true' form-type='submit' disabled='{{disabled}}'>立即兑换</button>
+      </form>
+    </view>
+  </view>
+  <!-- <view class="dialog" hidden="{{noEnough}}" catchtouchmove="ture">
     <view class="mask" bindtap='hideHandle'></view>
     <view class="condition">
       <view class='title'>
@@ -247,7 +345,7 @@
       </view>
     </view>
     <image src='../../imgs/delete.png' class='delete' bindtap='hideHandle'></image>
-  </view>
+  </view> -->
   <view class="dialog" hidden="{{rule}}" catchtouchmove="ture">
     <view class="mask" bindtap='hideHandle'></view>
     <view class="condition" style='top:43%'>
@@ -255,19 +353,31 @@
         <image src='../../imgs/title.png' class='title'></image>
         <view class='abs zlRule cors thrsix'>助力规则</view>
       </view>
-      <view style='min-height:310rpx;'>
+      <view style='min-height:410rpx;'>
         <view class='teight cors ruleDetail'>
-          <view class='ten'>1.多走些步数兑换热力币再来免费兑换商品吧！</view>
-          <view class='ten'> 2.再来免费兑换商品吧！ </view>
-          <view class='ten'> 3.多走些步数兑换热力币!</view>
-          <view class='ten'> 4.再来免费兑换商品吧！ </view>
+          <view class='disDia ten'>
+            <view style='width:472rpx;'>1、怎么完成助力？
+              <view class='color'>邀请相对应的好友助力，即为完成助力；</view>
+            </view>
+          </view>
+          <view class='disDia ten'>
+            <view style='width:472;'>2、老用户可以助力吗？
+              <view class='color'>暂不支持邀请老用户助力，即走多多老用户助力无效；
+              </view>
+            </view>
+          </view>
+          <view class='disDia ten'>
+            <view style='width:472;'>3、可以兑换几次
+              <view class='color'>每人每件产品有且仅有一次兑换机会，兑换完成后，无法再次兑换；</view>
+            </view>
+          </view>
         </view>
       </view>
       <image src='../../imgs/sx.png' class='abs sx' bindtap='hideHandle'></image>
     </view>
   </view>
   <view class="dialog" hidden="{{newUser}}" catchtouchmove="ture">
-    <view class="mask" bindtap='newUserLingqu'></view>
+    <view class="mask" bindtap='newUserLingqus'></view>
     <view class="condition bgnone" style='top:45%'>
       <image src='../../imgs/newuser.png' class='newuser relati'></image>
       <view class='useDetail'>

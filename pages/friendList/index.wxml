@@ -1,0 +1,26 @@
+<!--pages/friendList/index.wxml-->
+<view class='container'>
+  <view class='friendList'>
+    <view class='dis' wx:for="{{friendList}}" wx:key="{{index}}">
+      <view>
+        <view class='xian'></view>
+        <view class='round'></view>
+        <view class='xian'></view>
+      </view>
+      <view class='dis intro {{index===friendList.length-1?"lastOne":""}}'>
+        <image src='{{item.avatarurl}}' lazy-load='true' class='avatar'></image>
+        <view class='nickname'>{{item.nickname}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='noMore dialog'>
+    <text class='line'></text>
+    <block wx:if='{{noMore}}'>
+      <text class='none'>下拉加载更多</text>
+    </block>
+    <block wx:else>
+      <text class='none'>没有更多了</text>
+    </block>
+    <text class='line'></text>
+  </view>
+</view>

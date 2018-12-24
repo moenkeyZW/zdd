@@ -15,11 +15,11 @@
 
 .headTit {
   font-size: 32rpx;
-  margin: 30rpx 0;
+  margin-top:30rpx;
 }
 .change{
   width:240rpx;
-  margin:26rpx 0 30rpx 85rpx;
+  margin:0;
 }
 .item {
   width: calc(100% - 60rpx);
@@ -30,40 +30,10 @@
   margin: 10rpx 0;
 }
 
-.yuan {
-  width: 17rpx;
-  height: 17rpx;
-  background: #47A7FE;
-  border: 3rpx solid rgba(255, 255, 255, 1);
-  box-shadow: 0rpx 4rpx 6rpx 0px rgba(71, 167, 254, 0.4);
-  border-radius: 50%;
-  position: relative;
-  bottom:11rpx;
-  left:22rpx;
-}
-.two{
-  margin-right:103rpx;
-}
 .details{
   margin:46rpx 0 60rpx 0;
 }
 
-.dian {
-  font-size: 24rpx;
-  color: #47a7fe;
-  position: relative;
-  right:18rpx;
-}
-.hui{
-  width:20rpx;
-  height:20rpx;
-  background:#E6E6E6;
-  border:none;
-  box-shadow: none;
-}
-.mgr{
-  margin-right:28rpx;
-}
 .noMore{
   font-size:36rpx;
   color:#333;
@@ -94,4 +64,15 @@
 .start{
   color:#999;
   margin-bottom:20rpx;
+}
+.font{
+  color:#666;
+  font-size:24rpx;
+}
+.num{
+  font-size:32rpx;
+  color:#47A7FE;
+}
+.distance{
+  margin:50rpx 0 12rpx 0;
 }

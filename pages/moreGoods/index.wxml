@@ -10,7 +10,7 @@
             <image src='../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
             <text class='price wenzi relati'>{{item.rlb_price}}</text>
           </view>
-          <view class='yprice'>原价￥{{item.price}}</view>
+          <view class='yprice decoration'>兑换人数:{{item.dh_num}}</view>
         </view>
       </view>
     </block>

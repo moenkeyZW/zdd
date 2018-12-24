@@ -1,6 +1,5 @@
 .primary {
   color: #333;
-  font-size:36rpx;
   background:linear-gradient(to bottom, #FFED66, #FCE84C);
   font-weight: bold;
 }

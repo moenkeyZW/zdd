@@ -93,14 +93,10 @@ Page({
    */
   onShareAppMessage: function (res) {
     var openid = wx.getStorageSync('openid')
-    var nickname = wx.getStorageSync('nickname')
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-    }
     return {
-      title: `${nickname}邀请你用步数免费换礼物，数量有限！先到先得！`,
+      title: '步数换好礼，我正在用步数免费领礼品，你也快来！',
       imageUrl: '../../imgs/share.png',
-      path: '/pages/index/index?openid=' + openid
+      path: '/pages/index/index?openid=' + openid + '&&jx=55'
     }
   },
 })

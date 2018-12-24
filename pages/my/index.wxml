@@ -4,57 +4,94 @@
     <image src='../../imgs/myBg.png' class='myBg'></image>
     <open-data type="userAvatarUrl" class='ava abs'></open-data>
     <open-data type="userNickName" class='nickname abs'></open-data>
-    <view class='addUp abs' bindtap='gotoFriend'>本周累计签到{{days}}天</view>
-    <view class='addUp abs' style='bottom:50rpx;font-weight:bold' bindtap='gotoFriend'>已邀请{{yq_num}}人</view>
+  </view>
+  <view class='temp abs'>
+    <view style='margin-left:20rpx;'>
+      <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="gotoFriend">
+        <view class='relati tops  size threeSix'>
+          <text class='nums'>{{yq_num}}</text>人</view>
+        <view class='threeSix size relati seat'>我的好友</view>
+      </button>
+    </view>
+    <view class='jbx'></view>
+    <view>
+      <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="hotMoney">
+        <view class='nums relati tops' style='font-size:60rpx;'>{{money}}</view>
+        <view class='threeSix size relati' style='bottom:40rpx;'>当前热力币</view>
+      </button>
+    </view>
+    <view class='jbx'></view>
+    <view style='margin-right:20rpx;'>
+      <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="assistance">
+        <view class='relati tops size threeSix'>
+          <text class='nums'>{{order_num}}</text>件</view>
+        <view class='threeSix size relati seat'>助力订单</view>
+      </button>
+    </view>
+  </view>
+  <view class='daohang' bindtap='gotoXr'>
+    <view class='thf cor mf'>你有<text class='blue' style='font-weigth:bold;'>{{xr_goods}}</text>件新人礼品还未领取，邀请新人</view>
+    <view style='margin-right:30rpx;' >
+      <text class='price tf' style='padding-right:10rpx;font-weigth:bold;'>立即领取</text>
+      <image src='../../imgs/daohang.png' class='dh'></image>
+    </view>
   </view>
   <view class='manage'>
-    <view class='temp'>
-      <view style='margin-left:20rpx;'>
-        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="assistance">
-          <image src='../../imgs/myzl.png' class='icon'></image>
-          <view class='font seat'>助力订单</view>
-        </button>
-      </view>
-      <view class='xian'></view>
-      <view>
-        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="order">
-          <image src='../../imgs/order.png' class='icon'></image>
-          <view class='font seat'>订单管理</view>
-        </button>
-      </view>
-      <view class='xian'></view>
-      <view>
-        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="hotMoney">
-          <image src='../../imgs/rlb.png' class='icon'></image>
-          <view class='font seat'>热力币</view>
-        </button>
-      </view>
-      <view class='xian'></view>
-      <view style='margin-right:20rpx;'>
-        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="analysis">
-          <image src='../../imgs/health.png' class='icon'></image>
-          <view class='font seat'>健康测评</view>
-        </button>
-      </view>
-    </view>
     <view class='content'>
-      <view class='dis'>
-        <image class='icsm' src='../../imgs/addBig.png'></image>
-        <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="address">
-          <view class='font wid '>地址管理</view>
-        </button>
-        <image src='../../imgs/arrow.png' class='arrow'></image>
-      </view>
-      <view class='dis'>
-        <image class='icsm' src='../../imgs/rule.png'></image>
-        <view class='font wid' catchtap='rule'>规则说明</view>
-        <image src='../../imgs/arrow.png' class='arrow'></image>
-      </view>
-      <view class='dis'>
-        <image class='icsm' src='../../imgs/set.png'></image>
-        <view class='font wid border' catchtap='setting'>设置</view>
-        <image src='../../imgs/arrow.png' class='arrow'></image>
-      </view>
+      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="order">
+        <view class='dis border'>
+          <view class='week'>
+            <image class='icsm' src='../../imgs/myOrder.png'></image>
+            <view class='size cor  wid'>订单管理</view>
+          </view>
+          <image src='../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </button>
+      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="address">
+        <view class='dis border'>
+          <view class='week'>
+            <image class='icsm' src='../../imgs/addBig.png'></image>
+            <view class='size cor  wid'>地址管理</view>
+          </view>
+          <image src='../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </button>
+      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="analysis">
+        <view class='dis border'>
+          <view class='week'>
+            <image class='icsm' src='../../imgs/myJkcp.png'></image>
+            <view class='size cor  wid'>健康测评</view>
+          </view>
+          <image src='../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </button>
+      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="rule">
+        <view class='dis border'>
+          <view class='week'>
+            <image class='icsm' src='../../imgs/rule.png'></image>
+            <view class='size cor  wid'>规则说明</view>
+          </view>
+          <image src='../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </button>
+      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="setting">
+        <view class='dis border'>
+          <view class='week'>
+            <image class='icsm' src='../../imgs/set.png'></image>
+            <view class='size cor  wid'>设置</view>
+          </view>
+          <image src='../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </button>
+      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="suggest">
+        <view class='dis'>
+          <view class='week'>
+            <image class='icsm' src='../../imgs/myYjfk.png'></image>
+            <view class='size cor  wid'>意见反馈</view>
+          </view>
+          <image src='../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </button>
     </view>
   </view>
   <view class="dialog" hidden="{{perMessage}}" catchtouchmove="ture">
@@ -153,28 +190,6 @@
     </view>
     <image src='../../imgs/delete.png' class='delete jkcps' bindtap='hideHandle'></image>
   </view>
-  <view class="dialog" hidden="{{newUser}}" catchtouchmove="ture">
-    <view class="mask" bindtap='newUserLingqus'></view>
-    <view class="condition bgnone" style='top:45%'>
-      <image src='../../imgs/newuser.png' class='newuser relati'></image>
-      <view class='useDetail'>
-        <view class='sqcg cor'>授权成功</view>
-        <block wx:if='{{is_new}}'>
-          <view class='size cor'>你有
-            <text class='special relati'>{{money}}</text>热力币</view>
-        </block>
-        <block wx:else>
-          <view class='size cor'>走多多现赠送你
-            <text class='special relati'>5</text> 热力币
-          </view>
-        </block>
-        <view class='size cor'>可免费领取
-          <text class='special relati'>{{goods_num}}</text> 件礼品
-        </view>
-        <view class='btnYq cor ljlq' bindtap='newUserLingqu'>立即领取</view>
-        <view class='useFoot'>每日运动步数可兑换更多热力币</view>
-      </view>
-    </view>
-  </view>
+
   <!-- <ad unit-id="adunit-de8f5735f3bc5f4e" class='ad'></ad> -->
 </view>

@@ -10,7 +10,7 @@
       <view class='round'></view>
       <view class='tit'>步数兑换</view>
     </view>
-    <view class='step'>每5000步可兑换1个热力币；步数低于1000，不可兑换；每日上限2万步；</view>
+    <view class='step'>每5000步可兑换1个热力币；步数低于50，不可兑换；每日上限2万步；</view>
     <view class='dis'>
       <view class='round'></view>
       <view class='tit mgs'>邀请好友</view>
@@ -32,7 +32,7 @@
     <image class='head' src='../../imgs/three.png'></image>
     <view class='dis item'>
       <view class='round bom'></view>
-      <view class='detail mg'>每件礼品每人有且只有一次兑换机会，兑换成功后，三个工作日内发货（节假日顺延）；</view>
+      <view class='detail mg'>新人专区每人仅且只有一次兑换机会，邀请专区和精选专区可多次兑换，兑换成功后，三个工作日内发货（节假日顺延）；</view>
     </view>
     <view class='dis item'>
       <view class='round bom'></view>

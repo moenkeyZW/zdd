@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    curIndex: 0,
     openid: '',
     foot: true,
     goods_id: '',
@@ -21,8 +22,6 @@ Page({
     content: '',
     my_currency:'',
     is_new: '',
-    goods_num: '',
-    newUser:true,
   },
 
   /**
@@ -54,7 +53,7 @@ Page({
       })
     }
     wx.request({
-      url: app.globalData.base_url + '/free_goods_detail',
+      url: app.globalData.base_url + '/jx_goods_detail03',
       data: {
         goods_id: goods_id,
         openid: openid
@@ -67,9 +66,7 @@ Page({
         console.log(res)
         that.setData({
           is_new: res.data.is_new,
-          goods_num: res.data.goods_num,
           addinfo_state: res.data.addinfo_state,
-          record: res.data.record,
           goods: res.data.goods,
           content: res.data.content,
           button_state: res.data.button_state,
@@ -83,83 +80,43 @@ Page({
       }
     })
   },
+  tabHandle: function (e) {
+    const that = this
+    var goods_id = that.data.goods_id;
+    const index = e.target.dataset.index
+    if (that.data.curIndex === index) return
+    that.setData({
+      curIndex: index,
+    }, () => {
+      if (index === 0) {
+
+      } else {
+        //请求第一页体重记录
+        wx.request({
+          url: app.globalData.base_url + '/goods_dh_list03',
+          data: {
+            goods_id: goods_id,
+          },
+          method: 'GET',
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            console.log(res)
+            that.setData({
+              record: res.data.record
+            })
+          }
+        })
+      }
+    })
+  },
   goChangeRecord:function(){
     const that=this;
     const goods_id=that.data.goods.id;
     wx.navigateTo({
       url: '/pages/changeRecord/index?goods_id='+goods_id,
     })
-  },
-  sportSQS: function () {
-    var that = this;
-    wx.getWeRunData({
-      complete: function () {
-        that.onShow();
-      },
-    })
-  },
-  sportSQ: function () {
-    var that = this;
-    wx.getWeRunData({
-      complete: function () {
-        wx.switchTab({
-          url: '/pages/index/index',
-        })
-      },
-    })
-  },
-  newUserLingqus: function () {
-    const that = this;
-    wx.request({
-      url: app.globalData.base_url + '/is_new',
-      data: {
-        openid: wx.getStorageSync('openid')
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          newUser: true,
-        })
-        that.sportSQS();
-      }
-    })
-  },
-  newUserLingqu: function () {
-    const that = this;
-    wx.request({
-      url: app.globalData.base_url + '/is_new',
-      data: {
-        openid: wx.getStorageSync('openid')
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          newUser: true,
-        })
-        that.sportSQ();
-      }
-    })
-  },
-  authorizeNow: function (e) {
-    const that = this;
-    app.onLogin(function (res) {
-      wx.showLoading({
-        title: '授权中',
-      })
-      if (res) {
-        wx.hideLoading();
-        that.onShow();
-        that.setData({
-          newUser: false,
-        })
-      }
-    });
   },
 
   freExchange: function(e) {
@@ -185,9 +142,6 @@ Page({
         if (res) {
           wx.hideLoading();
           that.onShow();
-          that.setData({
-            newUser: false,
-          })
         }
       });
     }
@@ -342,13 +296,13 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
+    const that=this;
     var openid = wx.getStorageSync('openid')
-    var nickname = wx.getStorageSync('nickname')
-
+    var goods_id = that.data.goods.id;
     return {
-      title: `${nickname}邀请你用步数免费换礼物，数量有限，先到先得！`,
+      title: '步数换好礼，我正在用步数免费领礼品，你也快来！',
       imageUrl: '../../imgs/share.png',
-      path: '/pages/index/index?openid=' + openid
+      path: '/pages/index/index?openid=' + openid + '&&goods_id=' + goods_id + '&&jx=55'
     }
   },
 })

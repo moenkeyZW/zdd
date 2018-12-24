@@ -19,7 +19,7 @@ Page({
   onLoad: function (options) {
     const that=this;
     wx.request({
-      url: app.globalData.base_url + '/zl_goods_list',
+      url: app.globalData.base_url + '/jx_goods_list03',
       data: {
         page: 1,
       },
@@ -46,7 +46,7 @@ Page({
   onDetail: function (e) {
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/oneDetail/index?id=' + id,
+      url: '/pages/detail/index?id=' + id,
     })
   },
   // 上拉触底事件，请求记录数据
@@ -58,7 +58,7 @@ Page({
       page++;
       that.data.page = page
       wx.request({
-        url: app.globalData.base_url + '/zl_goods_list',
+        url: app.globalData.base_url + '/jx_goods_list03',
         data: {
           page: page,
         },
@@ -71,16 +71,8 @@ Page({
           that.setData({
             zl_goods: that.data.zl_goods,
             haveMore: res.data.more,
+            noMore: res.data.more
           })
-          if (res.data.more) {
-            that.setData({
-              noMore: true,
-            })
-          } else {
-            that.setData({
-              noMore: false,
-            })
-          }
         }
       })
     }

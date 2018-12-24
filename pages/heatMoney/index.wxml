@@ -4,13 +4,13 @@
     <image src='../../imgs/rlbBg.png' class='rlbBg'></image>
     <view class='dis current'>
       <view class='flex'>
-        <view class='tit'>当前热力币</view>
-        <view class='num'>{{total_currency}}</view>
+        <view class='tit'>今日获得热力币</view>
+        <view class='num'>{{today_currency}}</view>
       </view>
       <view class='xian'></view>
       <view class='flex'>
-        <view class='tit'>今日获得热力币</view>
-        <view class='num'>{{today_currency}}</view>
+        <view class='tit'>总热力币</view>
+        <view class='num'>{{total_currency}}</view>
       </view>
     </view>
   </view>

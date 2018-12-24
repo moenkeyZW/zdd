@@ -19,7 +19,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    days: 0,
     perMessage: true,
     genderArray: ['男', '女'],
     ageArr: ageArr,
@@ -27,9 +26,9 @@ Page({
     weightArr: weightArr,
     yq_num:0,
     is_new:'',
-    goods_num:'',
-    money:'',
-    newUser: true,
+    order_num:0,
+    money:0,
+    xr_goods:'',
   },
 
   /**
@@ -57,7 +56,7 @@ Page({
       var openids = 0;
     }
     wx.request({
-      url: app.globalData.base_url + '/my',
+      url: app.globalData.base_url + '/my03',
       data: {
         openid: openids
       },
@@ -69,71 +68,16 @@ Page({
         console.log(res)
         that.setData({
           is_new: res.data.is_new,
-          goods_num: res.data.goods_num,
+          order_num: res.data.help_order,
           money: res.data.my_currency,
-          days: res.data.sign_days,
-          yq_num: res.data.yq_num,
+          xr_goods: res.data.xr_goods,
+          yq_num: res.data.friends_num,
         })
       }
     })
 
   },
-  sportSQ: function () {
-    var that = this;
-    wx.getWeRunData({
-      complete: function () {
-        wx.switchTab({
-          url: '/pages/index/index',
-        })
-      },
-    })
-  },
-  sportSQS: function () {
-    var that = this;
-    wx.getWeRunData({
-      complete: function () {
-        that.onShow();
-      },
-    })
-  },
-  newUserLingqus: function () {
-    const that = this;
-    wx.request({
-      url: app.globalData.base_url + '/is_new',
-      data: {
-        openid: wx.getStorageSync('openid')
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          newUser: true,
-        })
-        that.sportSQS();
-      }
-    })
-  },
-  newUserLingqu: function () {
-    const that = this;
-    wx.request({
-      url: app.globalData.base_url + '/is_new',
-      data: {
-        openid: wx.getStorageSync('openid')
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          newUser: true,
-        })
-        that.sportSQ();
-      }
-    })
-  },
+
   order: function(e) {
     var that=this;
     if (wx.getStorageSync('openid') && wx.getStorageSync('open_id')) {
@@ -148,9 +92,6 @@ Page({
         if (res) {
           wx.hideLoading();
           that.onShow();
-          that.setData({
-            newUser: false,
-          })
         }
       });
     }
@@ -158,6 +99,11 @@ Page({
   gotoFriend:function(){
     wx.navigateTo({
       url: '/pages/friendList/index',
+    })
+  },
+  gotoXr:function(){
+    wx.navigateTo({
+      url: '/pages/xrGoods/index',
     })
   },
   hotMoney: function(e) {
@@ -174,9 +120,6 @@ Page({
         if (res) {
           wx.hideLoading();
           that.onShow();
-          that.setData({
-            newUser: false,
-          })
         }
       });
     }
@@ -195,9 +138,6 @@ Page({
         if (res) {
           wx.hideLoading();
           that.onShow();
-          that.setData({
-            newUser: false,
-          })
         }
       });
     }
@@ -235,9 +175,6 @@ Page({
         if (res) {
           wx.hideLoading();
           that.onShow();
-          that.setData({
-            newUser: false,
-          })
         }
       });
     }
@@ -355,9 +292,6 @@ Page({
         if (res) {
           wx.hideLoading();
           that.onShow();
-          that.setData({
-            newUser: false,
-          })
         }
       });
     }
@@ -390,6 +324,11 @@ Page({
   setting: function() {
     wx.navigateTo({
       url: '/pages/set/index',
+    })
+  },
+  suggest:function(){
+    wx.navigateTo({
+      url: '/pages/suggest/index',
     })
   },
 })

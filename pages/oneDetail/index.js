@@ -11,8 +11,8 @@ Page({
     openid: '',
     haveFriend: false,
     foot: true,
-    telephone:true,
-    rule: true,
+    telephone: true,
+    // rule: true,
     goods_id: '',
     button_state: 3,
     addinfo_state: '',
@@ -20,18 +20,19 @@ Page({
     addinfo: '',
     isHaveopenid: '',
     disabled: false,
-    disableds:false,
+    disableds: false,
     record: '',
     address: '',
     content: '',
     my_currency: '',
-    needNum:'',
-    readyNum:'',
-    is_new:'',
-    goods_num:'',
-    newUser:true,
-    dh:'',
-    dummy:[0,1,2,3,4,5,6],
+    needNum: '',
+    readyNum: '',
+    is_new: '',
+    dh: '',
+    goods_help: '',
+    timeline: '00:00:00',
+    timer: '', //定时器名字
+    second:'',
   },
 
   /**
@@ -42,9 +43,9 @@ Page({
     that.setData({
       goods_id: options.id
     })
-    if(options.dh){
+    if (options.dh) {
       that.setData({
-        dh:options.dh,
+        dh: options.dh,
       })
     }
   },
@@ -68,7 +69,7 @@ Page({
       })
     }
     wx.request({
-      url: app.globalData.base_url + '/zl_goods_detail',
+      url: app.globalData.base_url + '/zl_goods_detail03',
       data: {
         goods_id: goods_id,
         openid: openid
@@ -80,106 +81,106 @@ Page({
       success: function(res) {
         console.log(res)
         that.setData({
-          is_new:res.data.is_new,
-          goods_num:res.data.goods_num,
+          goods_help: res.data.goods_help,
+          is_new: res.data.is_new,
           addinfo_state: res.data.addinfo_state,
-          record: res.data.record,
           goods: res.data.goods,
           needNum: res.data.number2,
-          readyNum:res.data.number1,
+          readyNum: res.data.number1,
           haveFriend: res.data.friends,
           content: res.data.content,
           button_state: res.data.button_state,
           my_currency: res.data.my_currency,
         })
-        if (that.data.dh && res.data.button_state != 2 && res.data.goods.type == 3){
+        if (that.data.dh && res.data.button_state != 2 && res.data.goods.type == 3) {
           that.setData({
-            telephone:false,
+            telephone: false,
           })
-        } else if (that.data.dh && res.data.button_state != 2){
+        } else if (that.data.dh && res.data.button_state != 2) {
           that.setData({
-            foot :false,
+            foot: false,
           })
+        }
+        if (res.data.goods_help) {
+          that.countDown();
         }
         if (res.data.addinfo_state == 1) {
           that.setData({
             addinfo: res.data.addinfo,
           })
         }
+      }
+    })
+  },
+ 
+  countDown: function() {
+    const that = this;
+    var timenow = Number(that.data.goods_help.timeline)+ 24 * 60 * 60;
+    let second = timenow - (Date.parse(new Date()) / 1000) ; //获取倒计时初始值
+    that.setData({
+      timer: setInterval(function() {
+        second--;
+        // 小时位   
+        var hr = Math.floor(second / 3600);
+        var hrStr = hr.toString();
+        if (hrStr.length == 1) hrStr = '0' + hrStr;
+        // 分钟位  
+        var min = Math.floor(second / 60 % 60);
+        var minStr = min.toString();
+        if (minStr.length == 1) minStr = '0' + minStr;
+        // 秒位  
+        var sec = Math.floor(second % 60);
+        var secStr = sec.toString();
+        if (secStr.length == 1) secStr = '0' + secStr;
 
-      }
-    })
-  },
-  sportSQS: function () {
-    var that = this;
-    wx.getWeRunData({
-      complete: function () {
-        that.onShow();
-      },
-    })
-  },
-  sportSQ: function () {
-    var that = this;
-    wx.getWeRunData({
-      complete: function () {
-        wx.switchTab({
-          url: '/pages/index/index',
-        })
-      },
-    })
-  },
-  newUserLingqus: function () {
-    const that = this;
-    wx.request({
-      url: app.globalData.base_url + '/is_new',
-      data: {
-        openid: wx.getStorageSync('openid')
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
+        var timeline = hrStr + ":" + minStr + ":" + secStr;
         that.setData({
-          newUser: true,
+          timeline: timeline
         })
-        that.sportSQS();
-      }
+        if (second <= 0) {
+          //这里特别要注意，计时器是始终一直在走的，如果你的时间为0，那么就要关掉定时器！不然相当耗性能
+          //因为timer是存在data里面的，所以在关掉时，也要在data里取出后再关闭
+          clearInterval(that.data.timer);
+        }
+      }, 1000)
     })
   },
-  newUserLingqu: function () {
-    const that = this;
-    wx.request({
-      url: app.globalData.base_url + '/is_new',
-      data: {
-        openid: wx.getStorageSync('openid')
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          newUser: true,
+  onHide: function() {
+    clearInterval(this.data.timer);
+  },
+  onUnload:function(){
+    clearInterval(this.data.timer);
+  },
+  tabHandle: function (e) {
+    const that = this
+    var goods_id = that.data.goods_id;
+    const index = e.target.dataset.index
+    if (that.data.curIndex === index) return
+    that.setData({
+      curIndex: index,
+    }, () => {
+      if (index === 0) {
+
+      } else {
+        //请求第一页体重记录
+        wx.request({
+          url: app.globalData.base_url + '/goods_dh_list03',
+          data: {
+            goods_id: goods_id,
+          },
+          method: 'GET',
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            console.log(res)
+            that.setData({
+              record: res.data.record
+            })
+          }
         })
-        that.sportSQ();
       }
     })
-  },
-  authorizeNow: function(e) {
-    const that = this;
-    app.onLogin(function (res) {
-      wx.showLoading({
-        title: '授权中',
-      })
-      if (res) {
-        wx.hideLoading();
-        that.onShow();
-        that.setData({
-          newUser: false,
-        })
-      }
-    });
   },
   freExchange: function(e) {
     var that = this;
@@ -191,26 +192,23 @@ Page({
           showCancel: false
         })
         return
-      } else if (that.data.goods.type==3){
+      } else if (that.data.goods.type == 3) {
         that.setData({
           telephone: false,
         })
-      } else{
+      } else {
         that.setData({
           foot: false,
         })
       }
     } else {
-      app.onLogin(function (res) {
+      app.onLogin(function(res) {
         wx.showLoading({
           title: '授权中',
         })
         if (res) {
           wx.hideLoading();
           that.onShow();
-          that.setData({
-            newUser: false,
-          })
         }
       });
     }
@@ -245,13 +243,13 @@ Page({
       })
     }
   },
-  goIndex:function(){
+  goIndex: function() {
     wx.switchTab({
       url: '/pages/index/index',
     })
   },
-  goChangeRecord: function () {
-    const that=this;
+  goChangeRecord: function() {
+    const that = this;
     const goods_id = that.data.goods.id;
     wx.navigateTo({
       url: '/pages/changeRecord/index?goods_id=' + goods_id,
@@ -299,11 +297,11 @@ Page({
     })
   },
 
-  affirmPhone:function(e){
-    const that=this;
+  affirmPhone: function(e) {
+    const that = this;
     var form_id = e.detail.formId;
     var goods_id = that.data.goods_id;
-    var phone=e.detail.value.phone;
+    var phone = e.detail.value.phone;
     if (phone.length !== 11) {
       wx.showModal({
         title: '提示',
@@ -321,11 +319,11 @@ Page({
       })
       return;
     }
-    if(phone){
+    if (phone) {
       wx.showModal({
         title: '确认充值',
         content: '若电话号码填写有误，导致充值失败，将不再重新充值！确认充值？',
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) {
             that.setData({
               disableds: true,
@@ -342,7 +340,7 @@ Page({
               header: {
                 'content-type': 'application/json'
               },
-              success: function (res) {
+              success: function(res) {
                 const orderId = res.data.order_id;
                 wx.redirectTo({
                   url: '/pages/success/index?orderId=' + orderId + '&&num=10086',
@@ -360,7 +358,7 @@ Page({
         title: '提示',
         content: '电话号码未填写',
         showCancel: false,
-        success: function (res) { }
+        success: function(res) {}
       })
     }
   },
@@ -432,39 +430,38 @@ Page({
   hideHandle: function() {
     this.setData({
       foot: true,
-      rule: true,
-      telephone:true,
+      // rule: true,
+      telephone: true,
     })
   },
-  helpRule: function() {
-    this.setData({
-      rule: false,
-    })
-  },
+  // helpRule: function() {
+  //   this.setData({
+  //     rule: false,
+  //   })
+  // },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
-    const that=this;
+    const that = this;
     const openid = wx.getStorageSync('openid')
-    const photo=that.data.goods.share_img;
-    const goods_id=that.data.goods.id;
-    const title=that.data.goods.title;
+    const photo = that.data.goods.photo;
+    const goods_id = that.data.goods.id;
+    const title = that.data.goods.title;
     if (res.from === 'button') {
       wx.request({
-        url: app.globalData.base_url + '/zl_ask',
+        url: app.globalData.base_url + '/zl_ask03',
         data: {
           goods_id: goods_id,
           openid: openid
         },
-        success: function(res) {
-        }
+        success: function(res) {}
       })
-    } 
+    }
     return {
-      title: `免费拿${title}，点击有份，速度来！`,
+      title: '我正在用步数免费换礼品，就差你的一臂之力了！',
       imageUrl: photo,
-      path: '/pages/share/index?openid=' + openid+'&&goods_id='+goods_id
+      path: '/pages/index/index?openid=' + openid + '&&goods_id=' + goods_id+'&&zl=66'
     }
   },
 })

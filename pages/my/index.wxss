@@ -3,31 +3,37 @@
 
 .headers {
   width: 100%;
-  height: 342rpx;
   position: relative;
+  height:230rpx;
+  z-index:10;
 }
 
 .myBg {
   width: 750rpx;
-  height: 342rpx;
+  height: 230rpx;
 }
 
 .ava {
-  width: 120rpx;
-  height: 120rpx;
+  width: 104rpx;
+  height: 104rpx;
   border-radius: 50%;
   border: 8rpx solid #fff;
   overflow: hidden;
-  top: 70rpx;
+  top: 80rpx;
 }
 
 .nickname {
-  top: 170rpx;
-  color: #fff;
+  top: 174rpx;
+  color: #000;
   font-size: 36rpx;
   font-weight: bold;
 }
-
+.nums{
+  font-weight: bold;
+  color:#FFB247;
+  font-size:48rpx;
+  padding-right:4rpx;
+}
 .addUp {
   color: #fff;
   font-size: 28rpx;
@@ -35,26 +41,29 @@
 }
 
 .manage {
-  width: 100%;
-  height: 478rpx;
+  width: calc(100% - 60rpx);
+  min-height: 580rpx;
   background: #fff;
   box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+  margin-top:24rpx;
+  border-radius: 10rpx;
 }
 
 .temp {
   width: calc(100% - 60rpx);
-  height: 138rpx;
-  margin-left: 30rpx;
+  height: 162rpx;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
   box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
-  position: relative;
-  bottom: 50rpx;
+  top: 288rpx;
   background: #fff;
 }
-
+.tops{
+  top:10rpx;
+}
 .icon {
   width: 60rpx;
   height: 60rpx;
@@ -63,23 +72,35 @@
   padding: 0;
 }
 
-.xian {
+.jbx {
   width: 2rpx;
-  height: 60rpx;
-  background: #e6e6e6;
-  margin: 0;
+  height: 84rpx;
+  background:linear-gradient(to bottom,rgba(228,230,237,0),rgba(228,230,237,1),rgba(228,230,237,0));
 }
-
-.font {
-  color: #333;
-  font-size: 28rpx;
+.daohang{
+  width:calc(100% - 60rpx);
+  height:60rpx;
+  line-height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:#FFEA4C;
+  opacity: 0.8;
+  box-shadow:0px 6rpx 10rpx 0px rgba(71,167,254,0.1);
+  border-radius: 30rpx;
+  margin-top:166rpx;
 }
-
 .seat {
-  position: relative;
-  bottom: 12rpx;
+  bottom: 28rpx;
 }
-
+.dh{
+  width:10rpx;
+  height:16rpx;
+}
+.huode{
+  color:#47A7FE;
+  font-size:24rpx;
+}
 .btn[plain] {
   border: none;
   border-radius: 0;
@@ -90,20 +111,12 @@
 .arrow {
   width: 36rpx;
   height: 36rpx;
-  margin-right: 24rpx;
 }
 
 .icsm {
   width: 48rpx;
   height: 48rpx;
-  margin-left: 30rpx;
 }
-
-.content {
-  position: relative;
-  bottom: 20rpx;
-}
-
 .dis {
   display: flex;
   align-items: center;
@@ -111,9 +124,8 @@
 }
 
 .wid {
-  border-top: 1rpx solid #e6e8f0;
-  width: 606rpx;
-  padding: 36rpx 0 36rpx 20rpx;
+  text-align: left;
+  padding: 30rpx 0 30rpx 20rpx;
 }
 
 .border {
@@ -121,12 +133,14 @@
 }
 
 .btnAdd {
-  text-align: left;
-  height: 108rpx;
+  text-align: left !important;
   line-height: 35rpx;
 }
 
 .ad {
   zoom: 0.92;
   margin-top:36rpx;
+}
+.content{
+  margin:0 30rpx;
 }

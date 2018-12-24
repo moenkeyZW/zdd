@@ -1,5 +1,4 @@
 {
     "enablePullDownRefresh": true,
-    "onReachBottomDistance": true,
-    "navigationBarBackgroundColor": "#FCE84C"
+    "onReachBottomDistance": true
 }

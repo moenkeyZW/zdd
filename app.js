@@ -160,7 +160,7 @@ App({
                   withCredentials: true,
                   success: function (res_user) {
                     wx.request({
-                      url: that.globalData.base_url + '/login',
+                      url: that.globalData.base_url + '/login03',
                       data: {
                         auth_type: 0,
                         scene_value: 1,
@@ -199,7 +199,7 @@ App({
                 withCredentials: true,
                 success: function (res_user) {
                   wx.request({
-                    url: that.globalData.base_url + '/login',
+                    url: that.globalData.base_url + '/login03',
                     data: {
                       auth_type: 0,
                       scene_value: 1,
@@ -245,7 +245,7 @@ App({
                   withCredentials: true,
                   success: function (res_user) {
                     wx.request({
-                      url: that.globalData.base_url + '/login',
+                      url: that.globalData.base_url + '/login03',
                       data: {
                         auth_type: 0,
                         scene_value: 0,
@@ -284,7 +284,7 @@ App({
                 withCredentials: true,
                 success: function (res_user) {
                   wx.request({
-                    url: that.globalData.base_url + '/login',
+                    url: that.globalData.base_url + '/login03',
                     data: {
                       auth_type: 0,
                       scene_value: 0,
@@ -330,7 +330,7 @@ App({
                   withCredentials: true,
                   success: function (res_user) {
                     wx.request({
-                      url: that.globalData.base_url + '/login',
+                      url: that.globalData.base_url + '/login03',
                       data: {
                         auth_type: 1,
                         scene_value: 0,
@@ -372,7 +372,7 @@ App({
                 withCredentials: true,
                 success: function (res_user) {
                   wx.request({
-                    url: that.globalData.base_url + '/login',
+                    url: that.globalData.base_url + '/login03',
                     data: {
                       auth_type: 1,
                       scene_value: 0,
@@ -406,91 +406,7 @@ App({
       }
     })
   },
-  zlLogin: function (cb) {
-    var that = this;
-    wx.checkSession({
-      success: function (res) {
-        if (wx.getStorageSync('openid') && wx.getStorageSync('open_id') != 0) {
-          that.onRefresh(cb);
-        } else {
-          wx.login({
-            success: res => {
-              if (res.code) {
-                wx.getUserInfo({
-                  withCredentials: true,
-                  success: function (res_user) {
-                    wx.request({
-                      url: that.globalData.base_url + '/login',
-                      data: {
-                        auth_type: 2,
-                        scene_value: 0,
-                        code: res.code,
-                        encryptedData: encodeURIComponent(res_user.encryptedData),
-                        iv: encodeURIComponent(res_user.iv)
-                      },
-                      method: 'GET',
-                      header: {
-                        'content-type': 'application/json'
-                      },
-                      success: function (res) {
-                        console.log(3, res)
-                        that.globalData.userInfo = res.data.userinfo;
-                        wx.setStorageSync('nickname', res.data.userinfo.nickname);
-                        wx.setStorageSync('session', res.data.hash);
-                        wx.setStorageSync('openid', res.data.openid);
-                        wx.setStorageSync('open_id', res.data.open_id);
-                        typeof cb == "function" && cb(that.globalData.userInfo);
-                      }
-                    })
-                  },
-                })
-              } else {
-                console.log('获取用户登录态失败！' + res.errMsg)
-              }
-            },
-          })
-        }
-      },
-      fail: function () {
-        wx.login({
-          success: res => {
-            if (res.code) {
-              wx.getUserInfo({
-                withCredentials: true,
-                success: function (res_user) {
-                  wx.request({
-                    url: that.globalData.base_url + '/login',
-                    data: {
-                      auth_type: 2,
-                      scene_value: 0,
-                      code: res.code,
-                      encryptedData: encodeURIComponent(res_user.encryptedData),
-                      iv: encodeURIComponent(res_user.iv)
-                    },
-                    method: 'GET',
-                    header: {
-                      'content-type': 'application/json'
-                    },
-                    success: function (res) {
-                      console.log(4, res)
-                      that.globalData.userInfo = res.data.userinfo;
-                      wx.setStorageSync('nickname', res.data.userinfo.nickname);
-                      wx.setStorageSync('session', res.data.hash);
-                      wx.setStorageSync('openid', res.data.openid);
-                      wx.setStorageSync('open_id', res.data.open_id);
-                      typeof cb == "function" && cb(that.globalData.userInfo);
-                    }
-                  })
-                },
-              })
-            } else {
-              console.log('获取用户登录态失败！' + res.errMsg)
-            }
-          },
-        })
-      }
-    })
-  },
+ 
   onRefresh: function (cb) {
     var that = this;
     wx.checkSession({
@@ -508,7 +424,6 @@ App({
             },
             success: function (res) {
               that.globalData.userInfo = res.data.userinfo;
-              wx.setStorageSync('nickname', res.data.userinfo.nickname)
               typeof cb == "function" && cb(that.globalData.userInfo)
             }
           })
@@ -538,7 +453,6 @@ App({
             },
             success: function (res) {
               that.globalData.userInfo = res.data.userinfo;
-              wx.setStorageSync('nickname', res.data.userinfo.nickname)
               typeof cb == "function" && cb(that.globalData.userInfo)
             }
           })

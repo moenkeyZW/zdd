@@ -22,7 +22,7 @@
 }
 
 .hyzl{
-  margin-bottom:10rpx;
+  margin-bottom:20rpx;
   text-align:center;
   position: relative;
   bottom:10rpx;
@@ -34,6 +34,7 @@
   right:32rpx;
   width:90rpx;
   height:90rpx;
+  z-index: 10;
 }
 .indexBotm{
   bottom:136rpx;
@@ -78,4 +79,7 @@
   font-size:24rpx;
   color:#999;
   text-align: center;
+}
+.changRule{
+  min-height:358rpx;
 }

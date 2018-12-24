@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.1",
+	"libVersion": "2.4.2",
 	"appid": "wxe28bb30028ed5d17",
 	"projectname": "zdd",
 	"isGameTourist": false,
@@ -106,8 +106,7 @@
 					"name": "登录",
 					"pathName": "pages/login/index",
 					"query": "",
-					"scene": "1035",
-					"referrerInfo": {}
+					"scene": "1017"
 				},
 				{
 					"id": -1,
@@ -171,6 +170,32 @@
 					"pathName": "pages/friendList/index",
 					"query": "",
 					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "意见反馈",
+					"pathName": "pages/suggest/index",
+					"query": "",
+					"scene": "1035",
+					"referrerInfo": {}
+				},
+				{
+					"id": -1,
+					"name": "新人专区",
+					"pathName": "pages/newDetail/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "更多新人商品",
+					"pathName": "pages/xrGoods/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "更多助力商品",
+					"pathName": "pages/zlGoods/index",
+					"query": ""
 				}
 			]
 		}

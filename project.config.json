@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.2",
+	"libVersion": "2.5.1",
 	"appid": "wxe28bb30028ed5d17",
 	"projectname": "zdd",
 	"isGameTourist": false,
@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 30,
 			"list": [
 				{
 					"id": -1,
@@ -54,16 +54,18 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "订单详情",
+					"id": 3,
+					"name": "订单管理",
 					"pathName": "pages/order/index",
-					"query": ""
+					"query": "",
+					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "兑换成功",
+					"id": 4,
+					"name": "订单详情",
 					"pathName": "pages/success/index",
-					"query": ""
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -106,7 +108,8 @@
 					"name": "登录",
 					"pathName": "pages/login/index",
 					"query": "",
-					"scene": "1017"
+					"scene": 1035,
+					"referrerInfo": {}
 				},
 				{
 					"id": -1,
@@ -196,6 +199,41 @@
 					"name": "更多助力商品",
 					"pathName": "pages/zlGoods/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "联系我们",
+					"pathName": "pages/callus/index",
+					"query": "",
+					"scene": "1017"
+				},
+				{
+					"id": -1,
+					"name": "商品",
+					"pathName": "pages/gift/index",
+					"query": "",
+					"scene": "1017"
+				},
+				{
+					"id": -1,
+					"name": "转盘",
+					"pathName": "pages/turntable/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "中奖记录",
+					"pathName": "pages/winRecord/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "兑换成功",
+					"pathName": "pages/dhcg/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

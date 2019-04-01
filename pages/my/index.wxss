@@ -1,7 +1,7 @@
 /* pages/my/index.wxss */
 @import '../index/index.wxss';
 
-.headers {
+.headerss {
   width: 100%;
   position: relative;
   height:230rpx;
@@ -42,10 +42,10 @@
 
 .manage {
   width: calc(100% - 60rpx);
-  min-height: 580rpx;
+  min-height: 570rpx;
   background: #fff;
   box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
-  margin-top:24rpx;
+  margin:24rpx 0;
   border-radius: 10rpx;
 }
 
@@ -135,11 +135,6 @@
 .btnAdd {
   text-align: left !important;
   line-height: 35rpx;
-}
-
-.ad {
-  zoom: 0.92;
-  margin-top:36rpx;
 }
 .content{
   margin:0 30rpx;

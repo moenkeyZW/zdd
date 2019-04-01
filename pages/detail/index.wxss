@@ -507,7 +507,7 @@
   width:calc(100% - 60rpx);
   min-height:266rpx;
   background:#fff;
-  margin-bottom:20rpx;
+  margin-bottom:30rpx;
   border-radius: 10rpx;
 }
 .ruleTitle{
@@ -517,4 +517,45 @@
 }
 .blue{
   color:#47A7FE;
+}
+.ad{
+  zoom: 0.92;
+  margin-bottom:20rpx;
+}
+.xinghao{
+  color:#FF6060;
+  font-size:48rpx;
+  position: relative;
+  top:10rpx;
+  right:16rpx;
+}
+.inputPhone{
+  width:220rpx;
+  height:50rpx;
+  background:#E4E6ED;
+  text-align: center;
+}
+.inputHold{
+  font-size:24rpx;
+  color:#999;
+  text-align: center;
+}
+.goindex{
+  position: fixed;
+  bottom:326rpx;
+  right:0;
+  width:144rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  color:#fff;
+  text-align: center;
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+  background:#000;
+  opacity: 0.7;
+  z-index: 10;
+}
+.hdsy{
+  position: relative;
+  left:7rpx;
 }

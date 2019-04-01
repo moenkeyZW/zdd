@@ -1,6 +1,6 @@
 <!--pages/detail/index.wxml-->
 <view class='container'>
-  <image src='{{goods.imgs}}' class='detailBg dialog' lazy-load='true'></image>
+  <image src='{{goods.imgs}}' class='detailBg dialog' lazy-load='true' bindload="imageLoad"></image>
   <view class='biaoti'>
     <view class='diss' style='margin-left:30rpx;'>
       <view class='cors fonte'>{{goods.title}}</view>
@@ -37,7 +37,9 @@
   </view>
 
   <view class='postage hyzl'>
-    <image src='../../imgs/goindex.png' class='goindex {{button_state==3?"":"indexBotm"}}' bindtap='goIndex'></image>
+    <view class='teight goindex' bindtap='goIndex'>
+      <text class='hdsy'>回到首页</text>
+    </view>
     <view class='buju' style='justify-content:center; margin-top:30rpx;'>
       <image src='../../imgs/lfb.png' class='icon'></image>
       <view class='friend thrsix cors'>邀请好友</view>
@@ -112,7 +114,7 @@
       <view class='ready color only'>暂无邀请好友</view>
     </block>
   </view>
-
+  <ad unit-id="adunit-07d068adccfe2914" class='ad'></ad>
   <view class='tab' bindtap='tabHandle'>
     <view class='mgb' style='margin-right:12rpx;'>
       <image src='../../imgs/{{curIndex === 0? "jl": "njl"}}.png' class='icon pos'></image>
@@ -126,7 +128,7 @@
   <view hidden='{{curIndex !== 1}}' style='margin-bottom:40rpx'>
     <block wx:if='{{record}}'>
       <view class='record' wx:for="{{record}}" wx:key='{{index}}' data-index='{{index}}'>
-        <view class='recoed_detail {{record.length-1===index?"border":""}}'>
+        <view class='recoed_detail'>
           <view>
             <image src='{{item.avatarUrl}}' class='ava'></image>
             <text class='name'>{{item.name}}</text>
@@ -134,6 +136,7 @@
           <view class='timeline'>{{item.timeline}}</view>
         </view>
       </view>
+      <view class='record timeline textAlgin' style='padding:20rpx 0 10rpx 0'>已有{{goods.dh_count}}人兑换</view>
     </block>
     <block wx:else>
       <view class='nojl'>暂无兑换记录</view>
@@ -144,8 +147,6 @@
       <image src='{{item}}' class='item' mode='widthFix' lazy-load='true'></image>
     </view>
   </view>
-
-
   <view class='ditu dialog'></view>
   <block wx:if="{{button_state==0}}">
     <view class='buju dibu dialog'>
@@ -157,11 +158,11 @@
           <text style='font-size:32rpx;'>{{my_currency}}</text> </view>
       </view>
       <view>
-        <button class='freeDhs textAlgin thrsix primary' open-type='share' plain='true' hover-class='none'>热力币不足</button>
+        <view class='freeDhs textAlgin thrsix primary' bindtap='makeMore'>赚取更多热力币</view>
       </view>
     </view>
   </block>
-  <block wx:if="{{button_state==1}}">
+  <block wx:elif="{{button_state==1}}">
     <view class='buju dibu dialog'>
       <view style='margin-left:60rpx;'>
         <view class='font sxb'>所需热力币：
@@ -175,7 +176,7 @@
       </view>
     </view>
   </block>
-  <block wx:if="{{button_state==2}}">
+  <block wx:elif="{{button_state==2}}">
     <view class='buju dibu dialog'>
       <view style='margin-left:60rpx;'>
         <view class='font sxb'>所需热力币：
@@ -189,7 +190,7 @@
       </view>
     </view>
   </block>
-  <block wx:if="{{button_state==3}}">
+  <block wx:elif="{{button_state==3}}">
     <view class='buju dibu dialog'>
       <view class='needhy'>
         <image src='../../imgs/nedk.png' class='nedk'></image>
@@ -244,7 +245,7 @@
           <view class='cors teight'>充值号码</view>
           <view class='teight buju'>
             <view class='xinghao'>*</view>
-            <input class='inputPhone teight cors' maxlength='11' value='{{phone}}' type='number' name='phone' placeholder='请输入充值号码' placeholder-class='inputHold'></input>
+            <input class='inputPhone teight cors' maxlength='11' value='{{phone}}' type='number' name='phone' placeholder='请输入充值手机号' placeholder-class='inputHold'></input>
           </view>
         </view>
         <button class='primary freeDh dialog textAlgin thrsix' hover-class='none' plain='true' form-type='submit' disabled='{{disableds}}'>立即兑换</button>
@@ -286,28 +287,28 @@
       <view wx:if="{{addinfo_state==1}}">
         <view class='mgs'>
           <image src='../../imgs/name.png' class='icon left six'></image>
-          <text class='font cor pos'>{{addinfo.userName}}</text>
+          <text class='font corss pos'>{{addinfo.userName}}</text>
           <image src='../../imgs/phone.png' class='icon long six'></image>
-          <text class='font cor pos'>{{addinfo.telNumber}}</text>
+          <text class='font corss pos'>{{addinfo.telNumber}}</text>
         </view>
         <view class='mgs'>
           <image src='../../imgs/add.png' class='icon left six'></image>
-          <text class='font cor con pos'>{{addinfo.address}}</text>
-          <text class='font cor con new posi'>{{addinfo.detailInfo}}</text>
+          <text class='font corss con pos'>{{addinfo.address}}</text>
+          <text class='font corss con new posi'>{{addinfo.detailInfo}}</text>
           <text class='teight blue posi' bindtap='goAddress'>修改地址</text>
         </view>
       </view>
       <view wx:elif="{{address}}">
         <view class='mgs'>
           <image src='../../imgs/name.png' class='icon left six'></image>
-          <text class='font cor pos'>{{address.userName}}</text>
+          <text class='font corss pos'>{{address.userName}}</text>
           <image src='../../imgs/phone.png' class='icon long six'></image>
-          <text class='font cor pos'>{{address.telNumber}}</text>
+          <text class='font corss pos'>{{address.telNumber}}</text>
         </view>
         <view class='mgs'>
           <image src='../../imgs/add.png' class='icon left six'></image>
-          <text class='font cor con pos'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}</text>
-          <text class='font cor con new posi'>{{address.detailInfo}}</text>
+          <text class='font corss con pos'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}</text>
+          <text class='font corss con new posi'>{{address.detailInfo}}</text>
           <text class='blue teight posi' bindtap='goAddress'>修改地址</text>
         </view>
       </view>

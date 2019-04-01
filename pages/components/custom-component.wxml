@@ -1,0 +1,7 @@
+<!-- 组件 custom-component.wxml -->
+<view class='marquee_container'>
+  <image src='../../imgs/indexms.png' class='icon'></image>
+  <view class='marquee_text' style='left:{{ marqueeDistance }}px;font-size: {{size}}px;'>
+    {{ propA }}
+  </view>
+</view>

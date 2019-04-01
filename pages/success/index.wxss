@@ -10,9 +10,9 @@
   width: calc(100% - 60rpx);
   height: 308rpx;
   background: #fff;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
   position: relative;
-  bottom: 80rpx;
+  bottom: 190rpx;
   border-radius: 10rpx;
   box-shadow:0px 6rpx 10rpx 0px rgba(71,167,254,0.1);
 }
@@ -23,7 +23,7 @@
   width: calc(100% - 60rpx);
   border-bottom: 1rpx solid #e4e6ed;
   margin-left: 30rpx;
-  padding: 34rpx 0 24rpx 0;
+  padding: 25rpx 0;
 }
 
 .display {
@@ -32,7 +32,7 @@
   width: calc(100% - 60rpx);
   border-bottom: 1rpx solid #e4e6ed;
   margin-left: 30rpx;
-  padding: 34rpx 0 24rpx 0;
+  padding:25rpx 0;
 }
 
 .dis {
@@ -58,21 +58,21 @@
 }
 
 .mgs {
-  margin-top: 18rpx;
+  margin-top: 8rpx;
 }
 
 .order {
-  height: 270rpx;
+  height: 330rpx;
+  z-index: 10;
 }
 
 .commodity {
   height: 352rpx;
 }
-
-.wait {
+.state {
   color: #47a7fe;
-  font-size: 28rpx;
 }
+
 .dbh{
   margin:30rpx 0 0 30rpx;
 }
@@ -80,8 +80,8 @@
   margin-left:20rpx;
 }
 .img{
-  width:200rpx;
-  height:182rpx;
+  width:240rpx;
+  height:176rpx;
   margin:30rpx;
 }
 .rb{
@@ -100,4 +100,28 @@
   font-size:24rpx;
   text-decoration:line-through;
   margin:32rpx 0 6rpx 0;
+}
+.copy {
+  width: 630rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
+  position: relative;
+  bottom:190rpx;
+}
+.company{
+  padding-left:30rpx;
+}
+.cop{
+  padding-left:20rpx;
+}
+.cor {
+  color: #666;
+
+}
+.size{
+  font-size: 28rpx;
 }

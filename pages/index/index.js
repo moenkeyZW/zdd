@@ -1,6 +1,5 @@
 // pages/index/index.js
 const Page = require('../../utils/ald-stat.js').Page;
-// const common = require('../../utils/common.js');
 const app = getApp();
 const innerAudioContext = wx.createInnerAudioContext();
 const ageArr = [],
@@ -21,10 +20,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    christmas: true,
-    christmasclick: true,
-    length: '',
-    zllqcg: true,
+    zllqcg:true,
     readyZl: true,
     nocs: true,
     xrzlSuc: true,
@@ -33,15 +29,15 @@ Page({
     zlclickeds: true,
     zlclickedcc: true,
     sign: true,
-    step: 0,
-    time: '07:00',
-    text: '好友当日初次通过分享打开，可获得热力币！新人打开最高获得4热力币！',
+    step: '0',
+    time: '22:00',
     zl_goods: '',
     jx_goods: '',
     xr_goods: '',
     free_goods: '',
     userInfo: '',
-    measure: true,
+    share: true,
+    measure:true,
     zanwu: true,
     shouquan: true,
     shouIndex: true,
@@ -50,13 +46,13 @@ Page({
     result: '',
     page: 1,
     haveMore: true,
-    scene_value: '',
     noMore: '',
     newuserclick: true,
     clicked: true,
     clim: true,
     isOpenWXRun: true,
-    is_new: true,
+    isOpenWXRuns: true, //为了区分运动授权，打开运动设置
+    is_new: true, //false代表新人 未领取币
     perMessage: true,
     genderArray: ['男', '女'],
     ageArr: ageArr,
@@ -72,14 +68,20 @@ Page({
     count_day: '',
     today_rlb: '',
     tomorrow_rlb: '',
-    is_add_tc: '',
-    is_add: '',
     is_sign: '',
     is_rule: '',
     yiqd: false,
     dhcg: false,
     bespoke: false,
-    situation: '',
+    indexzclick: true,
+    indexz: true,
+    y_step: '',
+    calorie: '',
+    percent1: '',
+    percent2: '',
+    isHaveopenid: true,
+    bj_picture:'',
+    notice_title:'',
   },
 
   /**
@@ -90,6 +92,25 @@ Page({
       title: '加载中',
     })
     const that = this;
+    if (options.gzjl == 100 && wx.getStorageSync('openid')) {
+      wx.request({
+        url: app.globalData.base_url + '/follow_wechat',
+        data: {
+          openid: wx.getStorageSync('openid')
+        },
+        success: function(res) {
+          if (res.data.wechat) {
+            console.log('已领取')
+          } else {
+            wx.showModal({
+              title: '领取成功',
+              content: '关注任务已完成，您的10热力币已到账',
+              showCancel: false,
+            })
+          }
+        }
+      })
+    }
     if (options.jx == 55) {
       that.setData({
         jx: options.jx,
@@ -109,28 +130,6 @@ Page({
         goods_id: options.goods_id,
         zl: options.zl,
       })
-    } else {
-      if (wx.getStorageSync('openid')) {
-        if (app.globalData.scene !== 1035) {
-          wx.request({
-            url: app.globalData.base_url + '/new03',
-            data: {
-              openid: wx.getStorageSync('openid')
-            },
-            method: 'GET',
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function(res) {
-              if (!res.data.is_new) {
-                that.setData({
-                  newUser: false,
-                })
-              }
-            }
-          })
-        }
-      }
     }
     if (app.globalData.scene === 1089) {
       wx.request({
@@ -166,19 +165,18 @@ Page({
       })
     }
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function(cb) {
     var that = this;
     if (wx.getStorageSync('openid') && wx.getStorageSync('open_id') != 0) {
-      that.onRun();
-      var openids = wx.getStorageSync('openid');
       that.setData({
-        shouquan: true,
+        newUser: true,
         isHaveopenid: true
       })
+      that.onRun();
+      var openids = wx.getStorageSync('openid');
       if (that.data.jx == 55) {
         wx.request({
           url: app.globalData.base_url + '/share03',
@@ -206,39 +204,44 @@ Page({
       }
     } else {
       var openids = 0;
-      that.setData({
-        shouquan: false,
-        isHaveopenid: false
-      })
+      if (that.data.zl == 66) {
+        that.setData({
+          shouquan: false,
+          isHaveopenid: false
+        })
+      } else {
+        that.setData({
+          newUser: false,
+          isHaveopenid: false
+        })
+      }
     }
     wx.request({
-      url: app.globalData.base_url + '/home_content03',
+      url: app.globalData.base_url + '/home_content06',
       data: {
         openid: openids
+      },
+      header: {
+        'content-type': 'application/json; charset=utf-8', // 默认值
+        'Cache-Control': 'max-age=60', //60秒
       },
       success: function(res) {
         wx.hideLoading();
         console.log(res)
         that.setData({
-          christmasclick: res.data.christmasclick,
-          text: res.data.notice,
+          notice_title: res.data.notice_title,
+          bj_picture: res.data.bj_picture,
           zl_goods: res.data.zl_goods,
           jx_goods: res.data.jx_goods,
           xr_goods: res.data.xr_goods,
           result: res.data.result,
           total_currency: res.data.total_currency,
           today_currency: res.data.today_currency,
-          scene_value: res.data.scene_value,
           is_new: res.data.is_new,
           is_sign: res.data.is_sign,
           is_rule: res.data.is_rule,
           count_day: res.data.count_day,
         })
-
-        var length = res.data.notice.length * 24; //文字长度
-        that.setData({
-          length: length,
-        });
         typeof cb == "function" && cb(that.data.is_new);
         if (wx.getStorageSync('openid')) {
           if (that.data.zl == 66) {
@@ -251,9 +254,6 @@ Page({
               },
               success: function(res) {
                 console.log('zl', res)
-                that.setData({
-                  situation: res.data.state,
-                })
                 if (res.data.state == 1) {
                   that.setData({
                     xrzlSuc: false,
@@ -274,23 +274,12 @@ Page({
                     nocs: false,
                   })
                   return
-                } else if (res.data.state == 10 && !that.data.is_new) {
-                  that.setData({
-                    newUser: false,
-                  })
-                  return
                 }
               }
             })
             return
-          } else if (res.data.scene_value == 1) {
-            if (!res.data.is_new) {
-              that.setData({
-                newUser: true,
-                newuserclick: false,
-              })
-            }
-            if (res.data.result.type_id == 2) {
+          } else if (app.globalData.scene === 1035 && that.data.jx != 55 && that.data.xr != 77) {
+            if (that.data.result.type_id == 2) {
               that.setData({
                 zanwu: false,
               })
@@ -299,11 +288,6 @@ Page({
                 measure: false,
               })
             }
-            return
-          } else if (that.data.christmasclick && res.data.is_new && that.data.zllqcg) {
-            that.setData({
-              christmas: false,
-            })
             return
           }
         }
@@ -328,67 +312,16 @@ Page({
     })
   },
 
-  // scrolltxt: function() {
-  //   var vm = this;
-  //   var interval = setInterval(function() {
-  //     if (-vm.data.marqueeDistance < vm.data.length * 1.5) {
-  //       vm.setData({
-  //         marqueeDistance: vm.data.marqueeDistance - vm.data.marqueePace,
-  //       });
-  //     } else {
-  //       clearInterval(interval);
-  //       vm.setData({
-  //         marqueeDistance: vm.data.windowWidth * 2
-  //       });
-  //     }
-  //   }, 20);
-  //   vm.setData({
-  //     sss: interval
-  //   })
-  // },
-
-  sportSQ: function() {
-    var that = this;
-    wx.getWeRunData({
-      fail: function(res) {
-        that.setData({
-          isOpenWXRun: false,
-        })
-      },
-      complete: function() {
-        that.onShow(function(res) {
-          if (!that.data.is_new && that.data.zl) {
-            that.setData({
-              xrzlSuc: false,
-            })
-            return
-          } else if (!that.data.is_new) {
-            console.log(3)
-            that.setData({
-              newUser: false,
-            })
-            return
-          }
-        })
-      },
-    })
-  },
   sportSQS: function() {
     var that = this;
     wx.getWeRunData({
       fail: function(res) {
         that.setData({
-          isOpenWXRun: false,
+          isOpenWXRuns: false,
         })
       },
       complete: function() {
-        that.onShow(function(res) {
-          if (that.data.christmasclick) {
-            that.setData({
-              christmas: false,
-            })
-          }
-        })
+        that.onShow()
       },
     })
   },
@@ -396,6 +329,7 @@ Page({
     innerAudioContext.src = 'https://www.mnancheng.com/Public/home/bj_music.mp3'
     innerAudioContext.play()
   },
+
   exchange: function(e) {
     const that = this
     var form_id = e.detail.formId;
@@ -440,18 +374,16 @@ Page({
                 success: function(res) {
                   setTimeout(function() {
                     while (step > 0) {
-                      step -= 50;
                       that.setData({
-                        step: step
+                        step: 0,
+                        share: false,
+                        dhcg: false,
                       })
-                      if (step <= 50) {
-                        that.music();
-                        that.setData({
-                          step: 0,
-                          dhcg: false,
-                        })
+                      that.music();
+                      if (!that.data.share) {
                         that.onShow();
                       }
+                      return
                     }
                   }, 0);
                 }
@@ -487,6 +419,9 @@ Page({
           } else {
             wx.checkSession({
               success: function() {
+                wx.showLoading({
+                  title: '正在获取步数',
+                })
                 wx.getWeRunData({
                   success(res) {
                     wx.request({
@@ -502,12 +437,36 @@ Page({
                         'Content-Type': 'application/x-www-form-urlencoded'
                       },
                       success: function(res) {
-                        console.log(21, res)
                         if (res.data.status == 1) {
                           that.setData({
                             isOpenWXRun: true,
                             step: res.data.data,
                             is_dh: res.data.is_dh,
+                          }, () => {
+                            wx.hideLoading();
+                            if (app.globalData.scene !== 1035 && that.data.zl != 66) {
+                              wx.request({
+                                url: app.globalData.base_url + '/yesterday_step',
+                                data: {
+                                  openid: wx.getStorageSync('openid')
+                                },
+                                method: 'GET',
+                                header: {
+                                  'content-type': 'application/json'
+                                },
+                                success: function(res) {
+                                  if (res.data.step_state) {
+                                    that.setData({
+                                      y_step: res.data.y_step,
+                                      calorie: res.data.calorie,
+                                      percent1: res.data.percent1,
+                                      percent2: res.data.percent2,
+                                      indexz: false,
+                                    })
+                                  }
+                                }
+                              })
+                            }
                           })
                         } else {
                           that.setData({
@@ -519,7 +478,7 @@ Page({
                                 withCredentials: true,
                                 success: function(res_user) {
                                   wx.request({
-                                    url: app.globalData.base_url + '/login',
+                                    url: app.globalData.base_url + '/login03',
                                     data: {
                                       auth_type: 0,
                                       scene_value: 0,
@@ -532,7 +491,6 @@ Page({
                                       'content-type': 'application/json'
                                     },
                                     success: function(res) {
-                                      wx.setStorageSync('nickname', res.data.userinfo.nickname);
                                       wx.setStorageSync('session', res.data.hash);
                                       wx.setStorageSync('openid', res.data.openid);
                                       wx.setStorageSync('open_id', res.data.open_id);
@@ -558,7 +516,7 @@ Page({
                         withCredentials: true,
                         success: function(res_user) {
                           wx.request({
-                            url: app.globalData.base_url + '/login',
+                            url: app.globalData.base_url + '/login03',
                             data: {
                               auth_type: 0,
                               scene_value: 0,
@@ -571,7 +529,6 @@ Page({
                               'content-type': 'application/json'
                             },
                             success: function(res) {
-                              wx.setStorageSync('nickname', res.data.userinfo.nickname);
                               wx.setStorageSync('session', res.data.hash);
                               wx.setStorageSync('openid', res.data.openid);
                               wx.setStorageSync('open_id', res.data.open_id);
@@ -594,63 +551,30 @@ Page({
     })
   },
 
-  // 上拉触底事件，请求记录数据
-  // onReachBottom: function() {
-  //   const that = this
-  //   let page = that.data.page;
-  //   if (that.data.haveMore) {
-  //     // 请求下一页数据
-  //     page++;
-  //     that.data.page = page
-  //     wx.request({
-  //       url: app.globalData.base_url + '/free_goods_list',
-  //       data: {
-  //         page: page,
-  //       },
-  //       method: 'GET',
-  //       header: {
-  //         'content-type': 'application/json'
-  //       },
-  //       success: function(res) {
-  //         that.data.free_goods = that.data.free_goods.concat(res.data.goods);
-  //         that.setData({
-  //           free_goods: that.data.free_goods,
-  //           haveMore: res.data.more,
-  //           noMore: res.data.more
-  //         })
-  //       }
-  //     })
-  //   } else {
-  //     // wx.showToast({
-  //     //   title: '商品加载完毕',
-  //     //   icon: 'success',
-  //     //   duration: 1500,
-  //     // })
-  //   }
-  // },
   goSignForm: function(e) {
     const that = this;
     var form_id = e.detail.formId;
     var day = that.data.count_day;
     that.setData({
       yiqd: true,
-    })
-    wx.request({
-      url: app.globalData.base_url + '/sign02',
-      data: {
-        form_id: form_id,
-        count_day: day,
-        openid: wx.getStorageSync('openid')
-      },
-      success: function(res) {
-        that.music();
-        that.setData({
-          sign: false,
-          today_rlb: res.data.today_rlb,
-          tomorrow_rlb: res.data.receive_rlb
-        })
-        that.onShow();
-      }
+    }, () => {
+      wx.request({
+        url: app.globalData.base_url + '/sign02',
+        data: {
+          form_id: form_id,
+          count_day: day,
+          openid: wx.getStorageSync('openid')
+        },
+        success: function(res) {
+          that.music();
+          that.setData({
+            sign: false,
+            today_rlb: res.data.today_rlb,
+            tomorrow_rlb: res.data.receive_rlb
+          })
+          that.onShow();
+        }
+      })
     })
   },
   bespeak: function(e) {
@@ -659,20 +583,21 @@ Page({
     var time = that.data.time;
     that.setData({
       bespoke: true,
-    })
-    wx.request({
-      url: app.globalData.base_url + '/bespeak',
-      data: {
-        form_id: form_id,
-        yy_time: time,
-        openid: wx.getStorageSync('openid')
-      },
-      success: function(res) {
-        that.setData({
-          sign: true,
-        })
-        that.onShow();
-      }
+    }, () => {
+      wx.request({
+        url: app.globalData.base_url + '/bespeak',
+        data: {
+          form_id: form_id,
+          yy_time: time,
+          openid: wx.getStorageSync('openid')
+        },
+        success: function(res) {
+          that.setData({
+            sign: true,
+          })
+          that.onShow();
+        }
+      })
     })
   },
   rule: function() {
@@ -692,6 +617,41 @@ Page({
       }
     })
   },
+  authorizeNows: function (e) {
+    const that = this;
+    if (that.data.openid) {
+      app.yqLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
+        if (res) {
+          wx.hideLoading();
+          that.onShow();
+          that.sportSQS();
+          that.setData({
+            shouquan: true,
+            shouIndex: false,
+          })
+        }
+        that.sportSQS;
+      });
+    } else {
+      app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
+        if (res) {
+          wx.hideLoading();
+          that.onShow();
+          that.sportSQS();
+          that.setData({
+            newUser: true,
+            newuserclick: false,
+          })
+        }
+      });
+    }
+  },
   authorizeNow: function(e) {
     const that = this;
     if (that.data.openid) {
@@ -701,13 +661,12 @@ Page({
         })
         if (res) {
           wx.hideLoading();
-          that.sportSQ();
+          that.onShow();
           that.setData({
             shouquan: true,
             shouIndex: false,
           })
         }
-
       });
     } else {
       app.onLogin(function(res) {
@@ -716,16 +675,14 @@ Page({
         })
         if (res) {
           wx.hideLoading();
-          that.sportSQ();
+          that.onShow();
           that.setData({
-            shouquan: true,
-            shouIndex: false,
+            newUser: true,
+            newuserclick: false,
           })
         }
-
       });
     }
-
   },
   chengzhong: function(e) {
     const that = this;
@@ -741,42 +698,82 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
-        if (that.data.is_new) {
-          that.setData({
-            measure: true,
-            zanwu: true,
-            clicked: false,
-            clim: false,
-          })
-          if (that.data.christmasclick) {
-            that.setData({
-              christmas: false,
-            })
-          }
-        } else {
-          that.setData({
-            measure: true,
-            zanwu: true,
-            clicked: false,
-            clim: false,
-          })
+        that.setData({
+          measure: true,
+          zanwu: true,
+          clicked: false,
+          clim: false,
+        })
+        if (!that.data.is_new) {
           that.onShow(function(res) {
             that.setData({
               zllqcg: false,
-            })
-            wx.showLoading({
-              title: '正在领币',
-              success: function() {
-                if (!that.data.zllqcg) {
-                  wx.hideLoading()
-                }
-              }
             })
           });
         }
       }
     })
-
+  },
+  zlactive: function() {
+    wx.navigateTo({
+      url: '/pages/zlGoods/index',
+    })
+  },
+  newUserLingqus: function() {
+    const that = this;
+    if (that.data.openid) {
+      app.xrLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
+        if (res) {
+          wx.hideLoading();
+          that.onShow();
+          that.setData({
+            newUser: true,
+            zllqcg: false,
+            newuserclick: false,
+          })
+        }
+      });
+    } else {
+      app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
+        if (res) {
+          wx.hideLoading();
+          that.onShow();
+          that.setData({
+            newUser: true,
+            zllqcg: false,
+            newuserclick: false,
+          })
+        }
+      });
+    }
+  },
+  golqnew: function(e) {
+    const that = this;
+    var form_id = e.detail.formId;
+    wx.request({
+      url: app.globalData.base_url + '/is_new03',
+      data: {
+        form_id: form_id,
+        openid: wx.getStorageSync('openid')
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        console.log(res)
+        that.onShow()
+        that.setData({
+          zllqcg: false,
+        })
+      }
+    })
   },
   newUserLingqu: function(e) {
     const that = this;
@@ -793,29 +790,11 @@ Page({
       },
       success: function(res) {
         that.setData({
-          newUser: true,
-          xrzlSuc: true,
-          readyZl: true,
-          nocs: true,
-          zlclicked: false,
-          newuserclick: false,
-          zlclickeds: false,
+          zllqcg: true,
+          zlclickedcc: false,
         })
-        that.onShow(function(res) {
-          that.setData({
-            zllqcg: false,
-          })
-        });
       }
     })
-  },
-  hideHandles: function() {
-    const that = this;
-    that.setData({
-      zllqcg: true,
-      zlclickedcc: false,
-    })
-    that.sportSQS();
   },
   goHeat: function(e) {
     var that = this;
@@ -827,11 +806,13 @@ Page({
       that.authorizeNow();
     }
   },
-  sfxr: function() {
+  sfxr: function(e) {
     const that = this;
+    var form_id = e.detail.formId;
     wx.request({
       url: app.globalData.base_url + '/black_is_new03',
       data: {
+        form_id: form_id,
         openid: wx.getStorageSync('openid')
       },
       method: 'GET',
@@ -839,25 +820,25 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
+        console.log(res)
         that.setData({
           xrzlSuc: true,
           newUser: true,
           newuserclick: false,
           zlclickeds: false,
+          zllqcg: true,
+          zlclickedcc: false,
         })
-        if (that.data.christmasclick) {
-          that.setData({
-            christmas: false,
-          })
-        }
       }
     })
   },
-  sfxrs: function() {
+  sfxrs: function(e) {
     const that = this;
+    var form_id = e.detail.formId;
     wx.request({
       url: app.globalData.base_url + '/black_is_new03',
       data: {
+        form_id: form_id,
         openid: wx.getStorageSync('openid')
       },
       method: 'GET',
@@ -871,7 +852,6 @@ Page({
           clicked: false,
           clim: false,
         })
-        that.sportSQS();
       }
     })
   },
@@ -883,7 +863,6 @@ Page({
       clicked: false,
       clim: false,
     })
-    that.sportSQS();
   },
   xrlq: function() {
     const that = this;
@@ -893,67 +872,26 @@ Page({
       newuserclick: false,
       zlclickeds: false,
     })
-    if (that.data.christmasclick) {
-      that.setData({
-        christmas: false,
-      })
-    }
   },
 
   zlDetail: function(e) {
-    var id = e.currentTarget.dataset.id;
+    var form_id = e.detail.formId;
+    var id = e.detail.target.dataset.id;
     wx.navigateTo({
-      url: '/pages/oneDetail/index?id=' + id,
+      url: '/pages/oneDetail/index?id=' + id + '&&form_id=' + form_id + '&&parements=ss',
     })
   },
   xrDetail: function(e) {
-    var id = e.currentTarget.dataset.id;
+    var form_id = e.detail.formId;
+    var id = e.detail.target.dataset.id;
     wx.navigateTo({
-      url: '/pages/newDetail/index?id=' + id,
+      url: '/pages/newDetail/index?id=' + id + '&&form_id=' + form_id + '&&parements=ss',
     })
   },
   freeDetail: function(e) {
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/detail/index?id=' + id,
-    })
-  },
-
-  goRun: function(e) {
-    var that = this;
-    wx.getWeRunData({
-      fail: function(rs) {
-        wx.showModal({
-          title: '提示',
-          content: '微信运动授权未开启，无法统计运动步数，请重新授权！',
-          success: function(re) {
-            if (re.confirm) {
-              wx.openSetting({
-                success: (res) => {
-                  if (res.authSetting['scope.werun']) {
-                    that.onRun();
-                    // that.onRun(function(res) {
-                    //   that.setData({
-                    //     isOpenWXRun: app.globalData.isOpenWXRun
-                    //   })
-                    //   that.getStepRecord(res.data);
-                    // })
-                  }
-                }
-              })
-            }
-          }
-        })
-      },
-      success: function(res) {
-        that.onRun();
-        // that.onRun(function(res) {
-        //   that.setData({
-        //     isOpenWXRun: app.globalData.isOpenWXRun
-        //   })
-        //   that.getStepRecord(res.data);
-        // })
-      }
+      url: '/pages/detail/index?id=' + id + '&&parements=ss',
     })
   },
   seeMore: function() {
@@ -1080,7 +1018,7 @@ Page({
       })
       return
     }
-    gender = gender == 1 ? "男" : "女";
+    var gender = gender == 1 ? "男" : "女";
     wx.request({
       url: app.globalData.base_url + '/save_info',
       data: {
@@ -1130,28 +1068,6 @@ Page({
       that.authorizeNow();
     }
   },
-  christmas: function() {
-    const that = this;
-    wx.request({
-      url: app.globalData.base_url + '/christmas',
-      data: {
-        openid: wx.getStorageSync('openid')
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        that.setData({
-          christmas: true,
-          christmasclick: false,
-        })
-        wx.navigateTo({
-          url: '/pages/zlGoods/index',
-        })
-      }
-    })
-  },
   shouquan: function() {
     const that = this;
     that.setData({
@@ -1161,18 +1077,40 @@ Page({
   },
   hideHandle: function() {
     const that = this;
-    if (that.data.christmasclick) {
-      that.setData({
-        christmas: false,
-      })
-    }
     that.setData({
+      share: true,
       perMessage: true,
+      sign: true,
+    })
+  },
+  hideHandls: function() {
+    const that = this;
+    that.setData({
       readyZl: true,
       nocs: true,
       oldzlSuc: true,
-      sign: true,
       zlclicked: false,
+    })
+  },
+  hideHand: function(e) {
+    const that = this;
+    var form_id = e.detail.formId;
+    wx.request({
+      url: app.globalData.base_url + '/close_yesterday_step',
+      data: {
+        openid: wx.getStorageSync('openid'),
+        form_id: form_id
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res) {
+        that.setData({
+          indexzclick: false,
+          indexz: true,
+        })
+      }
     })
   },
   /**

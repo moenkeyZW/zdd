@@ -44,7 +44,7 @@
     <view class='disDia'>
       <image src='../../imgs/msyq.png' class='actimg'></image>
       <view class='damo'>
-        <view class='cor follow'>邀请好友</view>
+        <view class='cor follow'>邀请新好友</view>
         <view>
           <text class='award blue'>+4</text>
           <text class='blue size jiangli'>热力币</text>
@@ -104,7 +104,7 @@
       <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='enjoy' hover-class='none'>立即添加</button>
     </block>
   </view>
-
+<ad unit-id="adunit-ec96ed0e7737a9cd" class='ad'></ad>
   <view class="dialog" hidden="{{addmy}}" catchtouchmove="ture">
     <view class="mask" bindtap='hideHandle'></view>
     <view class='condition' style='top:46%'>
@@ -136,19 +136,6 @@
         <view class='nothanks gray' bindtap='hideHandle'>不用了</view>
       </view>
     </view>
-  </view>
-  <view class="dialog" hidden="{{share}}" catchtouchmove="ture">
-    <view class="mask" bindtap='hideShare'></view>
-    <view class="condition">
-      <view class='biaoti'>
-        <image src='../../imgs/shareGuang.png' class='abs shareGuang'></image>
-        <image src='../../imgs/shareSuccess.png' class='abs shareSuccess'></image>
-        <image src='../../imgs/shareRlb.png' class=' shareRlb'></image>
-        <view class='huode'>分享给好友可获得热力币哦。</view>
-        <button class='fenxiang primary' plain='true' open-type='share'>分享</button>
-      </view>
-    </view>
-    <image src='../../imgs/delete.png' class='delete shareX' bindtap='hideShare'></image>
   </view>
   <view class="dialog" hidden="{{contact}}" catchtouchmove="ture">
     <view class="mask" bindtap='hideShare'></view>

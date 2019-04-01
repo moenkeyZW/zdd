@@ -27,18 +27,6 @@
   position: relative;
   bottom:10rpx;
 }
-
-.goindex{
-  position: fixed;
-  bottom:326rpx;
-  right:32rpx;
-  width:90rpx;
-  height:90rpx;
-  z-index: 10;
-}
-.indexBotm{
-  bottom:136rpx;
-}
 .changeRule{
   position: absolute;
   right:30rpx;

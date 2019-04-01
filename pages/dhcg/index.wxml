@@ -1,0 +1,7 @@
+<!--pages/dhcg/index.wxml-->
+<view class='container'>
+  <image src='../../imgs/dhcg.png' class='dhcg'></image>
+  <view class='suc'>恭喜您，兑换成功！</view>
+  <view class='look primary' bindtap='lookDetail'>查看订单</view>
+  <view class='look back' bindtap='goback'>返回</view>
+</view>

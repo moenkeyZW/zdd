@@ -11,7 +11,6 @@ Page({
   data: {
     money: 0,
     sign: true,
-    share: true,
     openid: '',
     isHaveopenid: '',
     weeks: '',
@@ -41,26 +40,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let that = this;
-    if (options.gzjl == 100 && wx.getStorageSync('openid')) {
-      wx.request({
-        url: app.globalData.base_url + '/follow_wechat',
-        data: {
-          openid: wx.getStorageSync('openid')
-        },
-        success: function(res) {
-          if (res.data.wechat) {
-            console.log('已领取')
-          } else {
-            wx.showModal({
-              title: '领取成功',
-              content: '关注任务已完成，您的10热力币已到账',
-              showCancel: false,
-            })
-          }
-        }
-      })
-    }
+
+
   },
   bindTimeChange: function(e) {
     this.setData({
@@ -160,33 +141,23 @@ Page({
     var day = that.data.count_day;
     that.setData({
       yiqd: true,
-    })
-    wx.request({
-      url: app.globalData.base_url + '/sign02',
-      data: {
-        form_id: form_id,
-        count_day: day,
-        openid: wx.getStorageSync('openid')
-      },
-      success: function(res) {
-        that.music();
-        // wx.showModal({
-        //   title: '今日签到成功',
-        //   content: `成功领取${today_rlb}热力币，明日签到可领取${tomorrow_rlb}热力币`,
-        //   showCancel: false,
-        //   confirmText: '知道了',
-        //   success(res) {
-        //     if (res.confirm) {
-        //       that.onShow();
-        //     }
-        //   }
-        // })
-        that.setData({
-          sign: false,
-          today_rlb: res.data.today_rlb,
-          tomorrow_rlb: res.data.receive_rlb
-        })
-      }
+    },()=>{
+      wx.request({
+        url: app.globalData.base_url + '/sign02',
+        data: {
+          form_id: form_id,
+          count_day: day,
+          openid: wx.getStorageSync('openid')
+        },
+        success: function (res) {
+          that.music();
+          that.setData({
+            sign: false,
+            today_rlb: res.data.today_rlb,
+            tomorrow_rlb: res.data.receive_rlb
+          })
+        }
+      })
     })
   },
   bespeak: function(e) {
@@ -240,7 +211,6 @@ Page({
   hideShare: function() {
     const that = this;
     that.setData({
-      share: true,
       contact: true,
     })
   },
@@ -258,15 +228,11 @@ Page({
    */
   onShareAppMessage: function(res) {
     const that = this;
-    that.setData({
-      share: true,
-    })
     var openid = wx.getStorageSync('openid')
-    var nickname = wx.getStorageSync('nickname')
     return {
-      title: `${nickname}邀请你用步数免费换礼物，数量有限，先到先得！`,
+      title: '步数换好礼，我正在用步数免费领礼品，你也快来！',
       imageUrl: '../../imgs/share.png',
-      path: '/pages/index/index?openid=' + openid
+      path: '/pages/index/index?openid=' + openid + '&&jx=55'
     }
   },
 })

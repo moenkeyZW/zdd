@@ -2,30 +2,39 @@
 const App = require('./utils/ald-stat.js').App;
 App({
   onLaunch: function (options) {
-    const updateManager = wx.getUpdateManager();
-    updateManager.onCheckForUpdate(function (res) {
-      // 请求完新版本信息的回调
-      console.log(res.hasUpdate)
-    })
-
-    updateManager.onUpdateReady(function () {
-      wx.showModal({
-        title: '更新提示',
-        content: '新版本已经准备好，是否重启应用？',
-        success: function (res) {
-          if (res.confirm) {
-            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-            updateManager.applyUpdate()
-          }
+    if (wx.canIUse('getUpdateManager')) {
+      const updateManager = wx.getUpdateManager()
+      updateManager.onCheckForUpdate(function (res) {
+        // 请求完新版本信息的回调
+        if (res.hasUpdate) {
+          updateManager.onUpdateReady(function () {
+            wx.showModal({
+              title: '更新提示',
+              content: '新版本已经准备好，是否重启应用？',
+              success: function (res) {
+                if (res.confirm) {
+                  // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+                  updateManager.applyUpdate()
+                }
+              }
+            })
+          })
+          updateManager.onUpdateFailed(function () {
+            // 新的版本下载失败
+            wx.showModal({
+              title: '已经有新版本了哟~',
+              content: '新版本已经上线啦~，请您删除当前小程序，重新搜索打开哟~',
+            })
+          })
         }
       })
-
-    })
-
-    updateManager.onUpdateFailed(function () {
-      // 新的版本下载失败
-      throw Error("新的版本下载失败");
-    })
+    } else {
+      // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
   },
   onShow: function (options) {
     this.globalData.scene = options.scene;
@@ -70,7 +79,7 @@ App({
                                 withCredentials: true,
                                 success: function (res_user) {
                                   wx.request({
-                                    url: that.globalData.base_url + '/login',
+                                    url: that.globalData.base_url + '/login03',
                                     data: {
                                       auth_type:0,
                                       scene_value: 0,
@@ -84,7 +93,6 @@ App({
                                     },
                                     success: function (res) {
                                       that.globalData.userInfo = res.data.userinfo;
-                                      wx.setStorageSync('nickname', res.data.userinfo.nickname);
                                       wx.setStorageSync('session', res.data.hash);
                                       wx.setStorageSync('openid', res.data.openid);
                                       wx.setStorageSync('open_id', res.data.open_id);
@@ -110,7 +118,7 @@ App({
                         withCredentials: true,
                         success: function (res_user) {
                           wx.request({
-                            url: that.globalData.base_url + '/login',
+                            url: that.globalData.base_url + '/login03',
                             data: {
                               auth_type: 0,
                               scene_value: 0,
@@ -124,7 +132,6 @@ App({
                             },
                             success: function (res) {
                               that.globalData.userInfo = res.data.userinfo;
-                              wx.setStorageSync('nickname', res.data.userinfo.nickname);
                               wx.setStorageSync('session', res.data.hash);
                               wx.setStorageSync('openid', res.data.openid);
                               wx.setStorageSync('open_id', res.data.open_id);
@@ -175,7 +182,6 @@ App({
                       success: function (res) {
                         console.log(1, res)
                         that.globalData.userInfo = res.data.userinfo;
-                        wx.setStorageSync('nickname', res.data.userinfo.nickname);
                         wx.setStorageSync('session', res.data.hash);
                         wx.setStorageSync('openid', res.data.openid);
                         wx.setStorageSync('open_id', res.data.open_id);
@@ -214,7 +220,6 @@ App({
                     success: function (res) {
                       console.log(2, res)
                       that.globalData.userInfo = res.data.userinfo;
-                      wx.setStorageSync('nickname', res.data.userinfo.nickname);
                       wx.setStorageSync('session', res.data.hash);
                       wx.setStorageSync('openid', res.data.openid);
                       wx.setStorageSync('open_id', res.data.open_id);
@@ -260,7 +265,6 @@ App({
                       success: function (res) {
                         console.log(3, res)
                         that.globalData.userInfo = res.data.userinfo;
-                        wx.setStorageSync('nickname', res.data.userinfo.nickname);
                         wx.setStorageSync('session', res.data.hash);
                         wx.setStorageSync('openid', res.data.openid);
                         wx.setStorageSync('open_id', res.data.open_id);
@@ -299,7 +303,90 @@ App({
                     success: function (res) {
                       console.log(4, res)
                       that.globalData.userInfo = res.data.userinfo;
-                      wx.setStorageSync('nickname', res.data.userinfo.nickname);
+                      wx.setStorageSync('session', res.data.hash);
+                      wx.setStorageSync('openid', res.data.openid);
+                      wx.setStorageSync('open_id', res.data.open_id);
+                      typeof cb == "function" && cb(that.globalData.userInfo);
+                    }
+                  })
+                },
+              })
+            } else {
+              console.log('获取用户登录态失败！' + res.errMsg)
+            }
+          },
+        })
+      }
+    })
+  },
+  //新人登录领币
+  xrLogin: function (cb) {
+    var that = this;
+    wx.checkSession({
+      success: function (res) {
+        if (wx.getStorageSync('openid') && wx.getStorageSync('open_id') != 0) {
+          that.onRefresh(cb);
+        } else {
+          wx.login({
+            success: res => {
+              if (res.code) {
+                wx.getUserInfo({
+                  withCredentials: true,
+                  success: function (res_user) {
+                    wx.request({
+                      url: that.globalData.base_url + '/login04',
+                      data: {
+                        auth_type: 1,
+                        scene_value: 0,
+                        code: res.code,
+                        encryptedData: encodeURIComponent(res_user.encryptedData),
+                        iv: encodeURIComponent(res_user.iv)
+                      },
+                      method: 'GET',
+                      header: {
+                        'content-type': 'application/json'
+                      },
+                      success: function (res) {
+                        console.log(3, res)
+                        that.globalData.userInfo = res.data.userinfo;
+                        wx.setStorageSync('session', res.data.hash);
+                        wx.setStorageSync('openid', res.data.openid);
+                        wx.setStorageSync('open_id', res.data.open_id);
+                        typeof cb == "function" && cb(that.globalData.userInfo);
+                      }
+                    })
+                  },
+                })
+              } else {
+                console.log('获取用户登录态失败！' + res.errMsg)
+              }
+            },
+          })
+        }
+      },
+      fail: function () {
+        wx.login({
+          success: res => {
+            if (res.code) {
+              wx.getUserInfo({
+                withCredentials: true,
+                success: function (res_user) {
+                  wx.request({
+                    url: that.globalData.base_url + '/login04',
+                    data: {
+                      auth_type: 1,
+                      scene_value: 0,
+                      code: res.code,
+                      encryptedData: encodeURIComponent(res_user.encryptedData),
+                      iv: encodeURIComponent(res_user.iv)
+                    },
+                    method: 'GET',
+                    header: {
+                      'content-type': 'application/json'
+                    },
+                    success: function (res) {
+                      console.log(4, res)
+                      that.globalData.userInfo = res.data.userinfo;
                       wx.setStorageSync('session', res.data.hash);
                       wx.setStorageSync('openid', res.data.openid);
                       wx.setStorageSync('open_id', res.data.open_id);
@@ -345,7 +432,6 @@ App({
                       success: function (res) {
                         console.log(3, res)
                         that.globalData.userInfo = res.data.userinfo;
-                        wx.setStorageSync('nickname', res.data.userinfo.nickname);
                         wx.setStorageSync('session', res.data.hash);
                         wx.setStorageSync('openid', res.data.openid);
                         wx.setStorageSync('open_id', res.data.open_id);
@@ -387,7 +473,6 @@ App({
                     success: function (res) {
                       console.log(4, res)
                       that.globalData.userInfo = res.data.userinfo;
-                      wx.setStorageSync('nickname', res.data.userinfo.nickname);
                       wx.setStorageSync('session', res.data.hash);
                       wx.setStorageSync('openid', res.data.openid);
                       wx.setStorageSync('open_id', res.data.open_id);

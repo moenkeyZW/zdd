@@ -1,4 +1,7 @@
 {
-    "enablePullDownRefresh": true,
-    "onReachBottomDistance": true
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 100,
+  "usingComponents": {
+    "my-component": "../components/custom-component"
+  }
 }

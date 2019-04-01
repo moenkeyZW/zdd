@@ -1,0 +1,23 @@
+<!--pages/callus/index.wxml-->
+<view class='container'>
+  <view class='manages'>
+    <!-- <button class='btn btnAdd' plain='true' open-type='feedback'>
+      <view class='dis border kfmes'>
+        <view class='week'>
+          <image class='icsm' src='../../imgs/myYjfk.png'></image>
+          <view class='size cor  wid'>问题反馈</view>
+        </view>
+        <image src='../../imgs/arrow.png' class='arrow'></image>
+      </view>
+    </button> -->
+    <button class='btn btnAdd' plain='true' open-type='contact'>
+      <view class='dis kfmes'>
+        <view class='week'>
+          <image class='icsm' src='../../imgs/kf.png'></image>
+          <view class='size cor  wid'>人工客服</view>
+        </view>
+        <image src='../../imgs/arrow.png' class='arrow'></image>
+      </view>
+    </button>
+  </view>
+</view>

@@ -40,7 +40,7 @@
   float: right;
   margin:20rpx;
 }
-.cor{
+.corss{
   color:#333;
   padding-left:20rpx;
 }

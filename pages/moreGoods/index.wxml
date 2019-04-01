@@ -1,10 +1,11 @@
 <!--pages/moreGoods/index.wxml-->
 <view class='container'>
+ <image src='../../imgs/jxhead.png' class='xrHead mgbtom'></image>
   <view class='week'>
     <block wx:for="{{zl_goods}}" wx:key="{{index}}" data-index="{{index}}">
       <view class='wareDetail'>
-        <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='onDetail' lazy-load='true' data-id="{{item.goods_id}}"></image>
-        <view class='size cor mf'>{{item.title}}</view>
+        <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='onDetail'  data-id="{{item.goods_id}}"></image>
+        <view class='size cor mft ellipsis '>{{item.title}}</view>
         <view class='dis kuan'>
           <view>
             <image src='../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>

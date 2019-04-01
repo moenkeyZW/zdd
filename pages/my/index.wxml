@@ -1,6 +1,6 @@
 <!--pages/my/index.wxml-->
 <view class='container'>
-  <view class='headers'>
+  <view class='headerss'>
     <image src='../../imgs/myBg.png' class='myBg'></image>
     <open-data type="userAvatarUrl" class='ava abs'></open-data>
     <open-data type="userNickName" class='nickname abs'></open-data>
@@ -30,8 +30,10 @@
     </view>
   </view>
   <view class='daohang' bindtap='gotoXr'>
-    <view class='thf cor mf'>你有<text class='blue' style='font-weigth:bold;'>{{xr_goods}}</text>件新人礼品还未领取，邀请新人</view>
-    <view style='margin-right:30rpx;' >
+    <view class='thf cor mf'>你有
+      <text class='blue' style='font-weigth:bold;'>{{xr_goods}}</text>
+      件新人礼品还未领取，邀请新人</view>
+    <view style='margin-right:30rpx;'>
       <text class='price tf' style='padding-right:10rpx;font-weigth:bold;'>立即领取</text>
       <image src='../../imgs/daohang.png' class='dh'></image>
     </view>
@@ -65,7 +67,7 @@
           <image src='../../imgs/arrow.png' class='arrow'></image>
         </view>
       </button>
-      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="rule">
+      <view class='btn btnAdd' bindtap="rule">
         <view class='dis border'>
           <view class='week'>
             <image class='icsm' src='../../imgs/rule.png'></image>
@@ -73,8 +75,8 @@
           </view>
           <image src='../../imgs/arrow.png' class='arrow'></image>
         </view>
-      </button>
-      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="setting">
+      </view>
+      <view class='btn btnAdd'  bindtap="setting">
         <view class='dis border'>
           <view class='week'>
             <image class='icsm' src='../../imgs/set.png'></image>
@@ -82,12 +84,12 @@
           </view>
           <image src='../../imgs/arrow.png' class='arrow'></image>
         </view>
-      </button>
-      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="suggest">
+      </view>
+      <button class='btn btnAdd' plain='true' open-type='contact'>
         <view class='dis'>
           <view class='week'>
-            <image class='icsm' src='../../imgs/myYjfk.png'></image>
-            <view class='size cor  wid'>意见反馈</view>
+            <image class='icsm' src='../../imgs/callus.png'></image>
+            <view class='size cor  wid'>联系我们</view>
           </view>
           <image src='../../imgs/arrow.png' class='arrow'></image>
         </view>
@@ -190,6 +192,5 @@
     </view>
     <image src='../../imgs/delete.png' class='delete jkcps' bindtap='hideHandle'></image>
   </view>
-
-  <!-- <ad unit-id="adunit-de8f5735f3bc5f4e" class='ad'></ad> -->
+<ad unit-id="adunit-de8f5735f3bc5f4e" class='ad'></ad>
 </view>

@@ -50,6 +50,7 @@
   font-weight: 400;
   top:58rpx;
   box-shadow: none;
+  text-align: center;
 }
 
 .act {
@@ -115,58 +116,13 @@
   padding: 0 18rpx 0 22rpx;
 }
 
-
-.biaoti {
-  width: 590rpx;
-  height: 550rpx;
-  position: relative;
-}
-
-.shareGuang {
-  width: 750rpx;
-  height: 272rpx;
-  top: -136rpx;
-}
-
-.shareSuccess {
-  width: 590rpx;
-  height: 140rpx;
-}
-
-.shareRlb {
-  width: 240rpx;
-  height: 240rpx;
-  margin: 90rpx 0 0 175rpx;
-}
-
-.huode {
-  color: #333;
-  font-size: 32rpx;
-  margin: 12rpx 0 0 98rpx;
-}
-
-.fenxiang {
-  width: 530rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-  border-radius: 40rpx;
-  box-shadow: 0px 10rpx 20rpx 0px rgba(251, 230, 77, 0.6);
-  margin-top: 36rpx;
-}
-
-.shareX {
-  bottom: 120rpx;
-}
-
-
-
 .seetomo {
   background: #fdf2a6;
 
 }
 .gzh{
   width:590rpx;
-  height:832rpx;
+  height:795rpx;
   display: block;
 }
 .clickcontact{
@@ -209,11 +165,11 @@
 }
 .headpoint{
   width:132rpx;
-  height:36rpx;
-  line-height: 36rpx;
+  height:40rpx;
+  line-height: 40rpx;
   background:#fff;
-  border-top-left-radius: 18rpx;
-  border-bottom-left-radius: 18rpx;
+  border-top-left-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
   text-align: center;
   left:632rpx;
   bottom:245rpx;

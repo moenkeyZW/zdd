@@ -1,14 +1,19 @@
 /* pages/index/index.wxss */
 @import '../../css/common.wxss';
 
+.container {
+  background-color: #f0f6ff;
+}
+
 .dialog {
   width: 100%;
 }
 
-.header {
+.headers {
   width: 100%;
-  min-height: 638rpx;
+  min-height: 580rpx;
   background: #fff;
+  margin-bottom:30rpx;
 }
 
 .cor {
@@ -46,7 +51,9 @@
 .mf {
   margin-left: 30rpx;
 }
-
+.mft{
+  margin-left:20rpx;
+}
 .thw {
   font-size: 32rpx;
 }
@@ -67,18 +74,15 @@
   align-items: center;
 }
 
-.duanxian {
-  width: 6rpx;
-  height: 24rpx;
-  background: #47a7fe;
-  border-radius: 3rpx;
+.debi {
+  margin: 10rpx 0 0 22rpx;
   align-self: center;
-  margin-right: 10rpx;
 }
 
 .bsby {
   margin: 20rpx 0 6rpx 30rpx;
   width: calc(100% - 60rpx);
+  position: relative;
 }
 
 .abs {
@@ -88,9 +92,8 @@
 }
 
 .detail {
-  min-height: 512rpx;
+  min-height: 474rpx;
   background: #fff;
-  margin: 24rpx 0 20rpx 0;
   z-index: 10;
 }
 
@@ -101,228 +104,68 @@
   top: 6rpx;
 }
 
+.duanxian {
+  width: 6rpx;
+  height: 24rpx;
+  background: #47a7fe;
+  border-radius: 3rpx;
+  align-self: center;
+  margin-right: 10rpx;
+}
+
 .gao {
   height: auto;
 }
 
-.hot {
-  width: 22rpx;
-  height: 28rpx;
-  position: relative;
-  right: 35rpx;
-  bottom: 4rpx;
-  animation: shake-rotate 1s linear infinite;
+.ckgd {
+  width: calc(100% - 60rpx);
 }
 
-@keyframes shake-rotate {
-  0% {
-    transform: translate(0px, 0px) rotate(0.5deg);
-  }
-
-  2% {
-    transform: translate(0px, 0px) rotate(3deg);
-  }
-
-  4% {
-    transform: translate(0px, 0px) rotate(-5deg);
-  }
-
-  6% {
-    transform: translate(0px, 0px) rotate(3deg);
-  }
-
-  8% {
-    transform: translate(0px, 0px) rotate(5deg);
-  }
-
-  10% {
-    transform: translate(0px, 0px) rotate(-6deg);
-  }
-
-  12% {
-    transform: translate(0px, 0px) rotate(-4deg);
-  }
-
-  14% {
-    transform: translate(0px, 0px) rotate(-2deg);
-  }
-
-  16% {
-    transform: translate(0px, 0px) rotate(-2deg);
-  }
-
-  18% {
-    transform: translate(0px, 0px) rotate(3deg);
-  }
-
-  20% {
-    transform: translate(0px, 0px) rotate(-1deg);
-  }
-
-  22% {
-    transform: translate(0px, 0px) rotate(7deg);
-  }
-
-  24% {
-    transform: translate(0px, 0px) rotate(1deg);
-  }
-
-  26% {
-    transform: translate(0px, 0px) rotate(-6deg);
-  }
-
-  28% {
-    transform: translate(0px, 0px) rotate(-5deg);
-  }
-
-  30% {
-    transform: translate(0px, 0px) rotate(-2deg);
-  }
-
-  32% {
-    transform: translate(0px, 0px) rotate(3deg);
-  }
-
-  34% {
-    transform: translate(0px, 0px) rotate(1deg);
-  }
-
-  36% {
-    transform: translate(0px, 0px) rotate(7deg);
-  }
-
-  38% {
-    transform: translate(0px, 0px) rotate(7deg);
-  }
-
-  40% {
-    transform: translate(0px, 0px) rotate(4deg);
-  }
-
-  42% {
-    transform: translate(0px, 0px) rotate(-5deg);
-  }
-
-  44% {
-    transform: translate(0px, 0px) rotate(6deg);
-  }
-
-  46% {
-    transform: translate(0px, 0px) rotate(3deg);
-  }
-
-  48% {
-    transform: translate(0px, 0px) rotate(3deg);
-  }
-
-  50% {
-    transform: translate(0px, 0px) rotate(6deg);
-  }
-
-  52% {
-    transform: translate(0px, 0px) rotate(-2deg);
-  }
-
-  54% {
-    transform: translate(0px, 0px) rotate(6deg);
-  }
-
-  56% {
-    transform: translate(0px, 0px) rotate(-8deg);
-  }
-
-  58% {
-    transform: translate(0px, 0px) rotate(3deg);
-  }
-
-  60% {
-    transform: translate(0px, 0px) rotate(7deg);
-  }
-
-  62% {
-    transform: translate(0px, 0px) rotate(2deg);
-  }
-
-  64% {
-    transform: translate(0px, 0px) rotate(-8deg);
-  }
-
-  66% {
-    transform: translate(0px, 0px) rotate(-3deg);
-  }
-
-  68% {
-    transform: translate(0px, 0px) rotate(4deg);
-  }
-
-  70% {
-    transform: translate(0px, 0px) rotate(-5deg);
-  }
-
-  72% {
-    transform: translate(0px, 0px) rotate(3deg);
-  }
-
-  74% {
-    transform: translate(0px, 0px) rotate(3deg);
-  }
-
-  76% {
-    transform: translate(0px, 0px) rotate(-3deg);
-  }
-
-  78% {
-    transform: translate(0px, 0px) rotate(-1deg);
-  }
-
-  80% {
-    transform: translate(0px, 0px) rotate(-4deg);
-  }
-
-  82% {
-    transform: translate(0px, 0px) rotate(6deg);
-  }
-
-  84% {
-    transform: translate(0px, 0px) rotate(-2deg);
-  }
-
-  86% {
-    transform: translate(0px, 0px) rotate(-2deg);
-  }
-
-  88% {
-    transform: translate(0px, 0px) rotate(5deg);
-  }
-
-  90% {
-    transform: translate(0px, 0px) rotate(6deg);
-  }
-
-  92% {
-    transform: translate(0px, 0px) rotate(5deg);
-  }
-
-  94% {
-    transform: translate(0px, 0px) rotate(-2deg);
-  }
-
-  96% {
-    transform: translate(0px, 0px) rotate(4deg);
-  }
-
-  98% {
-    transform: translate(0px, 0px) rotate(-8deg);
-  }
+.xrckgd {
+  display: inline-block;
+  writing-mode: vertical-lr;
+  width: 100rpx;
+  line-height: 80rpx;
+  text-align: center;
+  height: 350rpx;
+  margin-right: 20rpx;
 }
 
 .main {
-  position: relative;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  top: 12rpx;
-  width: 420rpx;
-  height: 284rpx;
+  width: 376rpx;
+  height: 376rpx;
+}
+
+.zuizhong {
+  bottom:145rpx;
+  left:196rpx;
+  animation: zuizhong 4s ease-in-out infinite;
+}
+
+.zuizhong[disabled] {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+@keyframes zuizhong {
+  0% {
+    transform: scale(1); /*开始为原始大小*/
+  }
+
+  25% {
+    transform: scale(1.1);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .moneys {
@@ -338,32 +181,28 @@
   top: 4rpx;
 }
 
-.useStep {
-  top: 122rpx;
+.dianji {
+  width: 230rpx;
+  top: 255rpx;
 }
 
-.num {
-  font-size: 96rpx;
-  font-weight: bold;
-  top: 212rpx;
-}
-
-.clear {
-  color: #999;
-  top: 300rpx;
-}
 
 .takeMore {
   left: 92%;
-  bottom: 192rpx;
+  bottom: 100rpx;
   width: 120rpx;
   height: 44rpx;
   line-height: 44rpx;
-  background: #fff !important;
+  background: #47a7fe !important;
   border-top-left-radius: 22rpx !important;
   border-bottom-left-radius: 22rpx !important;
-  color: #47a7fe !important;
+  color: #fff !important;
   text-align: center;
+}
+
+.takeMore[disabled] {
+  background: #47a7fe !important;
+  color: #fff !important;
 }
 
 .headIntro {
@@ -377,7 +216,7 @@
   line-height: 48rpx;
   border-radius: 24rpx;
   color: #47a7fe;
-  bottom: 6rpx;
+  bottom: 0rpx;
 }
 
 .btnAnalysis[plain] {
@@ -392,10 +231,6 @@
   bottom: 10rpx;
 }
 
-.rlb {
-  font-size: 32rpx;
-}
-
 .rlbToday {
   top: -30rpx;
   left: 6rpx;
@@ -405,12 +240,11 @@
   width: 420rpx;
   height: 80rpx;
   line-height: 80rpx;
-  text-align: center;
   border-radius: 40rpx;
   box-shadow: 0px 4rpx 16rpx 0px rgba(71, 167, 254, 0.3);
   transform: translate(-50%, -50%);
   left: 50%;
-  top: -72rpx;
+  top: -32rpx;
 }
 
 .btnClick[plain] {
@@ -435,20 +269,81 @@
 }
 
 .shareFri {
-  background: #fff !important;
-  top: -250rpx;
+  top: 520rpx;
 }
+.newLq{
+  width:276rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  background:#FDE84F;
+  border-radius: 30rpx;
+  text-align: center;
+  bottom:36rpx;
+  font-weight: bold;
+  left:28%;
+  color:#F52201;
+  animation: ljlq 1.5s ease-in-out infinite;
+}
+@keyframes ljlq {
+  0% {
+    transform: scale(1); /*开始为原始大小*/
+  }
 
+  25% {
+    transform: scale(1.2);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 .cljgs {
+  width:530rpx;
+  height:136rpx;
+  background:#f5f9ff;
+  border-radius: 10rpx;
+  box-shadow:0px 6rpx 10rpx 0px rgba(71,167,254,0.1);
   position: absolute;
-  bottom: 50rpx;
+  bottom: 75rpx;
+  justify-content: space-around;
+  align-items: center;
 }
-
+.tyzw{
+  position: relative;
+  bottom:17rpx;
+}
+.czx{
+  width:2rpx;
+  height:80rpx;
+  background:#E6E8EB;
+  border-radius: 1rpx;
+}
 .wareDetail {
   background: #fff;
   margin: 20rpx 0 0rpx 30rpx;
   border-radius: 10rpx;
   box-shadow: 0px 4rpx 10rpx 0px rgba(71, 167, 254, 0.2);
+}
+
+.xrwareDetail {
+  width: 210rpx;
+  display: inline-block;
+  background: #fff;
+  margin: 0 10rpx 30rpx 0;
+  border-radius: 10rpx;
+  box-shadow: 0px 2rpx 10rpx 0px rgba(71, 167, 254, 0.2);
+}
+
+.zlwareDetail {
+  width: 214rpx;
 }
 
 .noMore {
@@ -471,12 +366,29 @@
 }
 
 .goods {
-  width: 270rpx;
-  height: 200rpx;
-  margin: 30rpx 30rpx 0 30rpx;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  width: 330rpx;
+  height: 244rpx;
+}
+
+.xrgoods {
+  width: 210rpx;
+  height: 240rpx;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+
+.zlgoods {
+  width: 214rpx;
+  height: 158rpx;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
 }
 
 .yprice {
+  position: relative;
+  top: 5rpx;
   font-size: 20rpx;
   color: #b3b3b3;
   text-decoration: line-through;
@@ -484,10 +396,6 @@
 
 .decoration {
   text-decoration: none;
-}
-
-.yjts {
-  font-size: 20rpx;
 }
 
 .change {
@@ -535,7 +443,7 @@
 }
 
 .need {
-  margin-top: 8rpx;
+  margin-top: 12rpx;
   text-align: center;
 }
 
@@ -573,7 +481,7 @@
 }
 
 .mgbtom {
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
 }
 
 .btnYq {
@@ -604,7 +512,6 @@
   font-size: 36rpx;
   margin-top: 3rpx;
 }
-
 .ding {
   position: absolute;
   top: 36rpx;
@@ -614,22 +521,21 @@
 .top {
   top: 62rpx;
 }
-
 .nub {
-  font-size: 48rpx;
+  font-size: 60rpx;
   font-weight: bold;
 }
 
-.adv {
+.adn{
   width: 610rpx;
-  height: 240rpx;
-  position: absolute;
-  bottom: -226rpx;
+  height: 310rpx;
+  bottom: -450rpx;
+  left:52%;
 }
-
-.advs {
-  width: 610rpx;
-  height: 240rpx;
+.adf{
+  width: 630rpx;
+  height: 410rpx;
+  bottom: -600rpx;
 }
 
 .zanwu {
@@ -640,15 +546,14 @@
 
 .indexshou {
   width: 590rpx;
-  height: 535rpx;
+  height: 496rpx;
 }
 
 .baituo {
   width: 488rpx;
   font-size: 32rpx;
-  padding-top: 24rpx;
   position: absolute;
-  top: 280rpx;
+  top: 270rpx;
   left: 60rpx;
   letter-spacing: 1rpx;
 }
@@ -663,7 +568,7 @@
 .think {
   color: #b3b3b3;
   font-size: 32rpx;
-  bottom: 2rpx;
+  bottom: -3rpx;
 }
 
 .bgnone {
@@ -672,13 +577,14 @@
 
 .comment {
   width: 240rpx;
-  height: 80rpx;
+  height: 68rpx;
   top: 3rpx;
+  overflow: visible;
 }
 
 .cldk {
   width: 590rpx;
-  height: 488rpx;
+  height: 332rpx;
 }
 
 .zwcz {
@@ -687,13 +593,18 @@
 }
 
 .kuan {
-  width: calc(100% - 60rpx);
-  margin: 0 0 20rpx 30rpx;
+  width: calc(100% - 40rpx);
+  margin: 0 0 16rpx 20rpx;
+}
+
+.zlkuan {
+  width: calc(100% - 20rpx);
+  margin: 0 0 10rpx 10rpx;
 }
 
 .wenzi {
   bottom: 2rpx;
-  left: 2rpx;
+  left: 0rpx;
 }
 
 .dqrlb {
@@ -737,11 +648,16 @@
 }
 
 .ellipsis {
-  margin-top: 10rpx;
+  margin-top: 5rpx;
   width: 280rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.zlellipsis {
+  width: 190rpx;
+  margin-left: 10rpx;
 }
 
 .bom {
@@ -817,8 +733,7 @@
 
 .rlbArea {
   background: #fff;
-  min-height: 828rpx;
-  margin-bottom: 20rpx;
+  min-height: 686rpx;
 }
 
 .thf {
@@ -849,8 +764,9 @@
 .sx {
   width: 60rpx;
   height: 60rpx;
-  bottom: -135rpx;
-  left: 51%;
+  bottom: -175rpx;
+  left: 50%;
+  overflow: visible;
   z-index: 20;
 }
 
@@ -893,27 +809,27 @@
   width: 92rpx;
   height: 102rpx;
   left: 66rpx;
-  top: 396rpx;
+  top: 220rpx;
   animation: sign 2s linear infinite;
 }
 
 @keyframes sign {
   0% {
-    top: 396rpx;
+    top: 220rpx;
   }
 
   50% {
-    top: 386rpx;
+    top: 210rpx;
   }
 
   100% {
-    top: 396rpx;
+    top: 220rpx;
   }
 }
 
 .newuser {
   width: 530rpx;
-  height: 610rpx;
+  height: 600rpx;
   z-index: 20;
 }
 
@@ -1005,61 +921,23 @@
   color: #b3b3b3;
 }
 
-/* .marquee_box {
-  width:604rpx;
-  position: relative;
-  height: 48rpx;
-  display: block;
-  overflow: hidden;
-  margin:0 20rpx;
-}
-
-.marquee_text {
-  white-space: nowrap;
-  position: absolute;
-  top: 2rpx;
-  height: 48rpx;
-  line-height: 48rpx;
-} */
-
-.marquee_box {
-  width: 604rpx;
-  position: relative;
-  height: 48rpx;
-  line-height: 48rpx;
-  display: block;
-  overflow: hidden;
-  margin: 0 20rpx;
-}
-
-.marquee_text {
-  display: inline-block;
-  white-space: nowrap;
-  animation-name: around;
-  animation-duration: 10s; /*过渡时间*/
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  margin-top: 3rpx;
-}
-
-@keyframes around {
-  from {
-    margin-left: 100%;
-  }
-
-  to {
-    /* var接受传入的变量 */
-    margin-left: var(--marqueeWidth--);
-  }
-}
-
 .sd {
   color: #fff;
 }
 
+.sdindexsharebtn {
+  width: 420rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  left: 50%;
+  bottom: 12rpx;
+  box-shadow:0px 6rpx 16rpx 0px rgba(71,167,254,0.2);
+}
+
 .sdheader {
   width: 100%;
-  height: 638rpx;
+  height: 580rpx;
 }
 
 .sddis {
@@ -1077,60 +955,52 @@
   top: 122rpx;
   width: 100%;
 }
-
+.indexzhuan[plain]{
+  padding:0;
+  margin-bottom:30rpx;
+}
 .sdrule {
   width: 92rpx;
   height: 107rpx;
-  left: 66rpx;
-  top: 168rpx;
+  left: 91%;
+  top: 240rpx;
   animation: clouds 2s linear infinite;
 }
 
 @keyframes clouds {
   0% {
-    top: 188rpx;
+    top: 240rpx;
   }
 
   50% {
-    top: 208rpx;
+    top: 260rpx;
   }
 
   100% {
-    top: 188rpx;
+    top: 240rpx;
   }
 }
 
 .sdmain {
-  top: 230rpx;
-  width: 424rpx;
-  height: 414rpx;
+  top: 258rpx;
+  width: 396rpx;
+  height: 396rpx;
 }
 
 .sduseStep {
-  top: 118rpx;
+  top: 90rpx;
 }
 
 .sdnum {
-  font-size: 96rpx;
+  font-size: 60rpx;
+  width:100%;
   font-weight: bold;
-  top: 206rpx;
+  top: 162rpx;
 }
 
 .sdclear {
-  top: 290rpx;
-}
-
-/* .sdkk{
-  bottom:656rpx;
-  z-index:10;
-} */
-
-.sdmao {
-  width: 50rpx;
-  height: 37rpx;
-  top: 358rpx;
-  left: 638rpx;
-  z-index: 10;
+  top: 300rpx;
+  font-size: 20rpx;
 }
 
 .sdan {
@@ -1139,34 +1009,208 @@
 }
 
 .sdtake {
-  bottom: 210rpx;
-}
-
-.sdcar {
-  width: 85rpx;
-  height: 88rpx;
-  left: 43rpx;
-  bottom: 19rpx;
+  bottom: 26rpx;
 }
 
 .sdscroll {
   bottom: -10rpx;
 }
 
-.sdlu {
-  left: 630rpx;
-  bottom: 11rpx;
-  width: 125rpx;
-  height: 102rpx;
+.christmasclick {
+  width: 590rpx;
+  height: 742rpx;
 }
 
-.sdwz {
-  width: 40rpx;
-  height: 72rpx;
-  left: 536rpx;
-  bottom: 125rpx;
+.biaoti {
+  width: 590rpx;
+  height: 550rpx;
+  position: relative;
 }
-.christmasclick{
-  width:590rpx;
-  height:742rpx;
+
+.shareGuang {
+  width: 750rpx;
+  height: 272rpx;
+  top: -136rpx;
+}
+
+.shareSuccess {
+  width: 590rpx;
+  height: 140rpx;
+}
+
+.shareRlb {
+  width: 240rpx;
+  height: 240rpx;
+  margin: 90rpx 0 0 175rpx;
+}
+
+.huode {
+  color: #333;
+  font-size: 32rpx;
+  margin: 12rpx 0 0 98rpx;
+}
+
+.fenxiang {
+  width: 530rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  box-shadow: 0px 10rpx 20rpx 0px rgba(251, 230, 77, 0.6);
+  margin-top: 36rpx;
+}
+
+.shareX {
+  bottom: 120rpx;
+}
+
+.zlindex {
+  margin: 20rpx 0;
+  width: 690rpx;
+  height: 200rpx;
+}
+
+.indexyd {
+  width: 550rpx;
+  height: 368rpx;
+  display: block;
+}
+
+.sportContent {
+  width: 550rpx;
+  height: 438rpx;
+  border-bottom-left-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  background: #fff;
+}
+
+.indexzicon {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 30rpx 20rpx 0 50rpx;
+}
+
+.bzero {
+  color: #808080;
+}
+
+.crl {
+  color: #ff2b56;
+}
+
+.ondx {
+  color: #115aa4;
+}
+
+.green {
+  color: #02735c;
+}
+
+.mgtopt {
+  margin-top: 30rpx;
+}
+
+.yd {
+  width: 44rpx;
+  height: 180rpx;
+  left: 246rpx;
+  top: 90rpx;
+  z-index: 10;
+}
+
+.indexzhuan {
+  width: 724rpx;
+  height: 262rpx;
+  margin-top: 20rpx;
+}
+
+.go {
+  width: 75rpx;
+  height: 75rpx;
+  top: 154rpx;
+  left: 560rpx;
+  animation: scaleDraw 2s ease-in-out infinite;
+}
+
+@keyframes scaleDraw {
+  0% {
+    transform: scale(1); /*开始为原始大小*/
+  }
+
+  25% {
+    transform: scale(1.2);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ad {
+  zoom: 0.92;
+  margin-bottom: 30rpx;
+}
+
+.zlckgd {
+  top: 4rpx;
+}
+
+.jxckgd {
+  width: 690rpx;
+  height: 60rpx;
+  background: #feee70;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  margin: 30rpx;
+}
+
+.scroll_box {
+  width: 100%;
+  height: 307rpx;
+  overflow: hidden;
+  padding: 20rpx;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.item_list {
+  width: 160rpx;
+  height: auto;
+  margin-right: 23rpx;
+  display: inline-block;
+}
+
+.scrollView {
+  white-space: nowrap;
+  display: flex;
+  margin-left: 20rpx;
+}
+.is_new_rlb{
+  width:92rpx;
+  height:102rpx;
+  left: 66rpx;
+  top:380rpx;
+  animation: newRlb 2s linear infinite;
+}
+
+@keyframes newRlb {
+  0% {
+    top: 380rpx;
+  }
+
+  50% {
+    top: 390rpx;
+  }
+
+  100% {
+    top: 380rpx;
+  }
 }

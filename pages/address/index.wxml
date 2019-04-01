@@ -11,14 +11,14 @@
       <image class='icon edit' src='../../imgs/edit.png' bindtap='editAddress'></image>
       <view class='mg'>
         <image src='../../imgs/name.png' class='icon left'></image>
-        <text class='font cor pos'>{{msg.name}}</text>
+        <text class='font corss pos'>{{msg.name}}</text>
         <image src='../../imgs/phone.png' class='icon long'></image>
-        <text class='font cor pos'>{{msg.phone}}</text>
+        <text class='font corss pos'>{{msg.phone}}</text>
       </view>
       <view class='mgs'>
         <image src='../../imgs/add.png' class='icon left'></image>
-        <text class='font cor con pos btom' >{{msg.address}}</text>
-        <text class='font cor con new posi'>{{msg.detail_address}}</text>
+        <text class='font corss con pos btom' >{{msg.address}}</text>
+        <text class='font corss con new posi'>{{msg.detail_address}}</text>
       </view>
     </view>
     <view class='dikuang pos bom'></view>

@@ -12,7 +12,6 @@ Page({
     haveFriend: false,
     foot: true,
     telephone:true,
-    // rule: true,
     goods_id: '',
     button_state: 3,
     addinfo_state: '',
@@ -26,21 +25,29 @@ Page({
     my_currency: '',
     needNum:'',
     readyNum:'',
-    is_new:'',
     record:'',
+    form_id:'',
+    parements:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     const that = this;
     that.setData({
-      goods_id: options.id
+      goods_id: options.id,
+      form_id: options.form_id,
+      parements: options.parements
     })
 
   },
-
+  imageLoad:function(e){
+    wx.hideLoading();
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -48,6 +55,8 @@ Page({
   onShow: function() {
     const that = this;
     var goods_id = that.data.goods_id;
+    var form_id = that.data.form_id;
+    var parements = that.data.parements;
     if (wx.getStorageSync('openid')) {
       that.setData({
         isHaveopenid: true,
@@ -62,8 +71,10 @@ Page({
     wx.request({
       url: app.globalData.base_url + '/xr_goods_detail03',
       data: {
+        parements: parements,
         goods_id: goods_id,
-        openid: openid
+        openid: openid, 
+        form_id:form_id
       },
       method: 'GET',
       header: {
@@ -72,7 +83,6 @@ Page({
       success: function(res) {
         console.log(res)
         that.setData({
-          is_new:res.data.is_new,
           addinfo_state: res.data.addinfo_state,
           goods: res.data.goods,
           needNum: res.data.number2,
@@ -133,7 +143,7 @@ Page({
           showCancel: false
         })
         return
-      } else if (that.data.goods.type==3){
+      } else if (that.data.goods.type == 3 || that.data.goods.type == 5 || that.data.goods.type == 6 || that.data.goods.type == 7 || that.data.goods.type == 8){
         that.setData({
           telephone: false,
         })
@@ -240,6 +250,9 @@ Page({
 
   affirmPhone:function(e){
     const that=this;
+    that.setData({
+      disableds: true,
+    })
     var form_id = e.detail.formId;
     var goods_id = that.data.goods_id;
     var phone=e.detail.value.phone;
@@ -248,6 +261,13 @@ Page({
         title: '提示',
         content: '请输入正确的电话号码',
         showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            that.setData({
+              disableds: false,
+            })
+          }
+        }
       })
       return;
     }
@@ -257,20 +277,24 @@ Page({
         title: '提示',
         content: '请输入正确的电话号码',
         showCancel: false,
-      })
-      return;
-    }
-    if(phone){
-      wx.showModal({
-        title: '确认充值',
-        content: '若电话号码填写有误，导致充值失败，将不再重新充值！确认充值？',
         success: function (res) {
           if (res.confirm) {
             that.setData({
-              disableds: true,
+              disableds: false,
             })
+          }
+        }
+      })
+      return;
+    }
+    if(phone && (that.data.goods.type==6||that.data.goods.type==7) ){
+      wx.showModal({
+        title: '确认充值',
+        content: '若充值号码填写有误，导致充值失败，将不再重新充值！确认充值？',
+        success: function (res) {
+          if (res.confirm) {
             wx.request({
-              url: app.globalData.base_url + '/chongzhi',
+              url: app.globalData.base_url + '/chongzhi_products',
               data: {
                 phone: phone,
                 form_id: form_id,
@@ -284,12 +308,51 @@ Page({
               success: function (res) {
                 const orderId = res.data.order_id;
                 wx.redirectTo({
-                  url: '/pages/success/index?orderId=' + orderId + '&&num=10086',
+                  url: '/pages/dhcg/index?orderId=' + orderId + '&&num=10086',
                 })
                 that.setData({
                   telephone: true,
                 })
               }
+            })
+          } else if (res.cancel) {
+            that.setData({
+              disableds: false,
+            })
+          }
+        }
+      })
+    }else if(phone){
+      wx.showModal({
+        title: '确认充值',
+        content: '若电话号码填写有误，导致充值失败，将不再重新充值！确认充值？',
+        success: function (res) {
+          if (res.confirm) {
+            wx.request({
+              url: app.globalData.base_url + '/charge_money',
+              data: {
+                phone: phone,
+                form_id: form_id,
+                goods_id: goods_id,
+                openid: wx.getStorageSync('openid')
+              },
+              method: 'GET',
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (res) {
+                const orderId = res.data.order_id;
+                wx.redirectTo({
+                  url: '/pages/dhcg/index?orderId=' + orderId + '&&num=10086',
+                })
+                that.setData({
+                  telephone: true,
+                })
+              }
+            })
+          } else if (res.cancel) {
+            that.setData({
+              disableds: false,
             })
           }
         }
@@ -305,6 +368,9 @@ Page({
   },
   affirm: function(e) {
     const that = this;
+    that.setData({
+      disabled: true,
+    })
     var form_id = e.detail.formId;
     var goods_id = that.data.goods_id;
     var addinfo_state = that.data.addinfo_state;
@@ -327,9 +393,7 @@ Page({
         content: '若收货信息填写有误，导致礼品退回，将不再补寄！确认兑换？',
         success: function(res) {
           if (res.confirm) {
-            that.setData({
-              disabled: true,
-            })
+           
             wx.request({
               url: 'https://www.mnancheng.com/admin/wechat/duihuan_goods',
               data: {
@@ -348,12 +412,16 @@ Page({
               success: function(res) {
                 const orderId = res.data.order_id;
                 wx.redirectTo({
-                  url: '/pages/success/index?orderId=' + orderId,
+                  url: '/pages/dhcg/index?orderId=' + orderId,
                 })
                 that.setData({
                   foot: true,
                 })
               }
+            })
+          } else if (res.cancel) {
+            that.setData({
+              disabled: false,
             })
           }
         }
@@ -367,19 +435,18 @@ Page({
       })
     }
   },
-
+  makeMore: function () {
+    wx.navigateTo({
+      url: '/pages/step/index',
+    })
+  },
   hideHandle: function() {
     this.setData({
       foot: true,
-      // rule: true,
       telephone:true,
     })
   },
-  // helpRule: function() {
-  //   this.setData({
-  //     rule: false,
-  //   })
-  // },
+
   /**
    * 用户点击右上角分享
    */

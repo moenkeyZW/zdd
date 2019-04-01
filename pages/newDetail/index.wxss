@@ -28,17 +28,6 @@
   bottom:5rpx;
 }
 
-.goindex{
-  position: fixed;
-  bottom:326rpx;
-  right:32rpx;
-  width:90rpx;
-  height:90rpx;
-  z-index: 10;
-}
-.indexBotm{
-  bottom:136rpx;
-}
 .changeRule{
   position: absolute;
   right:30rpx;
@@ -62,24 +51,7 @@
   bottom:3rpx;
   left:3rpx;
 }
-.xinghao{
-  color:#FF6060;
-  font-size:48rpx;
-  position: relative;
-  top:10rpx;
-  right:16rpx;
-}
-.inputPhone{
-  width:220rpx;
-  height:50rpx;
-  background:#E4E6ED;
-  text-align: center;
-}
-.inputHold{
-  font-size:24rpx;
-  color:#999;
-  text-align: center;
-}
+
 .changRule{
   min-height:368rpx;
 }

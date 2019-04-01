@@ -1,5 +1,5 @@
 {
     "navigationBarTitleText": "设置",
       "enablePullDownRefresh": true,
-      "onReachBottomDistance": true
+      "onReachBottomDistance": 300
 }

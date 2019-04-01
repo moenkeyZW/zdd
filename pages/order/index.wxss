@@ -62,9 +62,9 @@
 
 .goods {
   width: 150rpx;
-  height: 150rpx;
+  height: 110rpx;
   margin: 30rpx;
-  bottom: 42rpx;
+  bottom: 66rpx;
 }
 
 .rb {
@@ -108,13 +108,13 @@
 
 .xian {
   width: 2rpx;
-  height: 400rpx;
+  height: 480rpx;
   background: #fbe64d;
   position: absolute;
   left: 31rpx;
 }
 .xc{
-  height:480rpx;
+  height:500rpx;
 }
 
 .mgf {

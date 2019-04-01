@@ -15,17 +15,17 @@
     "pages/person/index",
     "pages/record/index",
     "pages/assistance/index",
-    "pages/share/index",
     "pages/step/index",
     "pages/moreGoods/index",
     "pages/oneDetail/index",
     "pages/exchange/index",
-    "pages/changeRecord/index",
     "pages/friendList/index",
-    "pages/suggest/index",
     "pages/newDetail/index",
     "pages/xrGoods/index",
-    "pages/zlGoods/index"
+    "pages/zlGoods/index",
+    "pages/callus/index",
+    "pages/gift/index",
+    "pages/dhcg/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -43,6 +43,12 @@
         "text": "首页",
         "iconPath": "./imgs/index.png",
         "selectedIconPath": "./imgs/index_selected.png"
+      },
+      {
+        "pagePath": "pages/gift/index",
+        "text": "礼品",
+        "iconPath": "./imgs/gift.png",
+        "selectedIconPath": "./imgs/gift_selected.png"
       },
       {
         "pagePath": "pages/my/index",

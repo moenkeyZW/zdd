@@ -1,229 +1,181 @@
 <!--pages/index/index.wxml-->
 <view class='container'>
-  <!-- <view class='header relati'>
-    <view class='dis' style='margin-top:20rpx;'>
-      <button class='btnAnalysis' plain='true' hover-class='none' open-type="getUserInfo" bindgetuserinfo="goHeat">
-        <view class='rlb mf'>
-          <image src='../../imgs/rb.png' class='empty'></image>
-          <image src='../../imgs/hot.png' class='hot'></image>
-          <text class='moneys cor'>{{total_currency}}</text>
-        </view>
-      </button>
-      <button class='btnAnalysis' plain='true' hover-class='none' open-type="getUserInfo" bindgetuserinfo="analysis">
-        <view class='rlb ' style='padding-right:20rpx;'>
-          <image src='../../imgs/indexAna.png' class='empty'></image>
-          <text class='cor size relati any'>健康测评</text>
-        </view>
-      </button>
-    </view>
-    <view class='disDia'>
-      <button class='btnAnalysis rlbToday thf' plain='true' hover-class='none' open-type="getUserInfo" bindgetuserinfo="goHeat">
-        <view class='mf'>
-          <text class='threeSix'>今日</text>
-          <text class='cor' style='padding-left:10rpx;'>{{today_currency}}</text>
-        </view>
-      </button>
-    </view>
-    <view hidden='{{!is_rule}}'>
-      <image src='../../imgs/indexrule.png' class='qd abs' bindtap='rule'></image>
-    </view>
-    <block wx:if='{{isHaveopenid}}'>
-      <form bindsubmit='goSignForm' report-submit='true' >
-        <button class='btnAnalysis abs signs' plain='true' disabled='{{yiqd}}' form-type='submit' hidden='{{!is_sign}}'>
-          <image src='../../imgs/indexqds.png' class='signs'></image>
-          <view class='relibi'>{{is_sign}}</view>
-        </button>
-      </form>
-    </block>
-    <block wx:else>
-      <button class='btnAnalysis abs signs' plain='true' open-type="getUserInfo" bindgetuserinfo="authorizeNow">
-        <image src='../../imgs/indexqd.png' class='signs'></image>
-      </button>
-    </block>
-    <view>
-      <image src='../../imgs/main.png' class='main'></image>
-      <view class='useStep abs size cor'>今日步数</view>
-      <view class='num abs cor'>{{step}}</view>
-      <view class='clear abs size'>每日24点清零</view>
-    </view>
-    <button class='abs btnAnalysis takeMore thf' plain='true' open-type="getUserInfo" bindgetuserinfo='drawMore'>
-      <text class='relati' style='left:6rpx;'>赚热力币</text>
-    </button>
-    <block wx:if="{{isHaveopenid}}">
-      <block wx:if="{{isOpenWXRun}}">
-        <form bindsubmit='exchange' report-submit='true'>
-          <button form-type='submit' plain='true' class='btnClick clickDh primary' disabled='{{dhcg}}' hover-class='none'>点击兑换热力币</button>
-        </form>
-      </block>
-      <block wx:else>
-        <button open-type="openSetting" bindopensetting="goRun" plain='true' class='btnClick clickDh primary' hover-class='none'>开启微信运动步数</button>
-      </block>
-    </block>
-    <block wx:else>
-      <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='btnClick clickDh primary' hover-class='none'>点击兑换热力币</button>
-    </block>
-    <button open-type='share' class='btnClick clickDh cor shareFri' plain='true'>
-      <image src='../../imgs/indexfx.png' class='fxdb relati'></image>
-      分享好友得币</button>
-    <scroll-view class="abs" style='width:690rpx;'>
-      <view class='headIntro thf'>
-        <image src='../../imgs/indexms.png' class='icon' style='padding:4rpx 0 0 20rpx;'></image>
-        <view class="marquee_box"  style="--marqueeWidth--:-{{length}}rpx">
-          <view class="marquee_text" >
-            <text>{{text}}</text>
-          </view>
-        </view>
-      </view>
-    </scroll-view>
-  </view> -->
-  <view class='sdheader relati'>
-    <image src='../../imgs/sdhead.png' class='sdheader relati'></image>
-    <view class='dis abs sddis'>
+  <my-component propA="{{notice_title}}" wx:if='{{notice_title}}' />
+  <view class='headers relati'>
+    <image src='{{bj_picture}}' class='sdheader relati' wx:if='{{bj_picture}}'></image>
+    <view class='dis abs sddis' style='z-index:10'>
       <button class='btnAnalysis' style='width:300rpx; text-align:left;' plain='true' hover-class='none' open-type="getUserInfo" bindgetuserinfo="goHeat">
         <view class='rlb mf'>
           <image src='../../imgs/sdhuo.png' class='empty'></image>
-          <text class='sdmoneys sd'>{{total_currency}}</text>
+          <text class='sdmoneys cor'>{{total_currency}}</text>
         </view>
       </button>
       <button class='btnAnalysis' plain='true' hover-class='none' open-type="getUserInfo" bindgetuserinfo="analysis">
         <view class='rlb ' style='padding-right:20rpx;'>
           <image src='../../imgs/sdany.png' class='empty'></image>
-          <text class='size relati any sd'>健康测评</text>
+          <text class='size relati any cor'>健康测评</text>
         </view>
       </button>
     </view>
     <view class='disDia abs sddisDia'>
       <button class='btnAnalysis rlbToday thf' plain='true' hover-class='none' open-type="getUserInfo" bindgetuserinfo="goHeat">
         <view class='mf'>
-          <text class='sd'>今日</text>
-          <text class='sd' style='padding-left:10rpx;'>{{today_currency}}</text>
+          <text class='cor'>今日</text>
+          <text class='cor' style='padding-left:10rpx;'>{{today_currency}}</text>
         </view>
       </button>
     </view>
     <view hidden='{{!is_rule}}'>
-      <image src='../../imgs/sdrule.png' class='sdrule abs' bindtap='rule'></image>
+      <image src='../../imgs/indexrule.png' class='sdrule abs' bindtap='rule'></image>
     </view>
     <block wx:if='{{isHaveopenid}}'>
       <form bindsubmit='goSignForm' report-submit='true'>
         <button class='btnAnalysis abs signs' hover-class='none' plain='true' disabled='{{yiqd}}' form-type='submit' hidden='{{!is_sign}}'>
-          <image src='../../imgs/sdqd.png' class='signs'></image>
+          <image src='../../imgs/indexqds.png' class='signs'></image>
           <view class='relibi'>{{is_sign}}</view>
         </button>
       </form>
     </block>
     <block wx:else>
       <button class='btnAnalysis abs signs' hover-class='none' plain='true' open-type="getUserInfo" bindgetuserinfo="authorizeNow">
-        <image src='../../imgs/sdqds.png' class='signs'></image>
+        <image src='../../imgs/indexqd.png' class='signs'></image>
       </button>
     </block>
-    <view class=''>
-      <image src='../../imgs/sdmain.png' class='sdmain abs'></image>
-      <view class='sduseStep abs size sd'>今日步数</view>
-      <view class='sdnum abs sd'>{{step}}</view>
-      <view class='sdclear thf cor abs'>每日24点清零</view>
-    </view>
-    <image src='../../imgs/sdmao.png' class='sdmao abs'></image>
+    <block wx:if='{{isHaveopenid}}'>
+      <form bindsubmit='golqnew' report-submit='true'>
+        <button class='btnAnalysis abs is_new_rlb' hover-class='none' plain='true' disabled='{{clickNewrlb}}' form-type='submit' hidden='{{is_new}}'>
+          <image src='../../imgs/is_new_rlb.png' class='is_new_rlb'></image>
+        </button>
+      </form>
+    </block>
+    <block wx:else>
+      <button class='btnAnalysis abs is_new_rlb' hover-class='none' plain='true' open-type="getUserInfo" bindgetuserinfo="authorizeNow">
+        <image src='../../imgs/is_new_rlb.png' class='is_new_rlb'></image>
+      </button>
+    </block>
+    <block wx:if="{{isHaveopenid && isOpenWXRun}}">
+      <form bindsubmit='exchange' report-submit='true'>
+        <button form-type='submit' plain='true' class='btnAnalysis abs zuizhong main' disabled='{{dhcg}}' hover-class='none'>
+          <image src='../../imgs/sdmain.png' class='main'></image>
+          <view class='sduseStep  abs thf cor'>可兑换步数</view>
+          <view class='sdnum abs  cor' style='font-size:84rpx;'>{{step}}</view>
+          <view class='cor size abs dianji'>点击兑换热力币</view>
+          <view class='sdclear abs '>每日24点清零</view>
+        </button>
+      </form>
+    </block>
+    <block wx:elif="{{!isHaveopenid}}">
+      <button plain='true' class='btnAnalysis abs zuizhong main' open-type="getUserInfo" bindgetuserinfo="authorizeNows" hover-class='none'>
+        <image src='../../imgs/sdmain.png' class='main'></image>
+        <view class='sduseStep  abs thf cor'>可兑换步数</view>
+        <view class='sdnum abs  cor'>获取步数</view>
+        <view class='cor size abs dianji'>点击兑换热力币</view>
+        <view class='sdclear abs '>每日24点清零</view>
+      </button>
+    </block>
+    <block wx:elif='{{isOpenWXRuns}}'>
+      <button plain='true' class='btnAnalysis abs zuizhong main' bindtap="sportSQS" hover-class='none'>
+        <image src='../../imgs/sdmain.png' class='main'></image>
+        <view class='sduseStep  abs thf cor'>可兑换步数</view>
+        <view class='sdnum abs  cor'>获取步数</view>
+        <view class='cor size abs dianji'>点击兑换热力币</view>
+        <view class='sdclear abs '>每日24点清零</view>
+      </button>
+    </block>
+    <block wx:else>
+      <button plain='true' class='btnAnalysis abs zuizhong main' open-type='openSetting' bindopensetting="goRun" hover-class='none'>
+        <image src='../../imgs/sdmain.png' class='main'></image>
+        <view class='sduseStep  abs thf cor'>可兑换步数</view>
+        <view class='sdnum abs  cor'>获取步数</view>
+        <view class='cor size abs dianji'>点击兑换热力币</view>
+        <view class='sdclear abs '>每日24点清零</view>
+      </button>
+    </block>
     <button class='abs btnAnalysis takeMore thf sdtake' plain='true' open-type="getUserInfo" bindgetuserinfo='drawMore'>
       <text class='relati' style='left:6rpx;'>赚热力币</text>
     </button>
-    <block wx:if="{{isHaveopenid}}">
-      <block wx:if="{{isOpenWXRun}}">
-        <form bindsubmit='exchange' report-submit='true'>
-          <button form-type='submit' plain='true' class='btnClick clickDh  sdan' disabled='{{dhcg}}' hover-class='none'>点击兑换热力币</button>
-        </form>
-      </block>
-      <block wx:else>
-        <button open-type="openSetting" bindopensetting="goRun" plain='true' class='btnClick clickDh  sdan' hover-class='none'>开启微信运动步数</button>
-      </block>
-    </block>
-    <block wx:else>
-      <button open-type="getUserInfo" bindgetuserinfo="authorizeNow" plain='true' class='btnClick clickDh sdan' hover-class='none'>点击兑换热力币</button>
-    </block>
-    <button open-type='share' class='btnClick clickDh cor shareFri' plain='true'>
-      <image src='../../imgs/indexfx.png' class='fxdb relati'></image>
-      分享好友得币</button>
-    <image src='../../imgs/sdcar.png' class='sdcar abs'></image>
-    <image src='../../imgs/sdlu.png' class='sdlu abs'></image>
-    <image src='../../imgs/sdwz.png' class='sdwz abs'></image>
-    <scroll-view class="abs sdscroll" style='width:690rpx;'>
-      <view class='headIntro thf'>
-        <image src='../../imgs/indexms.png' class='icon' style='padding:4rpx 0 0 20rpx;'></image>
-        <view class="marquee_box" style="--marqueeWidth--:-{{length}}rpx">
-          <view class="marquee_text">
-            <text>{{text}}</text>
+    <button open-type='share' class='btnClick sdindexsharebtn primary abs' plain='true' hover-class='none'>
+      <image src='../../imgs/sdindexsharebtn.png' class='empty' style='top:15rpx;'></image>
+      分享好友得币
+    </button>
+  </view>
+  <button class='indexzhuan' plain='true' open-type="getUserInfo" bindgetuserinfo='gotoZhuanpan' wx:if='{{turntable_state}}'>
+    <image src='../../imgs/indexzhuan.png' class='indexzhuan'></image>
+    <image src='../../imgs/go.png' class='go abs '></image>
+  </button>
+  <view class='dialog detail mgbtom'>
+    <view class='dis bsby'>
+      <view class='disDia'>
+        <view class='duanxian'></view>
+        <view class='blue thx '>新人专区</view>
+        <view class='bzero thf debi'>邀请新人即可一币兑换</view>
+      </view>
+    </view>
+    <scroll-view scroll-x="true" class='scrollView' scroll-with-animation='true'>
+      <block wx:for="{{xr_goods}}" wx:key="{{index}}" data-index="{{index}}">
+        <view class='xrwareDetail'>
+          <form bindsubmit='xrDetail' report-submit='true'>
+            <button form-type='submit' class='btnAnalysis xrgoods' plain='true' data-id="{{item.goods_id}}">
+              <image src='{{item.photo}}' lazy-load='true' class='xrgoods'></image>
+            </button>
+          </form>
+          <view class='size cor mft ellipsis zlellipsis'>{{item.title}}</view>
+          <view class='dis zlkuan'>
+            <view>
+              <image src='../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
+              <text class='price wenzi relati'>{{item.rlb_price}}</text>
+            </view>
+            <view class='yprice decoration'>兑换人数:{{item.dh_num}}</view>
           </view>
         </view>
-      </view>
+      </block>
+      <view class='blue size xrckgd' bindtap='seexrMore'>查 看 更 多</view>
     </scroll-view>
   </view>
-
-  <view class='dialog detail'>
+  <ad unit-id="adunit-0a9c63ee1e185f91" class='ad'></ad>
+  <view class='dialog rlbArea mgbtom'>
     <view class='dis bsby'>
       <view class='disDia'>
         <view class='duanxian'></view>
-        <view class='cor thw'>
-          <text class='blue thx'>新人</text>专区</view>
+        <view class='blue thx '>助力专区</view>
+        <view class='bzero thf debi'>新老用户助力，兑换礼品</view>
       </view>
-      <view class='blue size' bindtap='seexrMore'>更多></view>
+      <view class='blue size relati zlckgd' bindtap='seezlMore'>查看更多></view>
     </view>
-    <view class='threeSix thf mf '>邀请新人即可一币兑换</view>
-    <view class='week'>
-      <block wx:for="{{xr_goods}}" wx:key="{{index}}" data-index="{{index}}">
-        <view class='wareDetail' style='{{index==2||index==3?"margin-bottom:20rpx;":""}}'>
-          <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='xrDetail' lazy-load='true' data-id="{{item.goods_id}}"></image>
-          <view class='size cor mf ellipsis'>{{item.title}}</view>
-          <view class='dis kuan'>
-            <view>
-              <image src='../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
-              <text class='price wenzi relati'>{{item.rlb_price}}</text>
-            </view>
-            <view class='yprice decoration'>兑换人数:{{item.dh_num}}</view>
-          </view>
-        </view>
-      </block>
-    </view>
-  </view>
-  <view class='dialog rlbArea'>
-    <view class='dis bsby'>
-      <view class='disDia'>
-        <view class='duanxian'></view>
-        <view class='cor thw'>
-          <text class='blue thx'>助力</text>专区</view>
-      </view>
-      <view class='blue size' bindtap='seezlMore'>更多></view>
-    </view>
-    <view class='threeSix thf mf '>请求好友助力，兑换礼品</view>
     <view class='week'>
       <block wx:for="{{zl_goods}}" wx:key="{{index}}" data-index="{{index}}">
-        <view class='wareDetail' style='{{index==4||index==5?"margin-bottom:20rpx;":""}}'>
-          <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='zlDetail' lazy-load='true' data-id="{{item.goods_id}}"></image>
-          <view class='size cor mf ellipsis'>{{item.title}}</view>
-          <view class='dis kuan'>
+        <view class='wareDetail zlwareDetail'>
+          <form bindsubmit='zlDetail' report-submit='true'>
+            <button form-type='submit' class='btnAnalysis zlgoods' plain='true' data-id="{{item.goods_id}}">
+              <image src='{{item.photo}}' lazy-load='true' class='zlgoods'></image>
+            </button>
+          </form>
+          <view class='size cor ellipsis zlellipsis'>{{item.title}}</view>
+          <view class='dis zlkuan'>
             <view>
               <image src='../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
-              <text class='price wenzi relati'>{{item.rlb_price}}</text>
+              <text class='price wenzi relati'>{{item.rlb_price}}+{{item.yq_num}}助力</text>
             </view>
-            <view class='yprice yjts'>{{item.yrlb_price}}热力币</view>
+            <!-- <view class='yjts yprice'>{{item.yrlb_price}}热力币</view> -->
           </view>
         </view>
       </block>
     </view>
   </view>
-  <view class='dialog rlbArea'>
+  <ad unit-id="adunit-08146a769d00170d" class='ad'></ad>
+  <view class='dialog rlbArea mgbtom'>
     <view class='dis bsby'>
       <view class='disDia'>
         <view class='duanxian'></view>
-        <view class='cor thw'>
-          <text class='blue thx'>精选</text>专区</view>
+        <view class='blue thx '>精选专区</view>
+        <view class='bzero thf debi'>更多精彩礼品，等你选择</view>
       </view>
-      <view class='blue size' bindtap='seeMore'>更多></view>
     </view>
-    <view class='threeSix thf mf '>更多精彩礼品，等你选择</view>
     <view class='week'>
       <block wx:for="{{jx_goods}}" wx:key="{{index}}" data-index="{{index}}">
-        <view class='wareDetail' style='{{index==6||index==7?"margin-bottom:20rpx;":""}}'>
-          <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='freeDetail' lazy-load='true' data-id="{{item.goods_id}}"></image>
-          <view class='size cor mf ellipsis'>{{item.title}}</view>
+        <view class='wareDetail'>
+          <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='freeDetail' data-id="{{item.goods_id}}"></image>
+          <view class='size cor mft ellipsis'>{{item.title}}</view>
           <view class='dis kuan'>
             <view>
               <image src='../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
@@ -234,16 +186,7 @@
         </view>
       </block>
     </view>
-    <!-- <view class='noMore dialog'>
-      <block wx:if='{{noMore}}'>
-        <text class='none'>下拉加载更多</text>
-      </block>
-      <block wx:else>
-        <text class='line'></text>
-        <text class='none'>没有更多了</text>
-        <text class='line'></text>
-      </block>
-    </view> -->
+    <view class='jxckgd cor size' bindtap='seeMore'>查看更多</view>
   </view>
   <view class="dialog" wx:if="{{shouIndex}}" hidden="{{shouquan}}" catchtouchmove="ture">
     <view class="mask"></view>
@@ -258,74 +201,95 @@
       </view>
     </view>
   </view>
+  <view class="dialog" hidden="{{share}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandle'></view>
+    <view class="condition">
+      <view class='biaoti'>
+        <image src='../../imgs/shareGuang.png' class='abs shareGuang'></image>
+        <image src='../../imgs/shareSuccess.png' class='abs shareSuccess'></image>
+        <image src='../../imgs/shareRlb.png' class='shareRlb'></image>
+        <view class='cor huode'>分享给好友可获得热力币哦。</view>
+        <button class='fenxiang primary' plain='true' open-type='share'>分享</button>
+      </view>
+    </view>
+    <image src='../../imgs/delete.png' class='delete shareX' bindtap='hideHandle'></image>
+  </view>
   <view class="dialog" wx:if="{{clicked}}" hidden="{{measure}}" catchtouchmove="ture">
-    <!-- <form bindsubmit='chengzhong' report-submit='true'>
+    <form bindsubmit='{{is_new?"xrlqs":"sfxrs"}}' report-submit='true'>
       <button form-type='submit' class="mask btnAnalysis" plain='true'></button>
-    </form> -->
-    <view class='mask' bindtap='{{is_new?"xrlqs":"sfxrs"}}'></view>
-    <view class="condition bgnone" style='top:40%'>
+    </form>
+    <view class="condition bgnone" style='{{is_new?"top:31%":"top:24%;"}}'>
       <view class='relati'>
         <image src='../../imgs/cljg.png' class='cldk'></image>
-        <view class='cljgs'>
-          <view class='relati'>
-            <view class='ding top'>
-              <view class='kg'>
-                <text class='nub'>{{result.weight}}</text>kg</view>
-            </view>
-            <image src='../../imgs/tz.png' class='ka mf'></image>
+        <view class='cljgs mf disDia'>
+          <view class=''>
+            <view class='cor thw need'>体重</view>
+            <view class='kg relati' style='bottom:6rpx;'>
+              <text class='nub'>{{result.weight}}</text>kg</view>
           </view>
-          <view class='relati'>
-            <view class='ding top'>
-              <block wx:if='{{result.type_id==1}}'>
-                <view class='kg'>
-                  <text class='nub'>{{result.height}}</text>cm</view>
-              </block>
-              <block wx:else>
-                <view class='zwcz'>暂无数据</view>
-              </block>
-            </view>
-            <image src='../../imgs/sg.png' class='ka mf'></image>
+          <view class='czx'></view>
+          <view>
+            <view class='cor thw need {{result.type_id==1?"":"tyzw"}}'>身高</view>
+            <block wx:if='{{result.type_id==1}}'>
+              <view class='kg relati' style='bottom:6rpx;'>
+                <text class='nub'>{{result.height}}</text>cm</view>
+            </block>
+            <block wx:else>
+              <view class='zwcz relati' style='bottom:6rpx;'>暂无数据</view>
+            </block>
           </view>
         </view>
       </view>
       <form bindsubmit='chengzhong' report-submit='true'>
-        <button form-type='submit' class='adv btnAnalysis' plain='true'>
+        <button form-type='submit' class='abs {{is_new?"adn":"adf"}} btnAnalysis' plain='true'>
           <block wx:if='{{is_new}}'>
-            <image src='../../imgs/adv.png' class='advs'></image>
+            <image src='../../imgs/adv.png' class='adn'></image>
           </block>
           <block wx:else>
-            <image src='../../imgs/advself.png' class='advs'></image>
+            <view class='abs newLq thw'>立即领取</view>
+            <image src='../../imgs/advself.png' class='adf'></image>
           </block>
+        </button>
+      </form>
+      <form bindsubmit='{{is_new?"xrlqs":"sfxrs"}}' report-submit='true'>
+        <button form-type='submit' class="btnAnalysis " plain='true' style='overflow:visible'>
+          <image src='../../imgs/sx.png' class='sx abs' style='{{is_new?"bottom:-460rpx":"bottom:-550rpx;"}}'></image>
         </button>
       </form>
     </view>
   </view>
   <view class="dialog" wx:if="{{clim}}" hidden="{{zanwu}}" catchtouchmove="ture">
-    <view class='mask' bindtap='{{is_new?"xrlqs":"sfxrs"}}'></view>
-    <view class="condition bgnone" style='top:40%'>
+    <form bindsubmit='{{is_new?"xrlqs":"sfxrs"}}' report-submit='true'>
+      <button form-type='submit' class="mask btnAnalysis" plain='true'></button>
+    </form>
+    <view class="condition bgnone" style='{{is_new?"top:31%":"top:24%;"}}'>
       <view class='relati'>
         <image src='../../imgs/zanwu.png' class='cldk'></image>
       </view>
       <form bindsubmit='chengzhong' report-submit='true'>
-        <button form-type='submit' class='adv btnAnalysis' plain='true'>
+        <button form-type='submit' class='abs {{is_new?"adn":"adf"}} btnAnalysis' plain='true'>
           <block wx:if='{{is_new}}'>
-            <image src='../../imgs/adv.png' class='advs'></image>
+            <image src='../../imgs/adv.png' class='adn'></image>
           </block>
           <block wx:else>
-            <image src='../../imgs/advself.png' class='advs'></image>
+            <view class='abs newLq thw'>立即领取</view>
+            <image src='../../imgs/advself.png' class='adf'></image>
           </block>
+        </button>
+      </form>
+      <form bindsubmit='{{is_new?"xrlqs":"sfxrs"}}' report-submit='true'>
+        <button form-type='submit' class="btnAnalysis " plain='true' style='overflow:visible'>
+          <image src='../../imgs/sx.png' class='sx abs' style='{{is_new?"bottom:-460rpx":"bottom:-550rpx;"}}'></image>
         </button>
       </form>
     </view>
   </view>
   <view class="dialog" wx:if='{{newuserclick}}' hidden="{{newUser}}" catchtouchmove="ture">
-    <view class="mask" bindtap='{{is_new?"xrlq":"sfxr"}}'></view>
+    <view bindtap='xrlq' class="mask"></view>
     <view class="condition bgnone" style='width:530rpx;'>
-      <form bindsubmit='newUserLingqu' report-submit='true'>
-        <button form-type='submit' class="btnAnalysis" plain='true'>
-          <image src='../../imgs/indexnewUser.png' class='newuser'></image>
-        </button>
-      </form>
+      <button class="btnAnalysis" plain='true' open-type="getUserInfo" bindgetuserinfo='newUserLingqus'>
+        <image src='../../imgs/indexnewUser.png' class='newuser'></image>
+      </button>
     </view>
   </view>
   <view class="dialog" hidden="{{perMessage}}" catchtouchmove="ture">
@@ -339,7 +303,7 @@
         <view class='cljg'>
           <view class='relati'>
             <view class='ding'>
-              <view class='diss'>
+              <view>
                 <view class='duan'></view>
                 <view class='cor size'>体重</view>
               </view>
@@ -361,7 +325,7 @@
           </view>
           <view class='relati'>
             <view class='ding'>
-              <view class='diss'>
+              <view>
                 <view class='duan'></view>
                 <view class='cor size'>身高</view>
               </view>
@@ -383,7 +347,7 @@
           </view>
           <view class='relati'>
             <view class='ding'>
-              <view class='diss'>
+              <view>
                 <view class='duan'></view>
                 <view class='cor size'>性别</view>
               </view>
@@ -403,7 +367,7 @@
           </view>
           <view class='relati'>
             <view class='ding'>
-              <view class='diss'>
+              <view>
                 <view class='duan'></view>
                 <view class='cor size'>年龄</view>
               </view>
@@ -425,88 +389,82 @@
     <image src='../../imgs/delete.png' class='delete jkcps' bindtap='hideHandle'></image>
   </view>
   <view class="dialog" wx:if='{{zlclickeds}}' hidden="{{xrzlSuc}}" catchtouchmove="ture">
-    <view class="mask" bindtap='{{is_new?"xrlq":"sfxr"}}'></view>
+    <form bindsubmit='{{is_new?"xrlq":"sfxr"}}' report-submit='true'>
+      <button form-type='submit' class="mask btnAnalysis" plain='true'></button>
+    </form>
     <view class="condition bgnone" style='top:38%'>
       <image src='../../imgs/zlsuc.png' class='zlSucHead relati'></image>
       <view class='zlSucDetail'>
         <view class='blue thx spd'>为好友助力成功</view>
-        <view class='size cor'>累计步数换礼</view>
-        <view class='size cor mts'>送你新人奖励5个热力币</view>
-        <form bindsubmit='newUserLingqu' report-submit='true'>
-          <button form-type='submit' class='btnYq sucLq' plain='true'>立即领取</button>
+        <view class='size cor'>步数兑换热力币</view>
+        <view class='size cor mts'>免费领取话费、iPhone等精美礼品</view>
+        <view class='btnYq sucLq' bindtap='xrlq'>立即查看</view>
+        <form bindsubmit='{{is_new?"xrlq":"sfxr"}}' report-submit='true'>
+          <button form-type='submit' class="btnAnalysis " plain='true' style='overflow:visible'>
+            <image src='../../imgs/sx.png' class='sx abs'></image>
+          </button>
         </form>
-        <image src='../../imgs/sx.png' class='sx abs' bindtap='{{is_new?"xrlq":"sfxr"}}'></image>
       </view>
     </view>
   </view>
   <view class="dialog" wx:if='{{zlclicked}}' hidden="{{oldzlSuc}}" catchtouchmove="ture">
-    <view class="mask" bindtap='hideHandle'></view>
+    <view class="mask" bindtap='hideHandls'></view>
     <view class="condition bgnone" style='top:38%'>
       <image src='../../imgs/zlsuc.png' class='zlSucHead relati'></image>
       <view class='zlSucDetail'>
         <view class='blue thx spd'>为好友助力成功</view>
-        <view class='size cor'>分享邀请好友步数换礼</view>
-        <view class='size cor mts'>可获得更多热力币奖励</view>
-        <button open-type='share' class='btnYq sucLq' plain='true'>立即分享</button>
+        <view class='size cor'>话费、视频会员、手机等精美礼品</view>
+        <view class='size cor mts'>等你免费兑换！</view>
+        <view class='btnYq sucLq' bindtap='hideHandls'>立即查看</view>
       </view>
-      <image src='../../imgs/sx.png' class='sx abs' bindtap='hideHandle'></image>
+      <image src='../../imgs/sx.png' class='sx abs' bindtap='hideHandls'></image>
     </view>
   </view>
   <view class="dialog" wx:if='{{zlclickedcc}}' hidden="{{zllqcg}}" catchtouchmove="ture">
-    <view class="mask" bindtap='hideHandles'></view>
+    <form bindsubmit='sfxr' report-submit='true'>
+      <button form-type='submit' class="mask btnAnalysis" plain='true'></button>
+    </form>
     <view class="condition bgnone" style='top:38%'>
       <image src='../../imgs/zllqcg.png' class='zlSucHead relati'></image>
       <view class='zlSucDetail'>
         <view class='blue thx spd'>领取成功</view>
-        <view class='size cor'>分享邀请好友步数换礼</view>
-        <view class='size cor mts'>可获得更多热力币奖励</view>
-        <button open-type='share' class='btnYq sucLq' plain='true'>立即分享</button>
+        <view class='size cor'>步数兑换热力币</view>
+        <view class='size cor mts'>免费领取话费、iPhone等精美礼品</view>
+        <form bindsubmit='newUserLingqu' report-submit='true'>
+          <button form-type='submit' class='btnYq sucLq' plain='true'>立即查看</button>
+        </form>
       </view>
-      <image src='../../imgs/sx.png' class='sx abs' bindtap='hideHandles'></image>
+      <form bindsubmit='sfxr' report-submit='true'>
+        <button form-type='submit' class="btnAnalysis " plain='true' style='overflow:visible'>
+          <image src='../../imgs/sx.png' class='sx abs'></image>
+        </button>
+      </form>
     </view>
   </view>
   <view class="dialog" wx:if='{{zlclicked}}' hidden="{{nocs}}" catchtouchmove="ture">
-    <view class="mask" bindtap='hideHandle'></view>
+    <view class="mask" bindtap='hideHandls'></view>
     <view class="condition bgnone" style='top:38%'>
       <image src='../../imgs/zlnone.png' class='zlSucHead relati'></image>
       <view class='zlSucDetail'>
         <view class='blue thx spd'>今日助力次数已用完</view>
-        <block wx:if='{{situation==6}}'>
-          <view class='size cor'>分享邀请好友步数换礼</view>
-          <view class='size cor mts'>可获得更多热力币奖励</view>
-          <button open-type='share' class='btnYq sucLq' plain='true'>立即分享</button>
-        </block>
-        <block wx:elif='{{situation==5}}'>
-          <view class='size cor'>累计步数换礼</view>
-          <view class='size cor mts'>送你新人奖励5个热力币</view>
-          <form bindsubmit='newUserLingqu' report-submit='true'>
-            <button form-type='submit' class='btnYq sucLq' plain='true'>立即领取</button>
-          </form>
-        </block>
+        <view class='size cor'>话费、视频会员、手机等精美礼品</view>
+        <view class='size cor mts'>等你免费兑换！</view>
+        <view class='btnYq sucLq' bindtap='hideHandls'>立即查看</view>
       </view>
-      <image src='../../imgs/sx.png' class='sx abs' bindtap='hideHandle'></image>
+      <image src='../../imgs/sx.png' class='sx abs' bindtap='hideHandls'></image>
     </view>
   </view>
   <view class="dialog" wx:if='{{zlclicked}}' hidden="{{readyZl}}" catchtouchmove="ture">
-    <view class="mask" bindtap='hideHandle'></view>
+    <view class="mask" bindtap='hideHandls'></view>
     <view class="condition bgnone" style='top:38%'>
       <image src='../../imgs/zlfail.png' class='zlSucHead relati'></image>
       <view class='zlSucDetail'>
         <view class='blue thx spd'>已为好友助力</view>
-        <block wx:if='{{situation==4}}'>
-          <view class='size cor'>分享邀请好友步数换礼</view>
-          <view class='size cor mts'>可获得更多热力币奖励</view>
-          <button open-type='share' class='btnYq sucLq' plain='true'>立即分享</button>
-        </block>
-        <block wx:elif='{{situation==3}}'>
-          <view class='size cor'>累计步数换礼</view>
-          <view class='size cor mts'>送你新人奖励5个热力币</view>
-          <form bindsubmit='newUserLingqu' report-submit='true'>
-            <button form-type='submit' class='btnYq sucLq' plain='true'>立即领取</button>
-          </form>
-        </block>
+        <view class='size cor'>话费、视频会员、手机等精美礼品</view>
+        <view class='size cor mts'>等你免费兑换！</view>
+        <view class='btnYq sucLq' bindtap='hideHandls'>立即查看</view>
       </view>
-      <image src='../../imgs/sx.png' class='sx abs' bindtap='hideHandle'></image>
+      <image src='../../imgs/sx.png' class='sx abs' bindtap='hideHandls'></image>
     </view>
   </view>
   <view class="dialog" hidden="{{sign}}" catchtouchmove="ture">
@@ -534,10 +492,97 @@
       </view>
     </view>
   </view>
-  <view class="dialog" wx:if='{{christmasclick}}' hidden="{{christmas}}" catchtouchmove="ture">
-    <view class="mask" bindtap='christmas'></view>
-    <view class="condition bgnone" >
-      <image src='../../imgs/christmasclick.png' bindtap='christmas' class='christmasclick'></image>
+  <view class="dialog" wx:if='{{indexzclick}}' hidden="{{indexz}}" catchtouchmove="ture">
+    <form bindsubmit='hideHand' report-submit='true'>
+      <button form-type='submit' class="mask btnAnalysis" plain='true'></button>
+    </form>
+    <view class="condition bgnone" style='top:45%;width:550rpx;'>
+      <image src='../../imgs/index{{y_step>10000?"yd":y_step>5000?"ml":"ys"}}.png' class='indexyd'></image>
+      <block wx:if='{{y_step>10000}}'>
+        <view class='sportContent'>
+          <view class='disDia'>
+            <image src='../../imgs/indexz.png' class='indexzicon'></image>
+            <view class='mgtopt'>
+              <view class='size crl'>昨天走了{{y_step}}步</view>
+              <view class='size bzero'>一天没干别的，就走路了吧</view>
+            </view>
+          </view>
+          <view class='disDia'>
+            <image src='../../imgs/indexbfb.png' class='indexzicon'></image>
+            <view class='mgtopt'>
+              <view class='size crl}}'>超过{{percent1}}%用户</view>
+              <view class='size bzero'>另外{{percent2}}%属于拼命型</view>
+            </view>
+          </view>
+          <view class='disDia'>
+            <image src='../../imgs/indexkll.png' class='indexzicon'></image>
+            <view class='mgtopt'>
+              <view class='size crl}}'>燃烧{{calorie}}卡路里</view>
+              <view class='size bzero'>多吃点也不怕</view>
+            </view>
+          </view>
+          <view class='size crl need mgtopt crl'>今天要更加油哟~</view>
+        </view>
+      </block>
+      <block wx:elif='{{y_step>=5000}}'>
+        <view class='sportContent'>
+          <view class='disDia'>
+            <image src='../../imgs/indexz.png' class='indexzicon'></image>
+            <view class='mgtopt'>
+              <view class='size ondx'>昨天走了{{y_step}}步</view>
+              <view class='size bzero'>有生之余能绕地球走一圈</view>
+            </view>
+          </view>
+          <view class='disDia'>
+            <image src='../../imgs/indexbfb.png' class='indexzicon'></image>
+            <view class='mgtopt'>
+              <view class='size ondx'>超过{{percent1}}%用户</view>
+              <view class='size bzero'>我们正在找寻其他{{percent2}}%的身影</view>
+            </view>
+          </view>
+          <view class='disDia'>
+            <image src='../../imgs/indexkll.png' class='indexzicon'></image>
+            <view class='mgtopt'>
+              <view class='size ondx'>燃烧{{calorie}}卡路里</view>
+              <view class='size bzero'>夜宵就免了吧</view>
+            </view>
+          </view>
+          <view class='size crl need mgtopt ondx'>今天要更加油哟~</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='sportContent'>
+          <view class='disDia'>
+            <image src='../../imgs/indexz.png' class='indexzicon'></image>
+            <view class='mgtopt'>
+              <view class='size green'>昨天走了{{y_step}}步</view>
+              <view class='size bzero'>除了洗手间，估计你哪也没去</view>
+            </view>
+          </view>
+          <view class='disDia'>
+            <image src='../../imgs/indexbfb.png' class='indexzicon'></image>
+            <view class='mgtopt'>
+              <view class='size green'>超过{{percent1}}%用户</view>
+              <view class='size bzero'>另外{{percent2}}%的用户还去了厨房</view>
+            </view>
+          </view>
+          <view class='disDia'>
+            <image src='../../imgs/indexkll.png' class='indexzicon'></image>
+            <view class='mgtopt'>
+              <view class='size green'>燃烧{{calorie}}卡路里</view>
+              <view class='size bzero'>不想发胖，今天只能喝水咯</view>
+            </view>
+          </view>
+          <view class='size crl need mgtopt green'>今天要更加油哟~</view>
+        </view>
+      </block>
+      <form bindsubmit='hideHand' report-submit='true'>
+        <button form-type='submit' class="btnAnalysis" plain='true' style='overflow:visible'>
+          <image src='../../imgs/sx.png' class='sx abs' style='bottom:-146rpx;'></image>
+        </button>
+      </form>
     </view>
   </view>
+  <view class='thf bzero mts mgbtom'>每周不定期上新礼品</view>
+  <ad unit-id="adunit-ee57c2d78e8126db" class='ad'></ad>
 </view>

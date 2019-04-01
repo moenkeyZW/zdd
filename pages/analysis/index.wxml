@@ -130,7 +130,7 @@
       </view>
     </view>
   </view>
-
+<ad unit-id="adunit-b8312890f03037ce" class='ad'></ad>
   <view class='intro'>
     <image src='../../imgs/tzBg.png' class='tzBg'></image>
     <view class='cor six abs your'>{{analysisData.body.title}}</view>

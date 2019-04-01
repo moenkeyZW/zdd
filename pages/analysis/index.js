@@ -58,8 +58,8 @@ Page({
       success: function(res) {
         console.log(res)
         var userInfo=res.data.userinfo;
-        var gender = res.data.userinfo.gender;
-        if (userInfo.gender === 2) {
+        var gender = userInfo.gender;
+        if (userInfo.gender == 2) {
           gender = 0;
         } else {
           gender = 1;
@@ -68,7 +68,7 @@ Page({
         userInfo.weight = res.data.userinfo.weight;
         userInfo.age = res.data.userinfo.age;;
         var bmr = 0;
-        if (gender === 0) {
+        if (gender == 0) {
           bmr = (655.1 + (9.56 * userInfo.weight) + (1.85 * userInfo.height) - (4.86 * userInfo.age)).toFixed(1);
         } else {
           bmr = (66.5 + (13.7 * userInfo.weight) + (5 * userInfo.height) - (6.8 * userInfo.age)).toFixed(1);
@@ -89,7 +89,7 @@ Page({
         var sportSuggestion = null;
         var color=null;
         var title=null;
-        if (gender === 0) {
+        if (gender == 0) {
           if (bmi < 18.5) {
             color=0;
             calorie = (bmr * 1.2 + 500).toFixed(0);
@@ -154,7 +154,7 @@ Page({
         const bf = (1.2 * bmi + 0.23 * userInfo.age - 5.4 - 10.8 * gender).toFixed(1);
         var bfLevel = null;
         var tz=null;
-        if (gender === 0) {
+        if (gender == 0) {
           var tz = Math.round((bf-5)/0.2);
           if(tz>=95){
             tz=95
@@ -192,7 +192,7 @@ Page({
           }
         }
         var dreamWeight = 0;
-        if (gender === 0) {
+        if (gender == 0) {
           dreamWeight = (19 * ((userInfo.height * userInfo.height) / 10000)).toFixed(1);
         } else {
           dreamWeight = (22 * ((userInfo.height * userInfo.height) / 10000)).toFixed(1);

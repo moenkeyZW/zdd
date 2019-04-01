@@ -16,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
   },
   copyText: function (e) {
     wx.setClipboardData({
@@ -55,5 +55,18 @@ Page({
         }
       }
     })
+  },
+  goOrderDetail:function(e){
+    var orderId = e.currentTarget.dataset.id;
+    var goods_type = e.currentTarget.dataset.type;
+    if(goods_type==0||goods_type==1||goods_type==4){
+      wx.navigateTo({
+        url: '/pages/success/index?orderId=' + orderId,
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/success/index?orderId=' + orderId + '&&num=10086',
+      })
+    }
   },
 })

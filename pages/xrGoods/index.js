@@ -17,17 +17,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     const that=this;
     wx.request({
-      url: app.globalData.base_url + '/xr_goods_list03',
+      url: app.globalData.base_url + '/xr_goods_list06',
       data: {
         page: 1,
       },
-      method: 'GET',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json; charset=utf-8', // 默认值
+        'Cache-Control': 'max-age=60', //60秒
       },
       success: function (res) {
+        wx.hideLoading();
         console.log(res)
         that.setData({
           zl_goods: res.data.goods,
@@ -45,9 +49,10 @@ Page({
 
   },
   onDetail: function (e) {
-    var id = e.currentTarget.dataset.id;
+    var form_id = e.detail.formId;
+    var id = e.detail.target.dataset.id;
     wx.navigateTo({
-      url: '/pages/newDetail/index?id=' + id,
+      url: '/pages/newDetail/index?id=' + id + '&&form_id=' + form_id + '&&parements=mm',
     })
   },
   // 上拉触底事件，请求记录数据
@@ -59,13 +64,13 @@ Page({
       page++;
       that.data.page = page
       wx.request({
-        url: app.globalData.base_url + '/xr_goods_list03',
+        url: app.globalData.base_url + '/xr_goods_list06',
         data: {
           page: page,
         },
-        method: 'GET',
         header: {
-          'content-type': 'application/json'
+          'content-type': 'application/json; charset=utf-8', // 默认值
+          'Cache-Control': 'max-age=60', //60秒
         },
         success: function (res) {
           that.data.zl_goods = that.data.zl_goods.concat(res.data.goods);

@@ -35,7 +35,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    wx.showLoading({
+      title: '加载中',
+    })
   },
 
   onPullDownRefresh: function() {
@@ -65,13 +67,14 @@ Page({
         'content-type': 'application/json'
       },
       success: function(res) {
+        wx.hideLoading();
         console.log(res)
         that.setData({
           is_new: res.data.is_new,
           order_num: res.data.help_order,
           money: res.data.my_currency,
-          xr_goods: res.data.xr_goods,
           yq_num: res.data.friends_num,
+          xr_goods: res.data.xr_goods,
         })
       }
     })
@@ -97,9 +100,23 @@ Page({
     }
   },
   gotoFriend:function(){
-    wx.navigateTo({
-      url: '/pages/friendList/index',
-    })
+    const that=this;
+    if (wx.getStorageSync('openid') && wx.getStorageSync('open_id')) {
+      wx.navigateTo({
+        url: '/pages/friendList/index',
+      })
+    } else {
+      app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
+        if (res) {
+          wx.hideLoading();
+          that.onShow();
+        }
+      });
+    }
+
   },
   gotoXr:function(){
     wx.navigateTo({
@@ -252,7 +269,7 @@ Page({
       })
       return
     }
-    gender = gender == 1 ? "男" : "女";
+    var gender = gender == 1 ? "男" : "女";
     wx.request({
       url: app.globalData.base_url + '/save_info',
       data: {
@@ -321,14 +338,27 @@ Page({
       url: '/pages/rule/index',
     })
   },
+  moneyIncome:function(){
+    var that = this;
+    if (wx.getStorageSync('openid') && wx.getStorageSync('open_id')) {
+      wx.navigateTo({
+        url: '/pages/money/index',
+      })
+    } else {
+      app.onLogin(function (res) {
+        wx.showLoading({
+          title: '授权中',
+        })
+        if (res) {
+          wx.hideLoading();
+          that.onShow();
+        }
+      });
+    }
+  },
   setting: function() {
     wx.navigateTo({
       url: '/pages/set/index',
-    })
-  },
-  suggest:function(){
-    wx.navigateTo({
-      url: '/pages/suggest/index',
     })
   },
 })

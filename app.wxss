@@ -5,6 +5,6 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  background-color: #FAFCFF;
+  background-color: #f7faff;
   overflow: hidden;
 }

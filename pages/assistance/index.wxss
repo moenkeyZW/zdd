@@ -1,6 +1,6 @@
 /* pages/assistance/index.wxss */
 @import '../index/index.wxss';
-
+@import '../oneDetail/index.wxss';
 .progress {
   width: 230rpx;
   height: 2rpx;
@@ -15,7 +15,7 @@
 
 .headTit {
   font-size: 32rpx;
-  margin-top:30rpx;
+  margin-top:22rpx;
 }
 .change{
   width:240rpx;
@@ -23,43 +23,15 @@
 }
 .item {
   width: calc(100% - 60rpx);
-  height: 260rpx;
+  height: 244rpx;
   background: #fff;
   box-shadow: 0px 6rpx 10rpx 0px rgba(71, 167, 254, 0.1);
   border-radius: 10rpx;
   margin: 10rpx 0;
 }
-
-.details{
-  margin:46rpx 0 60rpx 0;
-}
-
-.noMore{
-  font-size:36rpx;
-  color:#333;
-  position: relative;
-  margin-top:50rpx;
-}
-.lines{
-  width:48rpx;
-  border:2rpx solid #333;
-  left:28%;
-}
-.linetwo{
-  left:72%;
-}
-.dik{
-  width:228rpx;
-  height:24rpx;
-  background:#FBE64D;
-  top:15rpx;
-}
-.none{
-  padding:0 64rpx;
-  z-index: 10;
-}
-.kuan{
-  margin:6rpx 0 20rpx 30rpx
+.goods{
+  border-bottom-left-radius: 10rpx;
+  border-top-right-radius: none;
 }
 .start{
   color:#999;
@@ -75,4 +47,12 @@
 }
 .distance{
   margin:50rpx 0 12rpx 0;
+}
+.tis{
+  width: 690rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #e4e6ed;
+  padding: 24rpx 0;
+  margin-left: 30rpx;
 }

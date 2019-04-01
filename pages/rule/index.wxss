@@ -47,7 +47,7 @@ image{
 .xianOne{
   background:#E6E6E6;
   width:1rpx;
-  height:394rpx;
+  height:360rpx;
   position:absolute;
   bottom:92rpx;
   left:72rpx;
@@ -80,6 +80,6 @@ image{
   position: relative;
 }
 .two{
-  height:333rpx;
+  height:386rpx;
   bottom:210rpx;
 }

@@ -280,3 +280,7 @@
   margin: 0 0 22rpx 30rpx;
   width: 628rpx;
 }
+.ad{
+   zoom: 0.92;
+   margin-top:20rpx;
+}

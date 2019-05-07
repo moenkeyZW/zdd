@@ -1,0 +1,35 @@
+<!--pages/editAdd/index.wxml-->
+<view class='container'>
+  <form class='form' bindsubmit="personHandle">
+    <view class='detail'>
+      <view class='phone' style='padding-top:30rpx;'>
+        <image class='icon' src='../../../imgs/name.png'></image>
+        <input class='name'  maxlength='5' placeholder='请输入收货人' placeholder-style='color:#B3B3B3' value='{{name}}' name='name' />
+        <image class='icon' src='../../../imgs/phone.png' style='margin-left:58rpx;'></image>
+        <input class='name' bindblur='inputPhone' type='number' maxlength='11' placeholder='请输入手机号' placeholder-style='color:#B3B3B3' value='{{phone}}' name='phone' />
+      </view>
+      <view class='phone'>
+        <image class='icon mf' src='../../../imgs/add.png'></image>
+        <picker mode="region" bindchange="bindRegionChange" value="{{region}}" name="region">
+          <block wx:if="{{region=='请输入地址'}}">
+            <view class='picker' style='color:{{color}};'>{{region}}
+              <image class='icon jt' src='../../../imgs/jt.png'></image>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='picker'>{{region}}
+              <image class='icon jt' src='../../../imgs/jt.png'></image>
+            </view>
+          </block>
+        </picker>
+      </view>
+      <view class='phone'>
+        <image class='icon ad' src='../../../imgs/ad.png'></image>
+        <textarea class='adInput' placeholder='请输入详细地址' placeholder-style='color:#B3B3B3' maxlength='38' value='{{detailAddress}}' name='detailAddress' bindconfirm='detailAddress'></textarea>
+      </view>
+      <view class='intro'>请确认收货信息无误，如因地址或手机号码填写错误，导致无法收到商品，走多多不会补寄商品。</view>
+    </view>
+    <button class='primary btnBc' plain='true' form-type="submit" hover-class='none'>保存</button>
+  </form>
+  <!-- <view class='btnBc cancel' wx:if='{{isHaveAddress}}'  hover-class='none'>取消</view> -->
+</view>

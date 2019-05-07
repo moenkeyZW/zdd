@@ -1,0 +1,7 @@
+<!--pages/moreGoods/index.wxml-->
+
+<import src="../../template/template.wxml" />
+<view class='container'>
+  <image src='../../../imgs/jxhead.png' class='xrHead mgbtom'></image>
+  <template is='newGoods' data='{{...item}}'></template>
+</view>

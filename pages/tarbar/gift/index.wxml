@@ -1,0 +1,79 @@
+<!--pages/gift/index.wxml-->
+<import src="../../template/template.wxml" />
+<view class='container'>
+  <scroll-view class="tab-h size">
+    <view class="tab-item {{currentTab==0?'active':''}}" data-current="{{0}}" catchtap="swichNav" style='margin-left:90rpx;'>新人专区</view>
+    <view class="tab-item {{currentTab==1?'active':''}}" data-current="{{1}}" catchtap="swichNav">助力专区</view>
+    <view class="tab-item {{currentTab==2?'active':''}}" data-current="{{2}}" catchtap="swichNav">精选专区</view>
+  </scroll-view>
+  <view wx:if='{{currentTab==0}}'>
+    <image src='../../../imgs/xrhead.png' class='xrHead'></image>
+    <view class='week'>
+      <block wx:for="{{xr_goods}}" wx:key="{{index}}" data-index="{{index}}">
+        <view class='adcenter' wx:if='{{index===2}}'>
+          <ad unit-id="adunit-f835c63f9ae0f2b2" class='ad mgtopt'></ad>
+        </view>
+        <view class='wareDetail'>
+          <form bindsubmit='xrDetail' report-submit='true'>
+            <button form-type='submit' class='btnAnalysis goods' plain='true' data-id="{{item.goods_id}}">
+              <image src='{{item.photo}}' lazy-load='true' class='goods'></image>
+            </button>
+          </form>
+          <view class='size cor mft ellipsis '>{{item.title}}</view>
+          <view class='dis kuan'>
+            <view>
+              <image src='../../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
+              <text class='price wenzi relati'>{{item.rlb_price}}</text>
+            </view>
+            <view class='yprice decoration'>兑换人数:{{item.dh_num}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class='noMore dialog'>
+      <text class='line'></text>
+      <block wx:if='{{xrhaveMore}}'>
+        <text class='none'>下拉加载更多</text>
+      </block>
+      <block wx:else>
+        <text class='none'>没有更多了</text>
+      </block>
+      <text class='line'></text>
+    </view>
+  </view>
+  <view wx:if='{{currentTab==1}}'>
+    <image src='../../../imgs/zlhead.png' class='xrHead'></image>
+    <template is='newGoods' data='{{...item}}'></template>
+  </view>
+  <view wx:if='{{currentTab==2}}'>
+    <image src='../../../imgs/jxhead.png' class='xrHead'></image>
+    <view class='week'>
+      <block wx:for="{{jx_goods}}" wx:key="{{index}}">
+        <view class='adcenter' wx:if='{{index===2}}'>
+          <ad unit-id="adunit-10a59baf3fbf7fb9" class='ad mgtopt'></ad>
+        </view>
+        <view class='wareDetail'>
+          <image src='{{item.photo}}' lazy-load='true' class='goods' catchtap='jxDetail' lazy-load='true' data-id="{{item.goods_id}}"></image>
+          <view class='size cor mft ellipsis '>{{item.title}}</view>
+          <view class='dis kuan'>
+            <view>
+              <image src='../../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
+              <text class='price wenzi relati'>{{item.rlb_price}}</text>
+            </view>
+            <view class='yprice decoration'>兑换人数:{{item.dh_num}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class='noMore dialog'>
+      <text class='line'></text>
+      <block wx:if='{{jxhaveMore}}'>
+        <text class='none'>下拉加载更多</text>
+      </block>
+      <block wx:else>
+        <text class='none'>没有更多了</text>
+      </block>
+      <text class='line'></text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,29 @@
+<!--pages/winRecord/index.wxml-->
+<view class='container'>
+  <block wx:if="{{state==1}}">
+    <view class='date' wx:for="{{record}}" wx:key="{{index}}" data-index="{{index}}" style='{{index==0?"margin-top:30rpx":""}}'>
+      <view class='dis'>
+        <view class='line'></view>
+        <view class='day'>{{item.date}}</view>
+      </view>
+      <view class='layout'>
+        <view class='dis detail' wx:for="{{item.list}}" wx:key="{{index}}" data-index='{{index}}'>
+          <view>
+            <view class='tit'>{{item.type}}</view>
+            <view class='time'>{{item.time}}</view>
+          </view>
+          <view class='sums' style='color:#47A7FE'>{{item.currency}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='foot'>
+      <text class='string'></text>
+      <text class='noMore'>没有更多了</text>
+      <text class='string'></text>
+    </view>
+  </block>
+  <block wx:else>
+    <image src='../../../imgs/zjjl.png' class='moneyBg' ></image>
+    <view class='yige'>暂无中奖记录</view>
+  </block>
+</view>

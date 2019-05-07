@@ -1,0 +1,142 @@
+<!--pages/turntable/index.wxml-->
+<view class='container' catchtouchmove='{{catchtouchmove}}'>
+  <image src='../../../imgs/zhuanBg.jpg' class='zhuanbg'></image>
+  <image src='../../../imgs/zhuantitle.png' class='zhuantitle abs'></image>
+  <view class='gotorecord abs' bindtap='gotorecord'>
+    <text class='relati'>中奖记录</text>
+  </view>
+  <view class='main'>
+    <view class='canvas-container'>
+      <view class='shadow'></view>
+      <image src='../../../imgs/zhuanpan.png' class='zhuanpan abs'></image>
+      <image src='../../../imgs/zhuancolor.png' class='zhuancolor ' animation='{{animationData}}'></image>
+      <view class='canvas-content' animation='{{animationData}}'>
+        <view class='canvas-list'>
+          <view class='canvas-item' wx:for='{{awardsList}}' wx:key='unique'>
+            <view class='canvas-item-text' style='-webkit-transform:rotate({{item.turn}});rotate({{item.turn}})'>{{item.award}}
+              <image src='{{item.awards}}' class='canvas-item-img'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <image src='../../../imgs/zhuanchou.png' class='zhuanchou abs'></image>
+    </view>
+  </view>
+  <block wx:if='{{button_state==1}}'>
+    <button plain='true' class='cjbtn btnstyle' bindtap='playReward' disabled='{{disabled}}' data-plate='4'>
+      一币抽奖
+      <image src='../../../imgs/zhuanbtn.png' class='zhuanbtn abs'></image>
+    </button>
+  </block>
+  <block wx:elif='{{button_state==2}}'>
+    <view class='cjbtn btnstyle' bindtap='getchance'>
+      获取免费抽奖机会
+      <image src='../../../imgs/zhuanbtn.png' class='zhuanbtn abs'></image>
+    </view>
+  </block>
+  <block wx:elif='{{button_state==3}}'>
+    <view class='cjbtn'>
+      今日次数已用完
+      <image src='../../../imgs/zhuanbtn.png ' class='zhuanbtn abs '></image>
+    </view>
+  </block>
+  <block wx:else>
+    <button plain='true' class='cjbtn btnstyle' bindtap='playReward' disabled='{{disabled}}' data-plate='5'>
+      点击抽奖
+      <image src='../../../imgs/zhuanbtn.png' class='zhuanbtn abs'></image>
+    </button>
+  </block>
+  <view class='size fff '>{{chance_count}}</view>
+  <view style=' z-index:10; '>
+    <image src='../../../imgs/zhuanrule.png ' class='zhuanrule '></image>
+  </view>
+  <view class='hjrecord '>
+    <image src='../../../imgs/zhuanrecord.png ' class='zhuanjl '></image>
+    <swiper class='swiper ' autoplay="true" interval="3000" duration="500" circular="true" vertical="true" display-multiple-items='5 '>
+      <block wx:for="{{record}}" wx:key='{{index}} '>
+        <swiper-item class='swiper-item ' catchtouchmove="stopTouchMove">
+          <image src='{{item.headimgurl}} ' class='avatar '></image>
+          <view class='size nickname '>{{item.nickname}}</view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="dialog" hidden="{{windialog}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandle'></view>
+    <view class="condition">
+      <image src='../../../imgs/zhuanzhong.png ' class='zhuanzhong abs '></image>
+      <view class='content '>
+        <view class='nickname thx mgt '>恭喜你抽中了</view>
+        <view class='thx blue ' style='font-weight:bold '>{{winner}}</view>
+        <block wx:if='{{ad_auth==1}}'>
+          <view class='size jlcont shiwan'>点击下方广告试玩20s并授权，即可获得额外奖励</view>
+          <image src='{{ad_data.outer_image}}' class='miniAd' bindtap='navigateTo' data-plate='4' data-seat='8'></image>
+        </block>
+        <block wx:else>
+          <view class='adcenter'>
+           <ad unit-id="adunit-ee57c2d78e8126db" class='ad'></ad>
+          </view>
+        </block>
+      </view>
+      <image src='../../../imgs/sx.png ' class='delete abs ' bindtap='hideHandle'></image>
+    </view>
+  </view>
+  <view class="dialog" hidden="{{losedialog}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandle'></view>
+    <view class="condition">
+      <image src='../../../imgs/zhuanmei.png ' class='zhuanzhong abs '></image>
+      <view class='content '>
+        <view class='nickname thx mgt '>很遗憾未中奖</view>
+        <view class='thx blue '>继续努力!</view>
+        <view class='adcenter'>
+         <ad unit-id="adunit-ee57c2d78e8126db" class='ad'></ad>
+        </view>
+      </view>
+      <image src='../../../imgs/sx.png ' class='delete abs ' bindtap='hideHandle'></image>
+    </view>
+  </view>
+  <view class="dialog" hidden="{{nochance}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandle'></view>
+    <view class="condition noc">
+      <view class='content '>
+        <view class='thx mgt ' style='color:#FF4F4C; '>~
+          <text class='makechance '>获取抽奖次数</text>~</view>
+        <view class='size jlcont shiwan'>点击下方广告试玩20s并授权，即可免费领取一次抽奖机会</view>
+        <image src='{{ad_data.outer_image}}' class='miniAd' bindtap='navigateTo' data-plate='5' data-seat='9'></image>
+      </view>
+      <image src='../../../imgs/sx.png ' class='delete abs ' bindtap='hideHandle'></image>
+    </view>
+  </view>
+  <view class="dialog" hidden="{{trysuc}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandles'></view>
+    <view class="condition radius">
+      <view class='biaoti'>
+        <image src='../../../imgs/shareGuang.png' class='abs shareGuang' style='top:-135rpx;'></image>
+        <image src='../../../imgs/trysuc.png' class='abs shareSuccess' style='top:4rpx;'></image>
+        <image src='../../../imgs/tryg.png' class='tryg'></image>
+        <block wx:if='{{number==0}}'>
+          <view class='huode anocolor mgtopt'>恭喜您获得免费抽奖机会</view>
+        </block>
+        <block wx:else>
+          <view class='huode anocolor mgtopt'>您本次共获得
+            <text class='fe'>{{number}}</text>热力币</view>
+        </block>
+        <view class='fenxiang primary' bindtap='hideHandles'>好的</view>
+      </view>
+      <image src='../../../imgs/sx.png' class='delete abs' bindtap='hideHandles'></image>
+    </view>
+  </view>
+  <view class="dialog" wx:if="{{clickedfail}}" hidden="{{tryfail}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandles'></view>
+    <view class="condition radius">
+      <view class='biaoti'>
+        <image src='../../../imgs/shareGuang.png' class='abs shareGuang' style='top:-135rpx;'></image>
+        <image src='../../../imgs/tryfail.png' class='abs shareSuccess' style='top:4rpx;'></image>
+        <image src='../../../imgs/tryx.png' class='tryg'></image>
+        <view class='huode anocolor mgtopt'>很遗憾您未达到要求</view>
+        <view class='fenxiang primary' bindtap='continueplay'>继续试玩</view>
+      </view>
+      <image src='../../../imgs/sx.png' class='delete abs' bindtap='hideHandles'></image>
+    </view>
+  </view>
+</view>

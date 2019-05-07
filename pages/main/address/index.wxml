@@ -1,0 +1,27 @@
+<!--pages/address/index.wxml-->
+<view class='container'>
+  <block wx:if="{{state==0}}">
+    <image src='../../../imgs/addBg.png' class='bg'></image>
+    <view class='font letter'>您还没有收货地址</view>
+    <view class='font'>赶紧点击下方按钮添加地址吧</view>
+    <view class='com primary' bindtap='editAddress'>立即添加</view>
+  </block>
+  <block wx:else>
+    <view class='message'>
+      <image class='icon edit' src='../../../imgs/edit.png' bindtap='editAddress'></image>
+      <view class='mg'>
+        <image src='../../../imgs/name.png' class='icon left'></image>
+        <text class='font corss pos'>{{msg.name}}</text>
+        <image src='../../../imgs/phone.png' class='icon long'></image>
+        <text class='font corss pos'>{{msg.phone}}</text>
+      </view>
+      <view class='mgs'>
+        <image src='../../../imgs/add.png' class='icon left'></image>
+        <text class='font corss con pos btom' >{{msg.address}}</text>
+        <text class='font corss con new posi'>{{msg.detail_address}}</text>
+      </view>
+    </view>
+    <view class='dikuang pos bom'></view>
+    <view class='dikuang sm pos '></view>
+  </block>
+</view>

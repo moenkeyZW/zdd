@@ -1,0 +1,59 @@
+<!--pages/order/index.wxml-->
+<view class='container'>
+  <block wx:if="{{state==1}}">
+    <label wx:for="{{top}}" wx:key="{{index}}" data-index='{{index}}'>
+      <view class='xian {{ ((order[index].kd_number!=0 && order[index].order_state==1)||order[index].tel!=0)?"xc":""}}' style='top:{{item}}rpx'></view>
+    </label>
+    <view class='order' wx:for="{{order}}" wx:key="{{index}}" data-index="{{index}}">
+      <view class='dis'>
+        <view class='yuan'></view>
+        <view class='date'>{{item.timeline}}</view>
+      </view>
+      <view class='temp ' bindtap='goOrderDetail' data-id='{{item.id}}' data-type='{{item.goods_type}}'>
+        <image src='../../../imgs/orderDe.png' lazy-load='true' class='orderDe'></image>
+        <view class='dispo pos'>
+          <view class='number size'>订单编号：{{item.order_sn}}</view>
+          <block wx:if='{{item.order_state==0 ||item.order_state==9}}'>
+            <view class='state size'>待发货</view>
+          </block>
+          <block wx:elif='{{item.order_state==1}}'>
+            <view class='state size'>已发货</view>
+          </block>
+          <block wx:elif='{{item.order_state==5||item.order_state==4}}'>
+            <view class='state size'>号码异常</view>
+          </block>
+          <block wx:elif='{{item.order_state==6}}'>
+            <view class='state size'>充值失败</view>
+          </block>
+        </view>
+        <view>
+          <image src='{{item.photo}}' lazy-load='true' class='pos goods'></image>
+        </view>
+        <view class='pos tit'>{{item.title}}</view>
+        <view class='pos jiage'>
+          <image src='../../../imgs/rlbSm.png' lazy-load='true' class='rb'></image>
+          <text class='price'>{{item.currency}}</text>
+          <text class='price ppd'>热力币</text>
+          <block wx:if='{{item.goods_type==1 || item.goods_type==2 || item.goods_type==3||item.goods_type==4 || item.goods_type==5 || item.goods_type==6}}'>
+            <text class='price'>+{{item.goods_zl_num}}助力</text>
+          </block>
+          <!-- <text class='yprice'>原价￥{{item.price}}</text> -->
+        </view>
+      </view>
+      <view class='dis copy' wx:if="{{(item.order_state==1||item.order_state==2)&&item.kd_number!=0}}">
+        <view class='cor size company'>{{item.kd_name}}：</view>
+        <view class='cor size'>{{item.kd_number}}</view>
+        <view class='state size cop' bindtap='copyText' data-text="{{item.kd_number}}">复制查询</view>
+      </view>
+      <view class='dis copy' wx:if='{{item.tel!=0}}'>
+        <view class='cor size company'>充值号码：</view>
+        <view class='cor size'>{{item.tel}}</view>
+      </view>
+    </view>
+    <view class='kong'></view>
+  </block>
+  <block wx:else>
+    <image src='../../../imgs/orderBg.png' lazy-load='true' class='orderBg'></image>
+    <view class='zan size'>暂无订单详情</view>
+  </block>
+</view>

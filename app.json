@@ -1,31 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/tarbar/index/index",
+    "pages/tarbar/my/index",
+    "pages/tarbar/gift/index",
     "pages/login/index",
-    "pages/analysis/index",
-    "pages/my/index",
-    "pages/heatMoney/index",
-    "pages/detail/index",
-    "pages/order/index",
-    "pages/address/index",
-    "pages/success/index",
-    "pages/rule/index",
-    "pages/set/index",
-    "pages/editAdd/index",
-    "pages/person/index",
-    "pages/record/index",
-    "pages/assistance/index",
-    "pages/step/index",
-    "pages/moreGoods/index",
-    "pages/oneDetail/index",
-    "pages/exchange/index",
-    "pages/friendList/index",
-    "pages/newDetail/index",
-    "pages/xrGoods/index",
-    "pages/zlGoods/index",
-    "pages/callus/index",
-    "pages/gift/index",
-    "pages/dhcg/index"
+    "pages/template/template"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -34,28 +13,121 @@
     "navigationBarTextStyle": "black",
     "backgroundColor": "#fff"
   },
+  "navigateToMiniProgramAppIdList":[
+    "wxe58cc7eeb8ee8363",
+    "wx30cdc099493c9d2a",
+    "wx87c13f7ba8c2f431"
+  ],
   "tabBar": {
     "color": "#B2B2B2",
     "selectedColor": "#333333",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/tarbar/index/index",
         "text": "首页",
         "iconPath": "./imgs/index.png",
         "selectedIconPath": "./imgs/index_selected.png"
       },
       {
-        "pagePath": "pages/gift/index",
+        "pagePath": "pages/tarbar/gift/index",
         "text": "礼品",
         "iconPath": "./imgs/gift.png",
         "selectedIconPath": "./imgs/gift_selected.png"
       },
       {
-        "pagePath": "pages/my/index",
+        "pagePath": "pages/tarbar/my/index",
         "text": "我的",
         "iconPath": "./imgs/my.png",
         "selectedIconPath": "./imgs/my_selected.png"
       }
     ]
-  }
+  },
+  "subPackages": [
+    {
+      "root": "pages/main/",
+      "name": "goodetail",
+      "pages": [
+        "analysis/index",
+        "heatMoney/index",
+        "detail/index",
+        "address/index",
+        "success/index",
+        "editAdd/index",
+        "person/index",
+        "record/index",
+        "assistance/index",
+        "moreGoods/index",
+        "oneDetail/index",
+        "newDetail/index",
+        "xrGoods/index",
+        "zlGoods/index",
+        "dhcg/index",
+        "turntable/index",
+        "winRecord/index"
+      ]
+    },
+    {
+      "root": "pages/other/",
+      "name": "myorder",
+      "pages": [
+        "callus/index",
+        "friendList/index",
+        "order/index",
+        "rule/index",
+        "set/index",
+        "erweima/index"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/tarbar/index/index": {
+      "network": "all",
+      "packages": [
+        "__APP__"
+      ]
+    },
+    "pages/tarbar/gift/index": {
+      "network": "all",
+      "packages": [
+        "__APP__"
+      ]
+    },
+    "pages/tarbar/my/index": {
+      "network": "all",
+      "packages": [
+        "__APP__"
+      ]
+    },
+    "pages/main/detail/index": {
+      "network": "all",
+      "packages": [
+        "goodetail"
+      ]
+    },
+    "pages/main/newDetail/index": {
+      "network": "all",
+      "packages": [
+        "goodetail"
+      ]
+    },
+    "pages/main/oneDetail/index": {
+      "network": "all",
+      "packages": [
+        "goodetail"
+      ]
+    },
+    "pages/main/heatMoney/index": {
+      "network": "all",
+      "packages": [
+        "goodetail"
+      ]
+    },
+    "pages/other/order/index": {
+      "network": "all",
+      "packages": [
+        "myorder"
+      ]
+    }
+  },
+  "sitemapLocation": "sitemap.json"
 }

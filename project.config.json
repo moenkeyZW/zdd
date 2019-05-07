@@ -11,10 +11,12 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.5.1",
+	"libVersion": "2.6.6",
 	"appid": "wxe28bb30028ed5d17",
 	"projectname": "zdd",
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -33,75 +35,77 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 30,
+			"current": 26,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "热力币明细",
-					"pathName": "pages/heatMoney/index",
-					"query": ""
+					"pathName": "pages/main/heatMoney/index",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 1,
 					"name": "商品详情",
-					"pathName": "pages/detail/index",
-					"query": ""
+					"pathName": "pages/main/detail/index",
+					"query": "",
+					"scene": null
 				},
 				{
-					"id": 4,
+					"id": 2,
 					"name": "地址管理",
-					"pathName": "pages/address/index",
-					"query": ""
+					"pathName": "pages/main/address/index",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 3,
 					"name": "订单管理",
-					"pathName": "pages/order/index",
+					"pathName": "pages/other/order/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 4,
 					"name": "订单详情",
-					"pathName": "pages/success/index",
+					"pathName": "pages/main/success/index",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 5,
 					"name": "我的",
-					"pathName": "pages/my/index",
-					"query": ""
+					"pathName": "pages/tarbar/my/index",
+					"query": "",
+					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "规则说明",
-					"pathName": "pages/rule/index",
-					"query": ""
+					"pathName": "pages/other/rule/index",
+					"query": "",
+					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 7,
 					"name": "设置",
-					"pathName": "pages/set/index",
-					"query": ""
+					"pathName": "pages/other/set/index",
+					"query": "",
+					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "编辑地址",
-					"pathName": "pages/editAdd/index",
-					"query": ""
+					"pathName": "pages/main/editAdd/index",
+					"query": "",
+					"scene": null
 				},
 				{
-					"id": 11,
-					"name": "快递详情",
-					"pathName": "pages/logistics/index",
-					"query": ""
-				},
-				{
-					"id": -1,
+					"id": 9,
 					"name": "编辑个人信息",
-					"pathName": "pages/person/index",
-					"query": ""
+					"pathName": "pages/main/person/index",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 11,
@@ -112,127 +116,114 @@
 					"referrerInfo": {}
 				},
 				{
-					"id": -1,
+					"id": 11,
 					"name": "健康分析",
-					"pathName": "pages/analysis/index",
-					"query": ""
+					"pathName": "pages/main/analysis/index",
+					"query": "",
+					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 12,
 					"name": "称重记录",
-					"pathName": "pages/record/index",
+					"pathName": "pages/main/record/index",
 					"query": "",
-					"scene": "1001"
+					"scene": 1001
 				},
 				{
-					"id": -1,
+					"id": 13,
 					"name": "我的助力",
-					"pathName": "pages/assistance/index",
+					"pathName": "pages/main/assistance/index",
 					"query": "",
-					"scene": "1001"
+					"scene": 1001
 				},
 				{
-					"id": -1,
-					"name": "兑换热力币",
-					"pathName": "pages/step/index",
-					"query": ""
+					"id": 14,
+					"name": "助力详情",
+					"pathName": "pages/main/oneDetail/index",
+					"query": "",
+					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "分享好友",
-					"pathName": "pages/share/index",
-					"query": ""
+					"id": 15,
+					"name": "好友列表",
+					"pathName": "pages/other/friendList/index",
+					"query": "",
+					"scene": 1001
 				},
 				{
-					"id": -1,
-					"name": "分享专区",
-					"pathName": "pages/oneDetail/index",
-					"query": ""
+					"id": 16,
+					"name": "新人专区详情",
+					"pathName": "pages/main/newDetail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 17,
+					"name": "更多新人商品",
+					"pathName": "pages/main/xrGoods/index",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 18,
-					"name": "模板",
-					"pathName": "pages/template/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "可兑换商品",
-					"pathName": "pages/exchange/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "兑换记录",
-					"pathName": "pages/changeRecord/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "好友列表",
-					"pathName": "pages/friendList/index",
-					"query": "",
-					"scene": "1001"
-				},
-				{
-					"id": -1,
-					"name": "意见反馈",
-					"pathName": "pages/suggest/index",
-					"query": "",
-					"scene": "1035",
-					"referrerInfo": {}
-				},
-				{
-					"id": -1,
-					"name": "新人专区",
-					"pathName": "pages/newDetail/index",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "更多新人商品",
-					"pathName": "pages/xrGoods/index",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "更多助力商品",
-					"pathName": "pages/zlGoods/index",
-					"query": ""
+					"pathName": "pages/main/zlGoods/index",
+					"query": "",
+					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 19,
 					"name": "联系我们",
-					"pathName": "pages/callus/index",
+					"pathName": "pages/other/callus/index",
 					"query": "",
-					"scene": "1017"
+					"scene": 1017
 				},
 				{
-					"id": -1,
+					"id": 20,
 					"name": "商品",
-					"pathName": "pages/gift/index",
+					"pathName": "pages/tarbar/gift/index",
 					"query": "",
-					"scene": "1017"
+					"scene": 1017
 				},
 				{
-					"id": -1,
+					"id": 21,
 					"name": "转盘",
-					"pathName": "pages/turntable/index",
+					"pathName": "pages/main/turntable/index",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 22,
 					"name": "中奖记录",
-					"pathName": "pages/winRecord/index",
+					"pathName": "pages/main/winRecord/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 23,
+					"name": "兑换成功",
+					"pathName": "pages/main/dhcg/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 24,
+					"name": "更多精选商品",
+					"pathName": "pages/main/moreGoods/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 25,
+					"name": "模板",
+					"pathName": "pages/template/template",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "兑换成功",
-					"pathName": "pages/dhcg/index",
-					"query": "",
+					"name": "二维码",
+					"pathName": "pages/other/erweima/index",
 					"scene": null
 				}
 			]

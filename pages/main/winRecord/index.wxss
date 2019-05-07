@@ -1,0 +1,8 @@
+/* pages/winRecord/index.wxss */
+@import '../heatMoney/index.wxss';
+.moneyBg{
+  margin-top:100rpx;
+}
+.sums{
+  font-size:32rpx;
+}

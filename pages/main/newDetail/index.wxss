@@ -1,0 +1,52 @@
+/* pages/oneDetail/index.wxss */
+@import '../detail/index.wxss';
+
+.nedk {
+  width: 250rpx;
+  height: 90rpx;
+}
+
+.needhy {
+  position: fixed;
+  z-index: 10;
+  bottom: 102rpx;
+  right: 40rpx;
+}
+
+.still {
+  width:230rpx;
+  font-size: 12px;
+  position: fixed;
+  bottom: 130rpx;
+  right: 40rpx;
+}
+
+
+
+.changeRule{
+  position: absolute;
+  right:30rpx;
+  top:20rpx;
+  font-size:24rpx;
+}
+.xuxian{
+  box-sizing: border-box;
+  border:2rpx dashed #B2DAFF;
+}
+.avshare{
+  width:63rpx;
+  height:63rpx;
+}
+.avshare[plain]{
+  margin:0;
+  padding:0;
+}
+.hyzls{
+  position: relative;
+  bottom:3rpx;
+  left:3rpx;
+}
+
+.changRule{
+  min-height:368rpx;
+}

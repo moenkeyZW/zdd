@@ -1,0 +1,201 @@
+<!--pages/my/index.wxml-->
+<view class='container'>
+  <view class='headerss'>
+    <image src='../../../imgs/myBg.png' class='myBg'></image>
+    <open-data type="userAvatarUrl" class='ava abs'></open-data>
+    <open-data type="userNickName" class='nickname abs'></open-data>
+    <view class='temp abs'>
+      <view style='margin-left:20rpx;'>
+        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="gotoFriend">
+          <view class='relati tops  size threeSix'>
+            <text class='nums'>{{yq_num}}</text>人</view>
+          <view class='threeSix size relati seat'>我的好友</view>
+        </button>
+      </view>
+      <view class='jbx'></view>
+      <view>
+        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="hotMoney">
+          <view class='nums relati tops' style='font-size:60rpx;'>{{money}}</view>
+          <view class='threeSix size relati' style='bottom:40rpx;'>当前热力币</view>
+        </button>
+      </view>
+      <view class='jbx'></view>
+      <view style='margin-right:20rpx;'>
+        <button class='btn' plain='true' open-type="getUserInfo" bindgetuserinfo="assistance">
+          <view class='relati tops size threeSix'>
+            <text class='nums'>{{order_num}}</text>件</view>
+          <view class='threeSix size relati seat'>助力订单</view>
+        </button>
+      </view>
+    </view>
+  </view>
+  <view class='advertisement'>
+    <ad unit-id="adunit-de8f5735f3bc5f4e" class='ad' bindload='adsuc' binderror='adfail'>
+    </ad>
+  </view>
+  <view class='daohang' bindtap='gotoXr'>
+    <view class='thf cor mf'>你有
+      <text class='blue' style='font-weigth:bold;'>{{xr_goods}}</text> 件新人礼品还未领取，邀请新人
+    </view>
+    <view style='margin-right:30rpx;'>
+      <text class='price tf' style='padding-right:10rpx;font-weigth:bold;'>立即领取</text>
+      <image src='../../../imgs/daohang.png' class='dh'></image>
+    </view>
+  </view>
+
+  <view class='manage'>
+    <view class='content'>
+      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="order">
+        <view class='dis border'>
+          <view class='week'>
+            <image class='icsm' src='../../../imgs/myOrder.png'></image>
+            <view class='size cor  wid'>订单管理</view>
+          </view>
+          <image src='../../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </button>
+      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="address">
+        <view class='dis border'>
+          <view class='week'>
+            <image class='icsm' src='../../../imgs/addBig.png'></image>
+            <view class='size cor  wid'>地址管理</view>
+          </view>
+          <image src='../../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </button>
+      <button class='btn btnAdd' plain='true' open-type="getUserInfo" bindgetuserinfo="analysis">
+        <view class='dis border'>
+          <view class='week'>
+            <image class='icsm' src='../../../imgs/myJkcp.png'></image>
+            <view class='size cor  wid'>健康测评</view>
+          </view>
+          <image src='../../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </button>
+      <view class='btn btnAdd' bindtap="rule">
+        <view class='dis border'>
+          <view class='week'>
+            <image class='icsm' src='../../../imgs/rule.png'></image>
+            <view class='size cor  wid'>规则说明</view>
+          </view>
+          <image src='../../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </view>
+      <view class='btn btnAdd' bindtap="setting">
+        <view class='dis border'>
+          <view class='week'>
+            <image class='icsm' src='../../../imgs/set.png'></image>
+            <view class='size cor  wid'>设置</view>
+          </view>
+          <image src='../../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </view>
+      <button class='btn btnAdd' plain='true' open-type='contact'>
+        <view class='dis'>
+          <view class='week'>
+            <image class='icsm' src='../../../imgs/callus.png'></image>
+            <view class='size cor  wid'>联系我们</view>
+          </view>
+          <image src='../../../imgs/arrow.png' class='arrow'></image>
+        </view>
+      </button>
+    </view>
+  </view>
+  <view class="dialog" hidden="{{perMessage}}" catchtouchmove="ture">
+    <view class="mask" bindtap='hideHandle'></view>
+    <view class="condition" style='top:47%;'>
+      <view class='title'>
+        <image src='../../../imgs/title.png' class='title'></image>
+        <view class='abs cor tit'>完善信息</view>
+      </view>
+      <form style='width:100%;' bindsubmit='wsResult'>
+        <view class='cljg'>
+          <view class='relati'>
+            <view class='ding'>
+              <view class='diss'>
+                <view class='duan'></view>
+                <view class='cor size'>体重</view>
+              </view>
+              <block wx:if='{{userInfo.type==1||userInfo.type==3}}'>
+                <view class='kg'>{{userInfo.weight}}kg</view>
+              </block>
+              <block wx:else>
+                <picker bindchange="pickWeight" name='weight' class='pick' value='{{userInfo.weight}}' range="{{weightArr}}">
+                  <block wx:if="{{userInfo.weight>0}}">
+                    <view class='kg'>{{userInfo.weight}}kg</view>
+                  </block>
+                  <block wx:else>
+                    <view class='place mts'>请输入你的体重</view>
+                  </block>
+                </picker>
+              </block>
+            </view>
+            <image src='../../../imgs/weightBg.png' class='ka mf'></image>
+          </view>
+          <view class='relati'>
+            <view class='ding'>
+              <view class='diss'>
+                <view class='duan'></view>
+                <view class='cor size'>身高</view>
+              </view>
+              <block wx:if='{{userInfo.type==1}}'>
+                <view class='kg'>{{userInfo.height}}cm</view>
+              </block>
+              <block wx:else>
+                <picker bindchange="pickHeight" name='height' class='pick' value='{{userInfo.height}}' range="{{heightArr}}">
+                  <block wx:if="{{userInfo.height>0}}">
+                    <view class='kg'>{{userInfo.height}}cm</view>
+                  </block>
+                  <block wx:else>
+                    <view class='place mts'>请输入你的身高</view>
+                  </block>
+                </picker>
+              </block>
+            </view>
+            <image src='../../../imgs/heightBg.png' class='ka mf'></image>
+          </view>
+          <view class='relati'>
+            <view class='ding'>
+              <view class='diss'>
+                <view class='duan'></view>
+                <view class='cor size'>性别</view>
+              </view>
+              <picker bindchange="pickGender" class='pick' name="gender" value="{{index}}" range="{{genderArray}}">
+                <block wx:if="{{userInfo.gender==1}}">
+                  <view class='kg'>男</view>
+                </block>
+                <block wx:elif="{{userInfo.gender==2}}">
+                  <view class='kg'>女</view>
+                </block>
+                <block wx:else>
+                  <view class='place mts'>请输入你的性别</view>
+                </block>
+              </picker>
+            </view>
+            <image src='../../../imgs/genderBg.png' class='ka mf'></image>
+          </view>
+          <view class='relati'>
+            <view class='ding'>
+              <view class='diss'>
+                <view class='duan'></view>
+                <view class='cor size'>年龄</view>
+              </view>
+              <picker bindchange="pickAge" name='age' class='pick' value='{{userInfo.age}}' range="{{ageArr}}">
+                <block wx:if="{{userInfo.age>0}}">
+                  <view class='kg'>{{userInfo.age}}岁</view>
+                </block>
+                <block wx:else>
+                  <view class='place mts'>请输入你的年龄</view>
+                </block>
+              </picker>
+            </view>
+            <image src='../../../imgs/ageBg.png' class='ka mf'></image>
+          </view>
+          <button class='btnYq cor ckjk' plain='true' form-type="submit" hover-class='none'>查看健康测评</button>
+        </view>
+      </form>
+    </view>
+    <image src='../../../imgs/sx.png' class='sx abs jkcps' bindtap='hideHandle'></image>
+  </view>
+
+</view>

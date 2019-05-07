@@ -23,7 +23,7 @@ Page({
         app.onRefreshs(function(res) {
           if (res) {
             wx.switchTab({
-              url: '/pages/index/index',
+              url: '/pages/tarbar/index/index',
             })
           }
         });
@@ -37,7 +37,7 @@ Page({
         title: '正在获取中',
       })
       wx.switchTab({
-        url: '/pages/index/index',
+        url: '/pages/tarbar/index/index',
       })
     }
   },
@@ -57,7 +57,7 @@ Page({
       if (res) {
         wx.hideLoading();
         wx.switchTab({
-          url: '/pages/index/index',
+          url: '/pages/tarbar/index/index',
         })
       }
     });

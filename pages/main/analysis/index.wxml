@@ -1,0 +1,171 @@
+<!--pages/analysis/index.wxml-->
+<view class='container'>
+  <view class='head'>
+    <view class='abs record' bindtap='hisRecord'>称重记录</view>
+    <image src='../../../imgs/bi.png' class='bi abs' bindtap='edit'></image>
+    <view>
+      <image src='{{userInfo.avatarUrl}}' class='ava abs'></image>
+      <block wx:if="{{userInfo.gender==1}}">
+        <image src='../../../imgs/nan.png' class='gender abs'></image>
+      </block>
+      <block wx:if="{{userInfo.gender==2}}">
+        <image src='../../../imgs/nv.png' class='gender abs'></image>
+      </block>
+    </view>
+    <image src='../../../imgs/anaBg.png' class='anaBg'></image>
+    <view class='dis abs wei'>
+      <view class='flex'>
+        <view class='font cor'>年龄</view>
+        <view class=''>
+          <text class='num cor'>{{userInfo.age}}</text>
+          <text class='unit cor mf'>岁</text>
+        </view>
+      </view>
+      <view class='flex'>
+        <view class='font cor'>体重</view>
+        <view class=''>
+          <text class='num cor'>{{userInfo.weight}}</text>
+          <text class='unit cor mf'>kg</text>
+        </view>
+      </view>
+      <view class='flex'>
+        <view class='font cor'>身高</view>
+        <view class=''>
+          <text class='num cor'>{{userInfo.height}}</text>
+          <text class='unit cor mf'>cm</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='biao'>
+    <text class='line abs'></text>
+    <text class='ruh abs cor six'>我的身材如何?</text>
+    <text class='line abs other'></text>
+    <view class='back abs'></view>
+  </view>
+  <view class='temp'>
+    <view class='bmi  dis'>
+      <view class='xian'></view>
+      <view class='ti cor'>BMI：</view>
+      <view class='shu'>{{analysisData.body.bmi}}</view>
+    </view>
+    <view class=''>
+      <image src='../../../imgs/ding.png' class='ding' style='margin-left:{{analysisData.body.bmiLevel}}%'></image>
+      <view class='progress'></view>
+      <view class='dis'>
+        <view class='yuan first'>
+          <view class='dian cor font'>19</view>
+        </view>
+        <view class='yuan {{analysisData.body.bmi>19?"":"bgcor" }}'>
+          <view class='dian cor font'>24</view>
+        </view>
+        <view class='yuan {{analysisData.body.bmi>24?"":"bgcor"}}'>
+          <view class='dian cor font'>28</view>
+        </view>
+      </view>
+    </view>
+    <view class='dis standard'>
+      <view class='color font{{analysisData.body.color==0?"lan":""}}'>偏瘦</view>
+      <view class='color font {{analysisData.body.color==1?"lan":""}}'>正常</view>
+      <view class='color font {{analysisData.body.color==2?"lan":""}}'>偏胖</view>
+      <view class='color font {{analysisData.body.color==3?"lan":""}}'>肥胖</view>
+    </view>
+    <view class='mu unit color'>（目前常用的人体胖瘦标准）</view>
+  </view>
+  <view class='temp' style='margin-top:20rpx;'>
+    <view class='bmi  dis'>
+      <view class='xian'></view>
+      <view class='ti cor'>体脂：</view>
+      <view class='shu'>{{analysisData.body.bf}}</view>
+    </view>
+    <view class=''>
+      <image src='../../../imgs/ding.png' class='ding' style='margin-left:{{analysisData.body.tz}}%'></image>
+      <view class='progress'></view>
+      <view class='dis'>
+        <view class='yuan first'>
+          <view class='dian cor font' wx:if="{{userInfo.gender==1}}">10</view>
+          <view class='dian cor font' wx:if="{{userInfo.gender==2}}">15</view>
+        </view>
+        <view class='yuan {{analysisData.body.tz>25?"":"bgcor"}}'>
+          <view class='dian cor font' wx:if="{{userInfo.gender==1}}">15</view>
+          <view class='dian cor font' wx:if="{{userInfo.gender==2}}">20</view>
+        </view>
+        <view class='yuan {{analysisData.body.tz>50?"":"bgcor"}}'>
+          <view class='dian cor font' wx:if="{{userInfo.gender==1}}">20</view>
+          <view class='dian cor font' wx:if="{{userInfo.gender==2}}">25</view>
+        </view>
+      </view>
+    </view>
+    <view class='dis standard'>
+      <view class='color font{{analysisData.body.bfLevel==0?"lan":""}}'>偏瘦</view>
+      <view class='color font {{analysisData.body.bfLevel==1?"lan":""}}'>正常</view>
+      <view class='color font {{analysisData.body.bfLevel==2?"lan":""}}'>偏胖</view>
+      <view class='color font {{analysisData.body.bfLevel==3?"lan":""}}'>肥胖</view>
+    </view>
+    <view class='mu unit color'>（目前常用的人体胖瘦标准）</view>
+  </view>
+  <view class='dis'>
+    <view class='dream'>
+      <view class='kacl'>
+        <view class='dis'>
+          <view class='xian'></view>
+          <view class='font cor'>基础代谢率</view>
+        </view>
+        <view class='mt'>
+          <text class='shu'>{{analysisData.body.bmr}}</text>
+          <text class='six color mfs'>kcal</text>
+        </view>
+      </view>
+    </view>
+    <view class='dream' style='margin-left:20rpx;'>
+      <view class='kacl'>
+        <view class='dis'>
+          <view class='xian'></view>
+          <view class='font cor'>理想体重</view>
+        </view>
+        <view class='mt'>
+          <text class='shu'>{{analysisData.body.dreamWeight}}</text>
+          <text class='six color mfs'>kg</text>
+        </view>
+      </view>
+    </view>
+  </view>
+<ad unit-id="adunit-b8312890f03037ce" class='ad'></ad>
+  <view class='intro'>
+    <image src='../../../imgs/tzBg.png' class='tzBg'></image>
+    <view class='cor six abs your'>{{analysisData.body.title}}</view>
+    <view class='font abs detail cos'>{{analysisData.body.suggestion}}</view>
+  </view>
+  <view class='biao'>
+    <text class='line abs'></text>
+    <text class='ruh abs cor six'>我该怎么吃?</text>
+    <text class='line abs other'></text>
+    <view class='back abs'></view>
+  </view>
+  <view class='hotPower'>
+    <view class='bmi dis'>
+      <view class='xian'></view>
+      <view class='ti cor'>预算热量：</view>
+      <view class='shu'>{{analysisData.eat.calorie}}</view>
+      <view class='color font' style='margin-left:6rpx;'>千卡</view>
+    </view>
+    <view class='font cos range'>在{{analysisData.eat.calOne}}~{{analysisData.eat.calTwo}}千卡范围内都是合理的!</view>
+    <view class='font cos lef'>{{analysisData.eat.eatSuggestion}}</view>
+  </view>
+  <view class='biao'>
+    <text class='line abs'></text>
+    <text class='ruh abs cor six'>我该怎么运动?</text>
+    <text class='line abs other'></text>
+    <view class='back abs'></view>
+  </view>
+  <view class='hotPower' style='margin-bottom:60rpx;min-height:350rpx'>
+    <view class='bmi dis'>
+      <view class='xian'></view>
+      <view class='ti cor'>燃脂心率：</view>
+      <view class='shu'>{{analysisData.sport.countOne}}~{{analysisData.sport.countTwo}}</view>
+      <view class='color font' style='margin-left:6rpx;'>次/分钟</view>
+    </view>
+    <view class='font cos range'>运动时，脂肪燃烧效率最高的心率范围</view>
+    <view class='font cos lef'>{{analysisData.sport.sportSuggestion}}</view>
+  </view>
+</view>

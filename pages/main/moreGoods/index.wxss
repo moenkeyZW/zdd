@@ -1,0 +1,2 @@
+/* pages/moreGoods/index.wxss */
+@import '../xrGoods/index.wxss';

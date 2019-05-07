@@ -1,0 +1,346 @@
+/* pages/turntable/index.wxss */
+@import '../../../css/common.wxss';
+.container {
+  background:#7d1a7a;
+}
+.ad {
+  zoom: 0.92;
+  margin: 30rpx 0;
+}
+.abs {
+  position: absolute;
+  left: 50%;
+  top:50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.gotorecord{
+  width:146rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  border-radius:30rpx 0px 0px 30rpx;
+  background:rgba(255,255, 255, 0.4);
+  color:#fff;
+  top:5%;
+  left:90%;
+  font-size:32rpx;
+  text-align: center;
+}
+.relati{
+  position: relative;
+  left:6rpx;
+}
+.zhuanbg {
+  width: 100%;
+  min-height: 1538rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.zhuantitle{
+  width:510rpx;
+  height:318rpx;
+  z-index:10;
+  top:192rpx;
+}
+.main {
+  margin: 330rpx 0 100rpx 0;
+}
+
+.shadow {
+  position: absolute;
+  width: 430rpx;
+  height: 430rpx;
+  border: 26rpx solid rgba(0, 0, 0, 0.2);
+  z-index: 900;
+  border-radius: 50%;
+}
+
+.canvas-container {
+  margin: 0 auto;
+  position: relative;
+  width: 480rpx;
+  height: 480rpx;
+  border-radius: 50%;
+}
+
+.canvas-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: block;
+  width: 480rpx;
+  height: 480rpx;
+  border-radius: inherit;
+  background-clip: padding-box;
+}
+
+.canvas-element {
+  position: relative;
+  z-index: 1;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+}
+
+.canvas-list {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: inherit;
+  height: inherit;
+  z-index: 888;
+}
+
+.canvas-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #e4370e;
+  font-weight: bold;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.canvas-item-text {
+  position: relative;
+  display: block;
+  padding-top: 30rpx;
+  font-size: 24rpx;
+  margin: 0 auto;
+  text-align: center;
+  -webkit-transform-origin: 50% 240rpx;
+  transform-origin: 50% 240rpx;
+}
+
+.zhuanchou {
+  width: 160rpx;
+  height: 228rpx;
+  z-index: 400;
+  top:47%;
+}
+.canvas-item-img {
+  width: 80rpx;
+  height: 60rpx;
+  display: block;
+  padding-top: 8rpx;
+  margin: 0 auto;
+}
+
+.cjbtn {
+  position: relative;
+  width: 480rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  z-index: 1000;
+  box-shadow:0px 6rpx 24rpx 0px rgba(0, 0, 0, 0.4);
+  border-radius: 48rpx;
+  color:#E6E6E6;
+  font-size:40rpx;
+  text-align: center;
+  background-color: #ccc;
+  margin-bottom:10rpx;
+}
+
+.btnstyle{
+  font-weight: 800;
+  color:#D93C2A !important;
+  background:linear-gradient(to bottom, #FFE14C, #FFA724);
+}
+
+.zhuanbtn {
+  width: 80rpx;
+  height: 40rpx;
+  left:45rpx;
+  top:25rpx;
+}
+
+.fff {
+  color: #fff;
+  z-index: 10;
+}
+
+.size {
+  font-size: 28rpx;
+}
+
+.zhuanrule {
+  width: 630rpx;
+  height: 431rpx;
+  margin: 60rpx 0 20rpx 0;
+}
+
+.hjrecord {
+  width: 630rpx;
+  height: 544rpx;
+  position: relative;
+  bottom: 32rpx;
+  margin-bottom: 50rpx;
+}
+
+.zhuanjl {
+  width: 630rpx;
+  height: 544rpx;
+}
+
+.swiper {
+  width: 510rpx;
+  height: 340rpx;
+  position: absolute;
+  top: 138rpx;
+  left: 59rpx;
+}
+
+.swiper-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+
+.avatar {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  margin-right: 15rpx;
+}
+.nickname {
+  color: #333;
+}
+.thx{
+  font-size:36rpx;
+}
+.blue{
+  color:#47A7FE;
+}
+.zhuanpan {
+  width: 580rpx;
+  height: 590rpx;
+}
+.zhuancolor {
+  width: 480rpx;
+  height: 480rpx;
+  position: absolute;
+}
+
+.dialog {
+  width: 100%;
+}
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.condition {
+  position: fixed;
+  width: 590rpx;
+  background: #fff;
+  top:52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2002;
+  border-bottom-left-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+}
+.zhuanzhong{
+  width:590rpx;
+  height:375rpx;
+  display: block;
+  top:-180rpx;
+}
+.content{
+  width:590rpx;
+  min-height:207rpx;
+  text-align: center;
+}
+.mgt{
+  margin:36rpx 0;
+}
+.delete{
+  width:60rpx;
+  height:60rpx;
+  top:126%;
+  overflow: visible;
+  z-index:2003
+}
+.jlcont{
+  text-align: center;
+  width:395rpx;
+  margin:26rpx 0 0 100rpx;
+}
+.shiwan{
+  color:#000;
+}
+.noc{
+  border-radius: 12rpx;
+  top:42%;
+}
+.noc>.content{
+  min-height:400rpx;
+}
+.makechance{
+  padding:0 20rpx;
+}
+.miniAd{
+  width:calc(100% - 60rpx);
+  height:185rpx;
+  border-radius: 12rpx;
+  margin-top:30rpx;
+}
+.shareGuang {
+  width: 750rpx;
+  height: 272rpx;
+  top: -195rpx;
+}
+
+.shareSuccess {
+  width: 590rpx;
+  height: 140rpx;
+  top: -55rpx;
+}
+
+.huode {
+  font-weight: bold;
+  color:#000;
+  font-size: 32rpx;
+}
+.anocolor{
+  color:#FF4F4C;
+}
+.mgtopt {
+  margin-top: 30rpx;
+}
+.fenxiang {
+  width: 530rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  box-shadow:0px 10rpx 10rpx 0px rgba(255,224,0,0.2);
+  margin:30rpx;
+}
+.tryg{
+  margin-top:80rpx;
+  width:54rpx;
+  height:54rpx;
+}
+.biaoti {
+  width: 590rpx;
+  min-height: 254rpx;
+  position: relative;
+  text-align: center;
+}
+.radius{
+  border-radius: 12rpx;
+  top:44%;
+}
+.adcenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

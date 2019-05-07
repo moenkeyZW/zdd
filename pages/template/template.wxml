@@ -1,0 +1,40 @@
+<!--pages/template/template.wxml-->
+<template name="newGoods">
+  <view class='week'>
+    <block wx:for="{{zl_goods}}" wx:key="{{index}}" data-index="{{index}}">
+      <view class='adcenter' wx:if='{{index===2}}'>
+        <ad unit-id="adunit-c29f170739cfb57a" class='ad mgtopt'></ad>
+      </view>
+      <view class='wareDetail'>
+        <form bindsubmit='onDetail' report-submit='true'>
+          <button form-type='submit' class='btnAnalysis goods' plain='true' data-id="{{item.goods_id}}">
+            <image src='{{item.photo}}' lazy-load='true' class='goods'></image>
+          </button>
+        </form>
+        <view class='size cor mft ellipsis '>{{item.title}}</view>
+        <view class='dis kuan'>
+          <view>
+            <image src='../../../imgs/rlbSm.png' class='rb relati' lazy-load='true'></image>
+            <text class='price wenzi relati'>{{item.rlb_price}}</text>
+          </view>
+          <block wx:if='{{item.dh_num}}'>
+            <view class='yprice decoration'>兑换人数:{{item.dh_num}}</view>
+          </block>
+          <block wx:else>
+            <view class='yjts yprice'>{{item.yrlb_price}}热力币</view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='noMore dialog'>
+    <text class='line'></text>
+    <block wx:if='{{haveMore}}'>
+      <text class='none'>下拉加载更多</text>
+    </block>
+    <block wx:else>
+      <text class='none'>没有更多了</text>
+    </block>
+    <text class='line'></text>
+  </view>
+</template>

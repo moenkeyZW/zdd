@@ -1,0 +1,6 @@
+/* pages/moreGoods/index.wxss */
+@import '../../tarbar/index/index.wxss';
+.xrHead{
+  width:690rpx;
+  height:240rpx;
+}

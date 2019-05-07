@@ -1,0 +1,30 @@
+<!--pages/record/index.wxml-->
+<view class='container'>
+  <block wx:if="{{state===1}}">
+    <view class='dis' wx:for="{{recordList}}" wx:key="{{index}}">
+      <view>
+        <view class='round'></view>
+        <view class='xians {{index===recordList.length-1?"last":""}}'></view>
+      </view>
+      <view class='record'>
+        <view class='timeline'>{{item.timeline}}</view>
+        <view class='tu' wx:if="{{item.type_id==1}}">
+          <image src='../../../imgs/dc.png' lazy-load='true' class='dc'></image>
+          <view class='weight cor'>{{item.weight}}<text class='dw cor'>kg</text>
+          </view>
+          <view class='weight cor height'>{{item.height}}<text class='dw cor'>cm</text>
+          </view>
+        </view>
+        <view class='tu' wx:else>
+          <image src='../../../imgs/xc.png' lazy-load='true' class='dc'></image>
+          <view class='weight cor'>{{item.weight}}<text class='dw cor'>kg</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <image src='../../../imgs/norecord.png' class='norecord'></image>
+    <view class='timeline zw'>暂无称重记录</view>
+  </block>
+</view>

@@ -1,3 +1,0 @@
-/* pages/moreGoods/index.wxss */
-@import '../index/index.wxss';
-@import '../xrGoods/index.wxss';

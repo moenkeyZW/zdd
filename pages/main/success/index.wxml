@@ -1,0 +1,94 @@
+<!--pages/success/index.wxml-->
+<view class='container'>
+  <image src='../../../imgs/orderDetail.png' class='dhcg'></image>
+  <view class='receiver commodity'>
+    <view class='othDis'>
+      <view class='xian'></view>
+      <view class='tit'>商品信息</view>
+    </view>
+    <view class='dis'>
+      <view>
+        <image src='{{msg.photo}}' class='img'></image>
+      </view>
+      <view>
+        <view class='font'>{{msg.title}}</view>
+        <view class='through'>原价￥{{msg.price}}</view>
+        <view>
+          <image src='../../../imgs/rlbSm.png' class='rb'></image>
+          <text class='price'>{{msg.currency}}</text>
+          <text class='price' style='padding-left:6rpx;'>热力币</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <block wx:if='{{num}}'>
+    <view class='receiver' style='{{num?"height:188rpx":""}}'>
+      <view class='othDis'>
+        <view class='xian'></view>
+        <view class='tit'>充值号码</view>
+      </view>
+      <view class='dis dbh'>
+        <image src='../../../imgs/phone.png' class='icon'></image>
+        <view class='font mgf'>{{msg.tel}}</view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='receiver'>
+      <view class='othDis'>
+        <view class='xian'></view>
+        <view class='tit'>收货信息</view>
+      </view>
+      <view>
+        <view class='mg'>
+          <image src='../../../imgs/name.png' class='icon left'></image>
+          <text class='font corss pos'>{{addinfo.name}}</text>
+          <image src='../../../imgs/phone.png' class='icon long'></image>
+          <text class='font corss pos'>{{addinfo.phone}}</text>
+        </view>
+        <view class='mgs'>
+          <image src='../../../imgs/add.png' class='icon left'></image>
+          <text class='font corss con pos'>{{addinfo.address}}</text>
+          <text class='font corss con new posi'>{{addinfo.detail_address}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class='receiver order'>
+    <view class='display'>
+      <view class='dis'>
+        <view class='xian'></view>
+        <view class='tit'>订单信息</view>
+      </view>
+      <block wx:if='{{msg.order_state==0 ||msg.order_state==9}}'>
+        <view class='state size'>待发货</view>
+      </block>
+      <block wx:elif='{{msg.order_state==1}}'>
+        <view class='state size'>已发货</view>
+      </block>
+      <block wx:elif='{{msg.order_state==5||msg.order_state==4}}'>
+        <view class='state size'>号码异常</view>
+      </block>
+      <block wx:elif='{{msg.order_state==6}}'>
+        <view class='state size'>充值失败</view>
+      </block>
+    </view>
+    <view class='dis dbh'>
+      <image src='../../../imgs/detaildh.png' class='icon'></image>
+      <view class='font mgf'>支付热力币：{{msg.currency}}</view>
+    </view>
+    <view class='dis dbh'>
+      <image src='../../../imgs/orderMes.png' class='icon'></image>
+      <view class='font mgf'>订单编号：{{msg.order_sn}}</view>
+    </view>
+    <view class='dis dbh'>
+      <image src='../../../imgs/time.png' class='icon'></image>
+      <view class='font mgf'>下单时间：{{msg.timeline}}</view>
+    </view>
+  </view>
+  <view class='dis copy' wx:if="{{(msg.order_state==1||msg.order_state==2)&&msg.kd_number!=0}}">
+    <view class='cor size company'>{{msg.kd_name}}：</view>
+    <view class='cor size'>{{msg.kd_number}}</view>
+    <view class='state size cop' bindtap='copyText' data-text="{{msg.kd_number}}">复制查询</view>
+  </view>
+</view>

@@ -1,0 +1,61 @@
+/* pages/gift/index.wxss */
+@import '../index/index.wxss';
+.container{
+  background-color: #f7faff;
+}
+
+.xrHead {
+  width:690rpx;
+  height:240rpx;
+  margin: 110rpx 0 0rpx 30rpx;
+}
+
+.tab-h {
+  height: 80rpx;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 80rpx;
+  background: #fff;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index:99;
+}
+
+.item-ans {
+  width: 100%;
+  display: flex;
+  flex-grow: row no-wrap;
+  justify-content: space-between;
+  padding: 30rpx;
+  box-sizing: border-box;
+  height: 180rpx;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.tab-item {
+  margin: 0 60rpx;
+  display: inline-block;
+}
+
+.tab-item.active {
+  color: #47a7fe;
+  position: relative;
+}
+
+.tab-item.active:after {
+  content: "";
+  display: block;
+  height: 6rpx;
+  width: 60rpx;
+  background: #47a7fe;
+  position: absolute;
+  bottom: 0;
+  left: 26rpx;
+  border-radius: 3rpx;
+}
+
+.scoll-h {
+  height: 100%;
+}

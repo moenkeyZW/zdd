@@ -6,7 +6,6 @@
 }
 
 .authorizeBtn {
-  margin-bottom:200rpx;
   width: 300rpx;
   height: 80rpx;
   line-height: 80rpx;
@@ -16,5 +15,15 @@
 .need{
   color:#333;
   font-size:32rpx;
-  margin:96rpx 0 40rpx 0;
+  margin:60rpx 0 30rpx 0;
+}
+.adcenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
+.ad{
+  zoom: 0.92;
+  margin:30rpx 0;
 }

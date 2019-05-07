@@ -1,0 +1,2 @@
+<!--pages/other//erweima/index.wxml-->
+<web-view src='{{webviewUrl}}'></web-view>
